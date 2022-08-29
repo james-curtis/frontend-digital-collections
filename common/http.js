@@ -2,11 +2,11 @@ let baseUrl
 if (process.env.NODE_ENV === 'development') {
 	//本地路径
 	//baseUrl = '/dpc/';
-	baseUrl = 'http://162.14.96.235/api/'
+	baseUrl = '/api/'
 } else {
 	//线上路径
 	// baseUrl = 'http://116.62.223.117/api/'
-	baseUrl = 'http://162.14.96.235/api/'
+	baseUrl = '/api/'
 }
 const post = (url, data, hideloding) => {
 
@@ -98,7 +98,7 @@ const get = (url, data, hideloding) => {
 							url: "/pages/login/login"
 						})
 					}, 1000)
-					
+
 				} else if (res[1].data.code == 402) {
 					uni.showToast({
 						title: "请先设置支付密码",
@@ -129,5 +129,6 @@ const get = (url, data, hideloding) => {
 };
 export default {
 	post,
-	get,baseUrl
+	get,
+	baseUrl
 }
