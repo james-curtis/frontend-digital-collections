@@ -486,7 +486,7 @@
 			width: 100%;
 			height: 120rpx;
 			background-color: $uni-bg-color-grey;
-			box-shadow: 0rpx -4rpx 32rpx 0rpx rgba(180, 180, 180, 0.5);
+			box-shadow: 0rpx -4rpx 32rpx 0rpx rgba(0, 0, 0, 0.5);
 			// box-shadow: 0rpx -4rpx 32rpx 0rpx rgba(180, 180, 180, 0.5);
 
 			.price {

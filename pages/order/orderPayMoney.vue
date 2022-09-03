@@ -8,8 +8,7 @@
 					<view class="price"><text class="size-26">¥ </text>{{goodsInfo.price}}元 </view>
 				</view>
 			</view>
-			<view class="orderNumber" style="border-bottom: 1rpx solid #ffffff;">订单号：<text
-					class="black">{{goodsInfo.order_num}}</text></view>
+			<view class="orderNumber">订单号：<text class="black">{{goodsInfo.order_num}}</text></view>
 			<view class="orderNumber">下单时间：<text class="black">{{goodsInfo.create_time}}</text></view>
 		</view>
 
@@ -273,14 +272,19 @@
 			.orderNumber {
 				height: 92rpx;
 				line-height: 92rpx;
-				color: #333333;
+				color: $uni-text-color;
 				font-size: 26rpx;
 				font-weight: 500;
-				background: #F0F0F0;
+				background: $uni-bg-color-grey;
 				border-radius: 10rpx;
 				padding: 0 28rpx;
 				display: flex;
 				justify-content: space-between;
+				border-bottom: 1rpx solid $uni-text-color-grey;
+
+				&:last-child {
+					border-bottom: 1rpx solid transparent;
+				}
 			}
 		}
 
@@ -300,7 +304,7 @@
 				font-weight: 500;
 
 				.goodName {
-					color: #000000;
+					color: $uni-text-color;
 					font-size: 28rpx;
 					font-weight: 500;
 					line-height: 40rpx;
@@ -325,7 +329,7 @@
 		.Payment {
 			font-size: 30rpx;
 			font-weight: 500;
-			color: #000000;
+			color: $uni-text-color;
 			line-height: 60rpx;
 			padding-left: 30rpx;
 			margin: 42rpx 0 20rpx;
@@ -340,7 +344,7 @@
 				margin-top: 10rpx;
 				// box-shadow: 0px 0px 9rpx 1rpx rgba(61, 61, 61, 0.1);
 				border-radius: 20rpx;
-				background-color: #F0F0F0;
+				background-color: $uni-bg-color-grey;
 				height: 36rpx;
 				padding: 18rpx 38rpx;
 				display: flex;
@@ -362,7 +366,7 @@
 					flex: 1;
 					font-size: 26rpx;
 					font-weight: 500;
-					color: #000000;
+					color: $uni-text-color;
 				}
 			}
 		}

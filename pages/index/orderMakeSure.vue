@@ -106,7 +106,7 @@
 		padding-top: 30rpx;
 
 		.storeBox {
-			background-color: #ffffff;
+			background-color: $uni-bg-color-grey;
 
 			.goodsItem {
 				margin: 0 30rpx;
@@ -123,7 +123,7 @@
 				flex: 1;
 
 				.goodName {
-					color: #000000;
+					color: $uni-text-color;
 					font-size: 28rpx;
 					font-weight: 500;
 					line-height: 40rpx;
@@ -167,17 +167,17 @@
 			z-index: 100;
 			width: 100%;
 			height: 120rpx;
-			background-color: #ffffff;
-			box-shadow: 0rpx -4rpx 32rpx 0rpx rgba(180, 180, 180, 0.5);
+			background-color: $uni-bg-color-grey;
+			box-shadow: 0rpx -4rpx 32rpx 0rpx rgba(0, 0, 0, 0.5);
 
 			.TotalMoney {
 				margin-left: 30rpx;
-				color: #000000;
+				color: $uni-text-color;
 				font-size: 24rpx;
 				font-weight: 500;
 
 				.price {
-					color: #000000;
+					color: $uni-text-color;
 					font-size: 32rpx;
 				}
 			}
