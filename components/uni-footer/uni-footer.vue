@@ -1,5 +1,5 @@
 <template>
-	<view class="tabbar_bottom flex" :style="{background: background}">
+	<view class="tabbar_bottom flex">
 		<view class="tabbar_item flex_column" v-for="(item, index) in list" :key="index" @tap="switchNav(index, item)">
 			<image class="tabbar_img" :src="currentTab == index ? item.selectedIconPath : item.iconPath" mode="">
 			</image>
@@ -79,7 +79,7 @@
 		bottom: 0;
 		z-index: 998;
 		// background: rgba(56, 56, 56, 0.32);
-		background: #FFFFFF;
+		background: $uni-bg-color-grey;
 		backdrop-filter: blur(13px);
 		-webkit-backdrop-filter: blur(13px);
 
@@ -94,11 +94,11 @@
 		}
 
 		.tabbar_label {
-			color: #FFFFFF;
+			color: $uni-text-color;
 			font-size: 20rpx;
 
 			&.act {
-				color: #FFFFFF;
+				color: $uni-text-color;
 			}
 		}
 	}

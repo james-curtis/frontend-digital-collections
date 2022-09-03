@@ -21,7 +21,7 @@
 
 		<view class="listBox">
 			<view class="listItem" @tab="gotoMangheDetail(item)" v-for="(item, index) in goodsList" :key="index">
-				<view class="listType flexBox" >
+				<view class="listType flexBox">
 					<image class="shopIcon" src="../../static/img/my/shop.png" mode=""></image>
 					<view class="orderNumber">订单号：{{item.order_num}}</view>
 					<view class="state1" v-if="item.status == 1">待付款</view>
@@ -32,7 +32,7 @@
 				<view class="goodsList">
 					<image class="goodImg" :src="item.goods_image" mode=""></image>
 					<view class="msgBox">
-						<view class="goodName">{{item.goods_name}} 
+						<view class="goodName">{{item.goods_name}}
 							<text class="maanghe_status" v-if="item.order_type == 3">盲盒</text>
 						</view>
 						<view class="flex_bt">
@@ -41,8 +41,8 @@
 						</view>
 					</view>
 				</view>
-				
-				<view class="handBox clearfix"  v-if="item.status == '1'">
+
+				<view class="handBox clearfix" v-if="item.status == '1'">
 					<view class="Btn" @tap="cancel(item)">取消订单</view>
 					<!-- <view class="Btn payBtn" @tap="go('orderPayMoney')">立即支付</view> -->
 					<view class="Btn payBtn" @tap="go('orderPayMoney?orderId='+item.id)">立即支付</view>
@@ -50,7 +50,7 @@
 				<!-- <view class="handBox clearfix" v-if="item.status == '2'">
 					<view class="Btn" @tap="go('applyRefund?orderId='+item.id+'&total_price='+item.total_price)">申请退款</view>
 				</view> -->
-				
+
 			</view>
 		</view>
 		<uni-load-more :status="status" v-if="goodsList.length"></uni-load-more>
@@ -99,10 +99,9 @@
 				}
 			},
 			//跳转到盲盒详情界面
-			gotoMangheDetail(item){
+			gotoMangheDetail(item) {
 				//已付款 并且是盲盒
-				if(item.status == 2 && item.order_type == 3)
-				{
+				if (item.status == 2 && item.order_type == 3) {
 					this.go('../manghe/openMangheDetail?goodsId=' + item.goods_id)
 				}
 			},
@@ -202,36 +201,39 @@
 			width: 100%;
 			padding-top: 20rpx;
 			height: 100rpx;
-			background-color: #FFFFFF;
+			// background-color: #FFFFFF;
 			display: flex;
 			position: fixed;
 			top: var(--window-top);
 			left: 0;
 			z-index: 10;
+
 			.tab {
 				width: 25%;
 				position: relative;
 				font-size: 26rpx;
-				color: #000000;
+				color: $uni-text-color;
 				height: 90rpx;
 				line-height: 90rpx;
 				text-align: center;
+
 				.line {
 					position: absolute;
 					left: calc(50% - 25rpx);
 					bottom: 0rpx;
 					width: 40rpx;
 					height: 16rpx;
-					background-image:url(../../static/img/line.png) ;
+					background-image: url(../../static/img/index/line.png);
 					background-repeat: no-repeat;
 					background-size: 40rpx 16rpx;
 					display: none;
 				}
 
 				&.act {
-					font-size:26rpx;
+					font-size: 26rpx;
 					font-weight: 600;
-					color: #000000;
+					color: $uni-text-color;
+
 					.line {
 						display: block;
 					}
@@ -247,17 +249,20 @@
 				border-radius: 10rpx;
 				margin-bottom: 30rpx;
 				padding: 0 30rpx;
+
 				.listType {
 					font-size: 26rpx;
 					font-weight: 500;
 					height: 88rpx;
 					line-height: 88rpx;
 					border-bottom: 2rpx solid #383B3F;
+
 					.shopIcon {
 						width: 32rpx;
 						height: 32rpx;
 						margin-right: 10rpx;
 					}
+
 					.orderNumber {
 						flex: 1;
 						color: #000;
@@ -266,9 +271,11 @@
 						text-overflow: ellipsis;
 						white-space: nowrap;
 					}
-					.state1{
+
+					.state1 {
 						color: #00DB7D;
 					}
+
 					.state {
 						color: #AAAAAA;
 					}
@@ -277,13 +284,16 @@
 				.goodsList {
 					padding: 30rpx 0;
 					display: flex;
+
 					.goodImg {
 						width: 180rpx;
 						height: 180rpx;
 						margin-right: 20rpx;
 					}
+
 					.msgBox {
 						flex: 1;
+
 						.goodName {
 							font-size: 28rpx;
 							font-weight: 400;
@@ -295,7 +305,8 @@
 							-webkit-line-clamp: 2;
 							overflow: hidden;
 						}
-						.maanghe_status{
+
+						.maanghe_status {
 							background-color: #00E072;
 							width: 72rpx;
 							height: 32rpx;
@@ -317,6 +328,7 @@
 							color: #000000;
 
 						}
+
 						.time {
 							color: #AAAAAA;
 							font-size: 24rpx;

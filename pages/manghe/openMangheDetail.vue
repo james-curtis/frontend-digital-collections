@@ -263,7 +263,7 @@
 		}
 
 		.msgBox {
-			background-color: #FFFFFF;
+			background-color: $uni-bg-color-grey;
 			/* background-color: #23272C; */
 			padding: 30rpx;
 
@@ -359,7 +359,7 @@
 			z-index: 2;
 			width: 100%;
 			height: 120rpx;
-			background-color: #FFFFFF;
+			background-color: $uni-bg-color-grey;
 			// background-color: rgba(0, 0, 0, 0.7);
 			box-shadow: 0rpx -4rpx 32rpx 0rpx rgba(180, 180, 180, 0.5);
 

@@ -20,7 +20,7 @@
 							<view class="stock">{{info.mhxgstatus}}份</view>
 						</view>
 					</view>
-					
+
 				</view>
 				<image class="img" src="../../static/img/index/b2.png" mode=""></image>
 			</view>
@@ -69,7 +69,7 @@
 				flag: false,
 				text: '',
 				rzflag: false,
-				gmFlag:true
+				gmFlag: true
 			}
 		},
 		onLoad(e) {
@@ -78,7 +78,7 @@
 			uni.$on('init', () => {
 				this.getData();
 			})
-			if(e.type){
+			if (e.type) {
 				this.gmFlag = false;
 			}
 		},
@@ -163,7 +163,7 @@
 							this.flag = false;
 							this.text = "已过期";
 						}
-						
+
 					} else {
 						this.flag = false;
 						this.text = "其他";
@@ -296,6 +296,7 @@
 					font-size: 24rpx;
 					text-align: center;
 					margin-right: 20rpx;
+
 					.Limit {
 						min-width: 60rpx;
 						padding: 0 8rpx;
@@ -310,7 +311,8 @@
 						color: #F1E2BC;
 					}
 				}
-				.LimitBox:last-child{
+
+				.LimitBox:last-child {
 					margin-right: 0;
 				}
 			}
@@ -332,7 +334,7 @@
 		}
 
 		.msgBox {
-			background-color: #FFFFFF;
+			background-color: $uni-bg-color-grey;
 			// background-color: #23272C;
 			padding: 30rpx;
 
@@ -376,7 +378,7 @@
 
 			.priceBox {
 				// color: #AE3523;
-				color: #000;
+				color: $uni-text-color;
 				font-size: 24rpx;
 				font-weight: 500;
 
@@ -406,13 +408,13 @@
 
 		.descBox {
 			padding: 20rpx 30rpx;
-			background-color: #fff;
+			background-color: $uni-bg-color-grey;
 			color: #AAAAAA;
 
 			.item {
 				font-size: 26rpx;
 				font-weight: 500;
-				color: #000;
+				color: $uni-text-color;
 				margin-bottom: 10rpx;
 			}
 
@@ -483,13 +485,13 @@
 			z-index: 100;
 			width: 100%;
 			height: 120rpx;
-			background-color: #FFFFFF;
+			background-color: $uni-bg-color-grey;
 			box-shadow: 0rpx -4rpx 32rpx 0rpx rgba(180, 180, 180, 0.5);
 			// box-shadow: 0rpx -4rpx 32rpx 0rpx rgba(180, 180, 180, 0.5);
 
 			.price {
 				// color: #AE3523;
-				color: #000;
+				color: $uni-text-color;
 				font-size: 40rpx;
 				margin-left: 30rpx;
 			}

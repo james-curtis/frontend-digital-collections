@@ -144,7 +144,7 @@
 				}
 			},
 			getGmsm() {
-				this.$http.get('index/cp_gmsm').then(res=>{
+				this.$http.get('index/cp_gmsm').then(res => {
 					this.gmsm = res
 				})
 			},
@@ -646,7 +646,7 @@
 				align-items: center;
 
 				.goodsName {
-					color: #FFFFFF;
+					color: $uni-text-color;
 					font-size: 30rpx;
 					text-align: center;
 					overflow: hidden;
@@ -685,7 +685,7 @@
 		}
 
 		.msgBox {
-			background-color: #FFFFFF;
+			background-color: $uni-bg-color-grey;
 			// background-color: #23272C;
 			padding: 20rpx;
 			margin: 0 30rpx;
@@ -694,7 +694,7 @@
 
 			.goodsName {
 				// color: #333333;
-				color: #FFFFFF;
+				color: $uni-text-color;
 				font-size: 36rpx;
 				font-weight: 500;
 				margin-bottom: 20rpx;
@@ -723,7 +723,7 @@
 			}
 
 			.describe {
-				color: #666666;
+				color: $uni-text-color-grey;
 				font-size: 26rpx;
 				line-height: 38rpx;
 				font-weight: 500;
@@ -731,7 +731,7 @@
 			}
 
 			.priceBox {
-				color: #000000;
+				color: $uni-text-color;
 				font-size: 24rpx;
 				font-weight: 500;
 
@@ -763,7 +763,7 @@
 		.descBox {
 			margin: 20rpx 30rpx;
 			padding: 20rpx 30rpx;
-			background-color: #ffffff;
+			background-color: $uni-bg-color-grey;
 			color: #AAAAAA;
 			box-shadow: 0px 0px 15rpx 6rpx rgba(52, 52, 52, 0.1);
 			border-radius: 10rpx;
@@ -771,7 +771,7 @@
 			.item {
 				font-size: 26rpx;
 				font-weight: 500;
-				color: #000000;
+				color: $uni-text-color;
 				margin-bottom: 10rpx;
 			}
 
@@ -783,7 +783,7 @@
 
 		.type1 .goodsinfo {
 			padding: 0 30rpx;
-			background-color: #FFFFFF;
+			background-color: $uni-bg-color-grey;
 			// background-color: #23272C;
 			margin: 20rpx 30rpx;
 			box-shadow: 0px 0px 15rpx 6rpx rgba(52, 52, 52, 0.1);
@@ -793,10 +793,14 @@
 				padding: 20rpx 0;
 				border-bottom: 1rpx solid #F0F0F0;
 
+				&:last-child {
+					border-bottom: 1rpx solid transparent;
+				}
+
 				.label {
 					width: 20%;
 					font-size: 24rpx;
-					color: 000000;
+					color: $uni-text-color;
 				}
 
 				.center {
@@ -827,14 +831,14 @@
 			z-index: 100;
 			width: 100%;
 			height: 120rpx;
-			background-color: #FFFFFF;
+			background-color: $uni-bg-color;
 			// border-top: 1rpx solid #BFBFBF;
 			// background-color: rgba(0, 0, 0, 0.7);
 			box-shadow: 0rpx -4rpx 32rpx 0rpx rgba(180, 180, 180, 0.5);
 
 			.price {
 				// color: #AE3523;
-				color: #000000;
+				color: $uni-text-color;
 				font-size: 40rpx;
 				margin-left: 30rpx;
 			}

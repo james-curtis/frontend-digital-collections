@@ -209,7 +209,7 @@
 			margin: 20rpx 20rpx;
 
 			.listItem {
-				background-color: #FFFFFF;
+				background-color: $uni-text-color-inverse;
 				border-radius: 30rpx;
 				margin-bottom: 35rpx;
 				margin-right: 20rpx;
@@ -278,7 +278,7 @@
 					// }
 
 					.goodName {
-						color: #000000;
+						color: $uni-text-color;
 						font-size: 30rpx;
 						margin-bottom: 15rpx;
 					}
@@ -332,8 +332,8 @@
 
 					.good {
 						flex: 1;
-						color: rgba(255, 255, 255, 0.35);
-						// color: #777777;
+						// color: rgba(255, 255, 255, 0.35);
+						color: $uni-text-color;
 						font-size: 24rpx;
 						font-weight: 500;
 					}

@@ -20,13 +20,7 @@
 			"path": "pages/index/goodsDetail",
 			"style": {
 				"navigationBarTitleText": "详情",
-				"enablePullDownRefresh": false,
-				"app-plus": {
-					"titleNView": {
-						"backgroundColor": "#ffffff",
-						"titleColor": "#000000"
-					}
-				}
+				"enablePullDownRefresh": false
 			}
 		},
 		{
@@ -392,8 +386,8 @@
 		}
 	],
 	"globalStyle": {
-		"navigationBarTextStyle": "black",
-		// "navigationBarBackgroundColor": "#ffffff",
+		"navigationBarTextStyle": "white",
+		"navigationBarBackgroundColor": "#2e2f31",
 		"backgroundColor": "#000"
 	},
 	"easycom": {
