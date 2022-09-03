@@ -5,8 +5,8 @@
 		<view class="formBox">
 			<view class="tabBox flexBox">
 				<view :class="showType == '1' ? 'tab act' : 'tab'" @tap="reload(1)">密码登录</view>
-				<view class="line"></view>
-				<view :class="showType == '2' ? 'tab act' : 'tab'" @tap="reload(2)">验证码登录</view>
+				<!-- <view class="line"></view> -->
+				<!-- <view :class="showType == '2' ? 'tab act' : 'tab'" @tap="reload(2)">验证码登录</view> -->
 			</view>
 
 			<block v-if="showType == '1'">
@@ -75,8 +75,7 @@
 </template>
 
 <script>
-		
-import md5 from '@/common/md5.min.js';
+	import md5 from '@/common/md5.min.js';
 	export default {
 		data() {
 			return {
@@ -130,7 +129,7 @@ import md5 from '@/common/md5.min.js';
 							console.log(res);
 							if (res.login == "success") {
 								that.getCode()
-							}else {
+							} else {
 								that.toast("验证失败！");
 							}
 						})
@@ -144,12 +143,12 @@ import md5 from '@/common/md5.min.js';
 		// 	this.md()
 		// },
 		methods: {
-			md(){
-				var phone ='18287103239';
+			md() {
+				var phone = '18287103239';
 				var type = '3';
 				var key = 'Mibai699SETdDEkdhKEHkdhkDhekb12DIdhk';
-				var sign = md5(phone+type+key);
-				console.log('md5',sign);
+				var sign = md5(phone + type + key);
+				console.log('md5', sign);
 			},
 			weixinLogin() {
 				uni.login({
@@ -197,8 +196,8 @@ import md5 from '@/common/md5.min.js';
 				}
 				var key = 'Mibai699SETdDEkdhKEHkdhkDhekb12DIdhk';
 				var type = '3';
-				var sign = md5(this.mobile1+type+key);
-			
+				var sign = md5(this.mobile1 + type + key);
+
 				this.$http.post('login/sendCode', {
 					phone: this.mobile1,
 					type: '3',
@@ -334,7 +333,7 @@ import md5 from '@/common/md5.min.js';
 				.tab {
 					text-align: center;
 					font-size: 28rpx;
-					color: #000;
+					color: #fff;
 				}
 
 				.line {
@@ -345,7 +344,7 @@ import md5 from '@/common/md5.min.js';
 				}
 
 				.act {
-					color: #000;
+					color: #fff;
 					font-weight: 600;
 				}
 			}
@@ -368,7 +367,7 @@ import md5 from '@/common/md5.min.js';
 						height: 100%;
 						font-size: 32rpx;
 						font-weight: 500;
-						color: #000;
+						color: $uni-text-color;
 					}
 
 					.codeBtn {
