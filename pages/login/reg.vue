@@ -141,7 +141,7 @@
 							console.log(res);
 							if (res.login == "success") {
 								that.getCode()
-							}else {
+							} else {
 								that.toast("验证失败！");
 							}
 						})
@@ -206,7 +206,7 @@
 			},
 			getCode() {
 
-				
+
 				if (this.tim != '') {
 					return;
 				}
@@ -216,11 +216,11 @@
 				}
 				var key = 'Mibai699SETdDEkdhKEHkdhkDhekb12DIdhk';
 				var type = '1';
-				var sign = md5(this.phone+type+key);
+				var sign = md5(this.phone + type + key);
 				this.$http.post('login/sendCode', {
 					phone: this.phone,
 					type: '1',
-					sign:sign
+					sign: sign
 				}).then(res => {
 					if (res.code == 1) {
 						this.toast(res.msg);
@@ -304,7 +304,7 @@
 					height: 100%;
 					font-size: 30rpx;
 					font-weight: 500;
-					color: #000;
+					color: $uni-text-color;
 				}
 
 				.iptP {

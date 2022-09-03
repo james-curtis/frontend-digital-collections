@@ -79,7 +79,7 @@
 	export default {
 		data() {
 			return {
-				showType: 2,
+				showType: 1,
 				btnMsg: '获取验证码',
 				mobile: '',
 				password: '',

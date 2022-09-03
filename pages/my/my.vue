@@ -412,7 +412,7 @@
 					margin-right: 50rpx;
 					position: relative;
 					font-size: 30rpx;
-					color: #666666;
+					color: $uni-text-color-grey;
 
 					.line {
 						position: absolute;
@@ -420,7 +420,8 @@
 						bottom: 0rpx;
 						width: 40rpx;
 						height: 16rpx;
-						background-image: url(../../static/img/line.png);
+						// background-image: url(../../static/img/line.png);
+						background-image: url(../../static/img/index/line.png);
 						background-repeat: no-repeat;
 						background-size: 40rpx 16rpx;
 						display: none;
@@ -429,7 +430,7 @@
 					&.act {
 						font-size: 30rpx;
 						font-weight: 600;
-						color: #000000;
+						color: $uni-text-color;
 
 						.line {
 							display: block;

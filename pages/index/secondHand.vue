@@ -229,7 +229,7 @@
 				height: 60rpx;
 				border-left: 1rpx solid rgba(52, 52, 52, 0.1);
 				font-size: 28rpx;
-				color: #000000;
+				color: $uni-text-color;
 				text-align: center;
 				line-height: 60rpx;
 			}
@@ -246,7 +246,7 @@
 		margin-right: 20rpx;
 		display: inline-block;
 		font-size: 30rpx;
-		color: #000000;
+		color: $uni-text-color;
 		height: 88rpx;
 		line-height: 88rpx;
 		text-align: center;
@@ -276,13 +276,13 @@
 
 			.tab {
 				font-size: 30rpx;
-				color: #000000;
+				color: $uni-text-color;
 				height: 88rpx;
 				text-align: center;
 
 				&.act {
 					font-weight: 600;
-					color: #000000;
+					color: $uni-text-color;
 				}
 			}
 

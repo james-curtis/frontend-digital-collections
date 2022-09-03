@@ -12,11 +12,13 @@
 		</swiper>
 		<view class="notice">
 			<view class="notice-left">
-				最新 <text @click="go('/pages/notice/notice')">公告</text>
+				<!-- 最新 <text @click="go('/pages/notice/notice')">公告</text> -->
+				<u--image src='/static/img/index/tongao_icon.png' @click="go('/pages/notice/notice')" width="57px"
+					height="40px"></u--image>
 			</view>
 			<view class="notice-text">
-				<u-notice-bar url="/pages/notice/notice" :icon="''" :font-size="15" :text="firstNotice.title"
-					bgColor="#000" color="#67c5cd"></u-notice-bar>
+				<u-notice-bar url="/pages/notice/notice" :icon="''" :font-size="15" :text="firstNotice.title" bgColor=""
+					color="#67c5cd"></u-notice-bar>
 			</view>
 		</view>
 		<!-- 三个筛选 -->
@@ -375,7 +377,7 @@
 	.notice {
 		margin: 0 30rpx;
 		padding: 0 20rpx;
-		background: #000;
+		background: $uni-bg-color-grey;
 		box-shadow: 0px 0px 15rpx 6rpx rgba(52, 52, 52, 0.1);
 		border-radius: 20rpx;
 		display: flex;

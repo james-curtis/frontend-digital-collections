@@ -26,8 +26,10 @@
 	page {
 		height: 100%;
 		// background-image: url(./static/img/bg.png);
-		background-color: #000;
+		background-color: $uni-bg-color;
 		background-size: 100% auto;
+
+		--uni-bg-color-grey: $uni-bg-color-grey;
 	}
 
 	.u-notice-bar {
