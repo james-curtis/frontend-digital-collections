@@ -5,93 +5,103 @@
 				key: "popUp",
 				data: true
 			})
-			this.$http.get("login/ej").then(res=>{
+			this.$http.get("login/ej").then(res => {
 				uni.setStorage({
 					key: 'rank',
 					data: res,
-					success: function () {
+					success: function() {
 						console.log('success');
 					}
 				});
 			})
 		},
-		onShow() {
-		},
-		onHide() {
-		}
+		onShow() {},
+		onHide() {}
 	}
 </script>
 
 <style lang="scss">
 	@import "@/common/comm.scss";
-	page{
+
+	page {
 		height: 100%;
 		// background-image: url(./static/img/bg.png);
-		background-color: #FFFFFF;
-		background-size: 100%  auto;
+		background-color: #000;
+		background-size: 100% auto;
 	}
-	
-	.u-notice-bar{
+
+	.u-notice-bar {
 		padding: 0 !important;
 	}
-	.navigator-hover{
+
+	.navigator-hover {
 		background: none;
 	}
-	.clearBox{
+
+	.clearBox {
 		overflow: hidden;
 	}
-	.fl{
+
+	.fl {
 		float: left;
 	}
-	.fr{
+
+	.fr {
 		float: right;
 	}
-	.flex{
+
+	.flex {
 		display: flex;
 	}
-	.flexBox{
+
+	.flexBox {
 		display: flex;
 		align-items: center;
 	}
-	.flex_ct{
+
+	.flex_ct {
 		display: flex;
 		justify-content: center;
 		align-items: center;
 	}
-	.flex_bt{
+
+	.flex_bt {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
 	}
-	.flex_ar{
+
+	.flex_ar {
 		display: flex;
 		justify-content: space-around;
 		align-items: center;
 	}
-	.flex_column{
+
+	.flex_column {
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
 	}
-	.flexItem{
+
+	.flexItem {
 		flex: 1;
 	}
-	.tc{
+
+	.tc {
 		text-align: center;
 	}
-	.tr{
+
+	.tr {
 		text-align: right;
 	}
-	
+
 	/* 清除浮动 */
 	.clearfix:after {
-	 content: ".";
-	 display: block;
-	 height: 0;
-	 clear: both;
-	 visibility: hidden;
+		content: ".";
+		display: block;
+		height: 0;
+		clear: both;
+		visibility: hidden;
 	}
-	
-	
 </style>

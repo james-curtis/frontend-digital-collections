@@ -49,7 +49,7 @@
 				"navigationBarTitleText": "市场",
 				"enablePullDownRefresh": true
 			}
-		},{
+		}, {
 			"path": "pages/index/txtdetail",
 			"style": {
 				"navigationBarTitleText": ""
@@ -86,56 +86,50 @@
 			}
 		},
 		{
-		    "path" : "pages/my/art",
-		    "style" :                                                                                    
-		    {
-		        "navigationBarTitleText": "我的艺术品",
-		        "enablePullDownRefresh": true
-		    }
-		    
-		},{
-		    "path" : "pages/notice/noticeDetail",
-		    "style" :                                                                                    
-		    {
-		        "navigationBarTitleText": "公告详情",
-		        "enablePullDownRefresh": false
-		    }
-		    
-		},{
-		    "path" : "pages/notice/notice",
-		    "style" :                                                                                    
-		    {
-		        "navigationBarTitleText": "公告",
-		        "enablePullDownRefresh": false
-		    }
-		    
+			"path": "pages/my/art",
+			"style": {
+				"navigationBarTitleText": "我的艺术品",
+				"enablePullDownRefresh": true
+			}
+
+		}, {
+			"path": "pages/notice/noticeDetail",
+			"style": {
+				"navigationBarTitleText": "公告详情",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/notice/notice",
+			"style": {
+				"navigationBarTitleText": "公告",
+				"enablePullDownRefresh": false
+			}
+
 		},
 		{
-		    "path" : "pages/my/team",
-		    "style" :                                                                                    
-		    {
-		        "navigationBarTitleText": "我的团队",
-		        "enablePullDownRefresh": true
-		    }
-		    
+			"path": "pages/my/team",
+			"style": {
+				"navigationBarTitleText": "我的团队",
+				"enablePullDownRefresh": true
+			}
+
 		},
 		{
-		    "path" : "pages/my/sell",
-		    "style" :                                                                                    
-		    {
-		        "navigationBarTitleText": "我的售卖",
-		        "enablePullDownRefresh": true
-		    }
-		    
+			"path": "pages/my/sell",
+			"style": {
+				"navigationBarTitleText": "我的售卖",
+				"enablePullDownRefresh": true
+			}
+
 		},
 		{
-		    "path" : "pages/my/service",
-		    "style" :                                                                                    
-		    {
-		        "navigationBarTitleText": "客服",
-		        "enablePullDownRefresh": true
-		    }
-		    
+			"path": "pages/my/service",
+			"style": {
+				"navigationBarTitleText": "客服",
+				"enablePullDownRefresh": true
+			}
+
 		},
 		{
 			"path": "pages/my/authentication",
@@ -150,7 +144,7 @@
 				"navigationBarTitleText": "个人信息",
 				"enablePullDownRefresh": false
 			}
-		},{
+		}, {
 			"path": "pages/my/share",
 			"style": {
 				"navigationStyle": "custom",
@@ -360,57 +354,47 @@
 					}
 				}
 			}
+		}, {
+			"path": "pages/manghe/manghelist",
+			"style": {
+				"navigationBarTitleText": "我的盲盒",
+				"enablePullDownRefresh": true
+			}
+
+		}, {
+			"path": "pages/hecheng/hechenglist",
+			"style": {
+				"navigationBarTitleText": "合成",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/hecheng/hechangDetail",
+			"style": {
+				"navigationBarTitleText": "合成",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/hecheng/hechenegRule",
+			"style": {
+				"navigationBarTitleText": "合成规则",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/index/ruzhu",
+			"style": {
+				"navigationBarTitleText": "创作者中心",
+				"enablePullDownRefresh": false
+			}
+
 		}
-	    ,{
-            "path" : "pages/manghe/manghelist",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "我的盲盒",
-                "enablePullDownRefresh": true
-            }
-            
-        }
-		,{
-		    "path" : "pages/hecheng/hechenglist",
-		    "style" :                                                                                    
-		    {
-		        "navigationBarTitleText": "合成",
-		        "enablePullDownRefresh": false
-		    }
-		    
-		}
-        ,{
-            "path" : "pages/hecheng/hechangDetail",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "合成",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-        ,{
-            "path" : "pages/hecheng/hechenegRule",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "合成规则",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-        ,{
-            "path" : "pages/index/ruzhu",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "创作者中心",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-    ],
+	],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
-		"navigationBarBackgroundColor":"#ffffff",
-		"backgroundColor": "#ffffff"
+		// "navigationBarBackgroundColor": "#ffffff",
+		"backgroundColor": "#000"
 	},
 	"easycom": {
 		"^u-(.*)": "uview-ui/components/u-$1/u-$1.vue",

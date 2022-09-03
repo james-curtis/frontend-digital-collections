@@ -13,7 +13,7 @@
 		props: {
 			background: {
 				type: String,
-				default: ''
+				default: '#000'
 			},
 			currentTab: {
 				type: String,
@@ -50,8 +50,8 @@
 		},
 		methods: {
 			switchNav(index, item) {
-				if(this.rank==0){
-					if(index==1){
+				if (this.rank == 0) {
+					if (index == 1) {
 						this.toast("市场暂没有开放");
 						return;
 					}
@@ -94,11 +94,11 @@
 		}
 
 		.tabbar_label {
-			color: #000000;
+			color: #FFFFFF;
 			font-size: 20rpx;
 
 			&.act {
-				color: #000000;
+				color: #FFFFFF;
 			}
 		}
 	}

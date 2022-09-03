@@ -15,7 +15,8 @@
 				最新 <text @click="go('/pages/notice/notice')">公告</text>
 			</view>
 			<view class="notice-text">
-				<u-notice-bar url="/pages/notice/notice" :icon="''" :font-size="15" :text="firstNotice.title" bgColor="#ffffff" color="#67c5cd"></u-notice-bar>
+				<u-notice-bar url="/pages/notice/notice" :icon="''" :font-size="15" :text="firstNotice.title"
+					bgColor="#000" color="#67c5cd"></u-notice-bar>
 			</view>
 		</view>
 		<!-- 三个筛选 -->
@@ -203,7 +204,7 @@
 					let res = await this.$http.get("index/noticeList");
 					this.text1 = res.data[0].content;
 					this.firstNotice = res.data[0]
-					
+
 					if (uni.getStorageSync("popUp")) {
 						this.smshow = true;
 						uni.removeStorageSync("popUp");
@@ -350,7 +351,8 @@
 			font-size: 26rpx;
 			line-height: 40rpx;
 			color: #67c5cd;
-			image{
+
+			image {
 				width: 100%;
 				height: 240rpx;
 			}
@@ -373,7 +375,7 @@
 	.notice {
 		margin: 0 30rpx;
 		padding: 0 20rpx;
-		background: #FFFFFF;
+		background: #000;
 		box-shadow: 0px 0px 15rpx 6rpx rgba(52, 52, 52, 0.1);
 		border-radius: 20rpx;
 		display: flex;
@@ -482,7 +484,7 @@
 				&.act {
 					font-size: 30rpx;
 					font-weight: bold;
-					color: #000000;
+					color: #fff;
 					background-image: linear-gradient(#ceaae6, #61c7cb);
 					background-clip: text;
 					-webkit-background-clip: text;
@@ -499,7 +501,7 @@
 			display: flex;
 			position: fixed;
 			top: 0;
-			background: #FFFFFF;
+			background: #000;
 			z-index: 99;
 		}
 
@@ -509,7 +511,7 @@
 			// flex-wrap: wrap;
 
 			.listItem {
-				background-color: #FFFFFF;
+				background-color: #000;
 				border-radius: 30rpx;
 				margin-bottom: 35rpx;
 				margin-right: 20rpx;
@@ -591,7 +593,7 @@
 					}
 
 					.goodName {
-						color: #000000;
+						color: #fff;
 						font-size: 30rpx;
 						margin-bottom: 15rpx;
 					}
