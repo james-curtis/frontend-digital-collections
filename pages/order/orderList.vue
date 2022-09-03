@@ -245,7 +245,7 @@
 			padding: 150rpx 30rpx 0;
 
 			.listItem {
-				// background: #383B3F;
+				background: $uni-bg-color-item;
 				border-radius: 10rpx;
 				margin-bottom: 30rpx;
 				padding: 0 30rpx;
@@ -255,7 +255,7 @@
 					font-weight: 500;
 					height: 88rpx;
 					line-height: 88rpx;
-					border-bottom: 2rpx solid #383B3F;
+					border-bottom: 2rpx solid $uni-bg-color-item;
 
 					.shopIcon {
 						width: 32rpx;
@@ -265,7 +265,7 @@
 
 					.orderNumber {
 						flex: 1;
-						color: #000;
+						color: $uni-text-color;
 						font-weight: bold;
 						overflow: hidden;
 						text-overflow: ellipsis;
@@ -297,7 +297,7 @@
 						.goodName {
 							font-size: 28rpx;
 							font-weight: 400;
-							color: #000000;
+							color: $uni-text-color;
 							line-height: 40rpx;
 							margin-bottom: 20rpx;
 							display: -webkit-box;
@@ -325,7 +325,7 @@
 						.price {
 							font-size: 32rpx;
 							font-weight: 500;
-							color: #000000;
+							color: $uni-text-color;
 
 						}
 
