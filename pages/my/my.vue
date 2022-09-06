@@ -492,7 +492,7 @@
 						font-size: 26rpx;
 						font-weight: 500;
 						// color: #333333;
-						color: #000;
+						color: $uni-text-color;
 						overflow: hidden;
 						word-break: break-all;
 						text-overflow: ellipsis;
