@@ -254,7 +254,7 @@
 			.msg {
 				font-size: 46rpx;
 				font-weight: 500;
-				color: #000;
+				color: $uni-text-color;
 			}
 
 			.sMsg {
