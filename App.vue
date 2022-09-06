@@ -14,6 +14,9 @@
 					}
 				});
 			})
+			this.$http.get("index/siteConfig").then(res => {
+				this.$store.commit('SET_CONFIG', res)
+			})
 		},
 		onShow() {},
 		onHide() {}

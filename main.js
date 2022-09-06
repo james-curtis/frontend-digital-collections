@@ -3,6 +3,7 @@ import App from './App'
 import util from "@/common/util.js"
 import http from "@/common/http.js"
 import uView from "uview-ui";
+import store from './store'
 Vue.prototype.baseUrl = http.baseUrl;
 
 Vue.prototype.staticUrl = '../../';
@@ -70,7 +71,7 @@ Vue.prototype.confirm = function(tit, msg, success, cancel) {
 	uni.showModal({
 		title: tit || '提示',
 		content: msg || '',
-		success: (res)=> {
+		success: (res) => {
 			if (res.confirm) {
 				success();
 			} else if (res.cancel) {
@@ -81,27 +82,27 @@ Vue.prototype.confirm = function(tit, msg, success, cancel) {
 }
 
 Vue.prototype.showImgs = function(imgs) {
-	
+
 	uni.previewImage({
 		urls: [imgs],
 		longPressActions: {
 			itemList: ['更换图片', '保存图片'],
 			success: function(data) {
 				console.log('选中了第' + (data.tapIndex + 1) + '个按钮,第' + (data.index + 1) + '张图片');
-				if(data.tapIndex == 0){
-					
-					
-				} else if(data.tapIndex == 1){
+				if (data.tapIndex == 0) {
+
+
+				} else if (data.tapIndex == 1) {
 					uni.saveImageToPhotosAlbum({
 						filePath: res.tempFilePath,
-						success: ()=> {
+						success: () => {
 							uni.showToast({
 								title: '保存成功',
 								icon: "none"
 							});
 						}
 					})
-					
+
 				}
 			},
 			fail: function(err) {
@@ -226,6 +227,7 @@ Vue.use(uView);
 App.mpType = 'app'
 
 const app = new Vue({
+	store,
 	...App
 })
 app.$mount()

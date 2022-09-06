@@ -78,10 +78,7 @@
 			</view>
 		</view>
 
-
-		<view class="tech-tip">
-			<image src="../../static/img/tect-tip.png" mode=""></image>
-		</view>
+		<common-footer></common-footer>
 	</view>
 </template>
 
@@ -89,7 +86,7 @@
 	import countdown from "@/components/cz-countdown/cz-countdown.vue"
 	export default {
 		components: {
-			countdown
+			countdown,
 		},
 		data() {
 			return {
