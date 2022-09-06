@@ -28,6 +28,10 @@
 				<input v-model="name" type="text" placeholder="请输入姓名" class="ipt" placeholder-class="iptP" />
 			</view>
 			<view class="iptBox">
+				<text class="label">手机号</text>
+				<input v-model="phone" type="text" placeholder="请输入手机号" class="ipt" placeholder-class="iptP" />
+			</view>
+			<view class="iptBox">
 				<text class="label">身份证号</text>
 				<input v-model="card" type="text" placeholder="请输入本人身份证号" class="ipt" placeholder-class="iptP" />
 			</view>
@@ -49,12 +53,12 @@
 				alipayImg: "../../static/img/my/upload.png",
 				name: '',
 				card: '',
+				phone: '',
 				card_front_image: '',
 				card_back_image: '',
 			};
 		},
-		onLoad(e) {
-		},
+		onLoad(e) {},
 		methods: {
 			submit() {
 				// if (!this.card_front_image) {
@@ -65,7 +69,7 @@
 				// 	this.toast("请输入身份证反面照片");
 				// 	return;
 				// };
-				
+
 				if (!this.name) {
 					this.toast("请输入姓名");
 					return;
@@ -74,19 +78,24 @@
 					this.toast("请输入本人身份证号");
 					return;
 				}
+				if (!this.phone) {
+					this.toast("请输入本人身份证号");
+					return;
+				}
 				// card_front_image: this.card_front_image,
 				// card_back_image: this.card_back_image,
 				let data = {
 					name: this.name,
 					card: this.card,
-					
+					phone: this.phone,
+
 				}
 				this.$http.post('user/auth', data).then(res => {
 					if (res.code == 1) {
 						this.toast(res.msg);
 						setTimeout(() => {
 							uni.navigateBack({
-								delta:1
+								delta: 1
 							})
 						}, 1000)
 					} else {
@@ -171,6 +180,7 @@
 			padding: 0 30rpx;
 			// margin-bottom: 20rpx;
 			padding-bottom: 20rpx;
+
 			.topic {
 				height: 88rpx;
 				color: #000;
@@ -230,6 +240,7 @@
 				color: #000;
 			}
 		}
+
 		.tips {
 			color: #AAAAAA;
 			text-align: center;

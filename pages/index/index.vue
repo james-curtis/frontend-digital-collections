@@ -66,8 +66,8 @@
 					<view class="flexBox" style="margin-top: 10rpx;">
 						<view class="label">{{item.goods_category_name}}</view>
 						<view class="flexBox LimitBox">
-							<view class="Limit">总量</view>
-							<view class="stock">{{item.stock}}</view>
+							<view class="Limit">剩余/总量</view>
+							<view class="stock">{{item.surplus}}/{{item.stock}}</view>
 						</view>
 					</view>
 				</view>
