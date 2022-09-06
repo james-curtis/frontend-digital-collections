@@ -20,24 +20,24 @@
 		</view>
 		<view class="item ptb-22 bb flex flex-between" v-for="(item,index) in recordsList" :key="index">
 			<view>
-				<view class="size-32 black mb-10">{{item.type=='1'?'银行卡':item.type=='2'?'支付宝':'微信'}}提现</view>
+				<view class="size-32 mb-10">{{item.type=='1'?'银行卡':item.type=='2'?'支付宝':'微信'}}提现</view>
 				<view class="colorc6 size-28">{{item.create_time}}</view>
 			</view>
 			<view>
-				<view class="size-32 black mb-10">-{{item.account}}</view>
+				<view class="size-32 mb-10">-{{item.account}}</view>
 				<view class="colorc6 size-28 textend" v-if="item.status == '0'">审核中</view>
 				<view class="mcolor1 size-28 textend" v-if="item.status == '1'">已通过</view>
 				<view class="colorc6 size-28 textend" v-if="item.status == '2'">已拒绝</view>
 			</view>
 			<!-- <view v-if="item.type == '1'" class="">提现类型：<text>银行卡</text></view>
-			<view v-if="item.type == '2'" class="">提现类型：<text>支付宝</text></view>
-			<view v-if="item.type == '3'" class="">提现类型：<text>微信</text></view>
-			<view class="">提现时间：<text>{{item.create_time}}</text></view>
-			<view class="">提现金额：<text>{{item.account}}</text> </view>
-			<view class="">实际到账：<text>{{item.reality_account}}</text></view>
-			<view v-if="item.status == '0'">提现状态：<text style="color: #AE3523;">待审核</text></view>
-			<view v-if="item.status == '1'">提现状态：<text style="color: #4BAE45;">已通过</text></view>
-			<view v-if="item.status == '2'">提现状态：<text style="color: #FF6A1D;">已拒绝</text></view> -->
+				<view v-if="item.type == '2'" class="">提现类型：<text>支付宝</text></view>
+				<view v-if="item.type == '3'" class="">提现类型：<text>微信</text></view>
+				<view class="">提现时间：<text>{{item.create_time}}</text></view>
+				<view class="">提现金额：<text>{{item.account}}</text> </view>
+				<view class="">实际到账：<text>{{item.reality_account}}</text></view>
+				<view v-if="item.status == '0'">提现状态：<text style="color: #AE3523;">待审核</text></view>
+				<view v-if="item.status == '1'">提现状态：<text style="color: #4BAE45;">已通过</text></view>
+				<view v-if="item.status == '2'">提现状态：<text style="color: #FF6A1D;">已拒绝</text></view> -->
 		</view>
 	</view>
 </template>
@@ -152,5 +152,9 @@
 		.colorc6 {
 			color: #A6AFAE;
 		}
+	}
+
+	.item {
+		color: $uni-text-color;
 	}
 </style>
