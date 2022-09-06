@@ -1,21 +1,21 @@
 <template>
 	<view class="content">
-		<!-- <view class="iptBox">
+		<view class="iptBox">
 			<text class="label">支付宝账号:</text>
 			<input v-model="ali_name" type="text" placeholder="请输入支付宝账号" class="ipt" placeholder-class="iptP" />
 		</view>
 		<view class="iptBox1">
 			<view class="label">请上传支付宝收款码:</view>
 			<image @tap="chooseImg" class="headIcon" :src="alipayImg" mode=""></image>
-		</view> -->
-		<!-- <view class="iptBox">
+		</view>
+		<view class="iptBox">
 			<text class="label">微信姓名:</text>
 			<input v-model="wx_name" type="text" placeholder="请输入微信姓名" class="ipt" placeholder-class="iptP" />
 		</view>
 		<view class="iptBox1">
 			<view class="label">请上传微信收款码:</view>
 			<image @tap="chooseImg1" class="headIcon" :src="wxImg" mode=""></image>
-		</view> -->
+		</view>
 		<view class="iptBox">
 			<text class="label">收款姓名:</text>
 			<input v-model="bank_owner" type="text" placeholder="请输入收款姓名" class="ipt" placeholder-class="iptP" />
@@ -35,7 +35,7 @@
 
 		<view class="iptBox">
 			<text class="label">手机号:</text>
-			<input v-model="phone" type="number" disabled maxlength="11" class="ipt" placeholder-class="iptP" />
+			<input v-model="phone" type="number" maxlength="11" class="ipt" placeholder-class="iptP" />
 		</view>
 		<view class="iptBox">
 			<text class="label">验证码:</text>
@@ -57,12 +57,12 @@
 			return {
 				btnMsg: '获取验证码',
 				tim: '',
-				// alipayImg: "../../static/img/my/upload1.png",
-				// wxImg: '../../static/img/my/upload1.png',
-				// ali_name: '',
-				// ali_image: '',
-				// wx_name: '',
-				// wx_image: '',
+				alipayImg: "../../static/img/my/upload1.png",
+				wxImg: '../../static/img/my/upload1.png',
+				ali_name: '',
+				ali_image: '',
+				wx_name: '',
+				wx_image: '',
 				bank_owner: '',
 				bank_name: '',
 				bank_number: '',
@@ -79,20 +79,20 @@
 			getData() {
 				this.$http.get('user/collection').then(res => {
 					if (res.code == 1) {
-						// this.ali_name = res.data.ali_name;
-						// this.ali_image = res.data.ali_image;
-						// this.wx_name = res.data.wx_name;
-						// this.wx_image = res.data.wx_image;
+						this.ali_name = res.data.ali_name;
+						this.ali_image = res.data.ali_image;
+						this.wx_name = res.data.wx_name;
+						this.wx_image = res.data.wx_image;
 						this.bank_owner = res.data.bank_owner;
 						this.bank_name = res.data.bank_name;
 						this.bank_number = res.data.bank_number;
 						this.bank_branch = res.data.bank_branch;
-						// if (this.ali_image) {
-						// 	this.alipayImg = this.ali_image;
-						// }
-						// if (this.wx_image) {
-						// 	this.wxImg = this.wx_image;
-						// }
+						if (this.ali_image) {
+							this.alipayImg = this.ali_image;
+						}
+						if (this.wx_image) {
+							this.wxImg = this.wx_image;
+						}
 					}
 				})
 
@@ -114,32 +114,32 @@
 				// 	this.toast("请上传微信收款码");
 				// 	return;
 				// }
-				if (!this.bank_owner) {
-					this.toast("请输入收款姓名");
-					return;
-				}
-				if (!this.bank_name) {
-					this.toast("请输入开户银行");
-					return;
-				}
+				// if (!this.bank_owner) {
+				// 	this.toast("请输入收款姓名");
+				// 	return;
+				// }
+				// if (!this.bank_name) {
+				// 	this.toast("请输入开户银行");
+				// 	return;
+				// }
 				// if (!this.bank_branch) {
 				// 	this.toast("请输入开户支行");
 				// 	return;
 				// }
-				if (!this.bank_number) {
-					this.toast("请输入银行卡号");
-					return;
-				}
+				// if (!this.bank_number) {
+				// 	this.toast("请输入银行卡号");
+				// 	return;
+				// }
 
 				if (!this.code) {
 					this.toast("请输入验证码");
 					return;
 				}
 				let data = {
-					// ali_name: this.ali_name,
-					// ali_image: this.ali_image,
-					// wx_name: this.wx_name,
-					// wx_image: this.wx_image,
+					ali_name: this.ali_name,
+					ali_image: this.ali_image,
+					wx_name: this.wx_name,
+					wx_image: this.wx_image,
 					bank_owner: this.bank_owner,
 					bank_name: this.bank_name,
 					bank_number: this.bank_number,
@@ -182,33 +182,33 @@
 					}
 				})
 			},
-			// chooseImg() {
-			// 	uni.chooseImage({
-			// 		count: 1,
-			// 		sizeType: ['original'],
-			// 		success: (res) => {
-			// 			let tempFilePaths = res.tempFilePaths;
-			// 			uni.uploadFile({
-			// 				url: this.baseUrl + 'upload/fileUpload',
-			// 				filePath: tempFilePaths[0],
-			// 				name: 'image',
-			// 				header: {
-			// 					'token': uni.getStorageSync("token")
-			// 				},
-			// 				success: (res1) => {
-			// 					var result = JSON.parse(res1.data);
-			// 					if (result.code == 1) {
-			// 						this.alipayImg = result.data.path;
-			// 						this.ali_image = result.data.path;
-			// 					} else {
-			// 						this.toast('上传失败');
-			// 					}
-			// 				}
-			// 			});
-			// 		}
-			// 	});
-			// },
-			/* chooseImg1() {
+			chooseImg() {
+				uni.chooseImage({
+					count: 1,
+					sizeType: ['original'],
+					success: (res) => {
+						let tempFilePaths = res.tempFilePaths;
+						uni.uploadFile({
+							url: this.baseUrl + 'upload/fileUpload',
+							filePath: tempFilePaths[0],
+							name: 'image',
+							header: {
+								'token': uni.getStorageSync("token")
+							},
+							success: (res1) => {
+								var result = JSON.parse(res1.data);
+								if (result.code == 1) {
+									this.alipayImg = result.data.path;
+									this.ali_image = result.data.path;
+								} else {
+									this.toast('上传失败');
+								}
+							}
+						});
+					}
+				});
+			},
+			chooseImg1() {
 				uni.chooseImage({
 					count: 1,
 					sizeType: ['original'],
@@ -233,7 +233,7 @@
 						});
 					}
 				});
-			} */
+			}
 		}
 	}
 </script>
@@ -245,7 +245,7 @@
 			.label {
 				font-size: 28rpx;
 				font-weight: 500;
-				color: #000;
+				color: $uni-text-color;
 				line-height: 80rpx;
 			}
 
