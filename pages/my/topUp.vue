@@ -19,7 +19,7 @@
 				<radio-group @change="payTypeChange">
 					<label class="item" v-for="(pay,index) in payList" :key="index">
 						<radio style="transform:scale(0.7)" :value="pay.PayType" :checked="payType == pay.PayType"
-						       color="#00DB7D" />
+							color="#00DB7D" />
 						<text>{{pay.name}}</text>
 						<image v-if="pay.id == '2'" src="../../static/img/my/weixin.png" mode=""></image>
 						<image v-if="pay.id == '1'" src="../../static/img/my/zhifubao.png" mode=""></image>
@@ -73,7 +73,7 @@
 						id: 2,
 						name: '微信'
 					} */
-					
+
 					// #ifdef APP-PLUS
 					{
 						id: 1,
@@ -164,7 +164,7 @@
 					this.pay()
 				}
 				// #endif
-				
+
 				// #ifndef MP-WEIXIN
 				this.pay()
 				// #endif
@@ -172,7 +172,7 @@
 			pay() {
 				this.$http.post('order/toUp', {
 					pay_type: this.payType,
-					money:this.money
+					money: this.money
 				}).then(res => {
 					if (res.code == 1) {
 						this.toast(res.msg);
@@ -291,7 +291,7 @@
 			.inp {
 				flex: 1;
 				font-size: 28rpx;
-				color: #000;
+				color: $uni-text-color;
 				margin-left: 20rpx;
 			}
 		}
@@ -314,7 +314,7 @@
 
 			.topic {
 				height: 88rpx;
-				color: #000;
+				color: $uni-text-color;
 				font-size: 32rpx;
 
 				.line {

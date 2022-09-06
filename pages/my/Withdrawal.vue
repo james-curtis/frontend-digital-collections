@@ -31,7 +31,8 @@
 		<view class="listItem">
 			<view class="topic flexBox">
 				<view class="line"></view>
-				<view class="label">提现金额<text style="color:#00DB7D;font-size:28rpx;margin-left: 20rpx;">(按{{txRate}}%收取手续费)</text></view>
+				<view class="label">提现金额<text
+						style="color:#00DB7D;font-size:28rpx;margin-left: 20rpx;">(按{{txRate}}%收取手续费)</text></view>
 			</view>
 			<!-- <view class="tabBox">
 				<view @tap="show('10')" :class="number == '10' ? 'tab act' : 'tab'">提现10元</view>
@@ -43,8 +44,8 @@
 		</view>
 		<view class="listItem2 flexBox">
 			<view class="label">¥</view>
-			<input class="inp" type="number" v-model="money" 
-			:placeholder="'最低提现金额为'+min+'元'"  placeholder-class="inpclass" />
+			<input class="inp" type="number" v-model="money" :placeholder="'最低提现金额为'+min+'元'"
+				placeholder-class="inpclass" />
 		</view>
 		<view class="listItem3 flex_bt">
 			<view class="">可提现金额 ¥{{account}}</view>
@@ -106,7 +107,7 @@
 						this.toast(res.msg);
 						setTimeout(() => {
 							uni.redirectTo({
-								url:'WithdrawRecords'
+								url: 'WithdrawRecords'
 							})
 						}, 1000)
 					} else {
@@ -144,6 +145,7 @@
 <style lang="scss" scoped>
 	.content {
 		padding-bottom: 60rpx;
+
 		.WithdrawalWarp {
 			padding: 30rpx 0 40rpx;
 
@@ -157,12 +159,12 @@
 
 				.left {
 					margin-left: 40rpx;
-					color:#2B2A2A;
+					color: #2B2A2A;
 					font-size: 28rpx;
 				}
 
 				.price {
-					color:#2B2A2A;
+					color: #2B2A2A;
 					font-size: 40rpx;
 					margin-top: 30rpx;
 
@@ -196,16 +198,18 @@
 			border-bottom: 2rpx solid #383B3F;
 			font-size: 32rpx;
 			color: #aaaaaa;
-			.inpclass{
+
+			.inpclass {
 				font-size: 32rpx;
 				font-family: PingFangSC-Regular, PingFang SC;
 				font-weight: 400;
 				color: #A6AFAE;
 			}
+
 			.inp {
 				flex: 1;
 				font-size: 28rpx;
-				color: #000;
+				color: $uni-text-color;
 				margin-left: 20rpx;
 			}
 		}
@@ -228,7 +232,7 @@
 
 			.topic {
 				height: 88rpx;
-				color: #000;
+				color: $uni-text-color;
 				font-size: 32rpx;
 
 				.line {
@@ -261,7 +265,7 @@
 					color: #00DB7D;
 					border-radius: 12rpx;
 					// border: 2rpx solid #00DB7D;
-					background-size: 100%  100%;
+					background-size: 100% 100%;
 				}
 			}
 
