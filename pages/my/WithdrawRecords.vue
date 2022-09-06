@@ -57,7 +57,7 @@
 		onLoad(e) {
 			this.getData(this.showType);
 		},
-		onReachBottom(){
+		onReachBottom() {
 			// if (!this.flag) {
 			// 	this.status = "loading";
 			// 	this.page++;
@@ -65,8 +65,8 @@
 			// }
 		},
 		methods: {
-			reload(n){
-				if(this.showType != n){
+			reload(n) {
+				if (this.showType != n) {
 					this.showType = n;
 					// this.flag = false;
 					// this.page = 1;
@@ -74,11 +74,11 @@
 					this.getData(this.showType)
 				}
 			},
-			getData(a){
+			getData(a) {
 				let data = {
 					status: a
-				} 
-				if(data.status == '-1'){
+				}
+				if (data.status == '-1') {
 					data.status = ''
 				}
 				this.$http.post('draw/drawRecordList', data).then(res => {
@@ -94,57 +94,63 @@
 </script>
 
 <style lang="scss" scoped>
-	.content{
+	.content {
 		padding: 0 30rpx;
+
 		.tabBox {
 			width: 100%;
 			height: 100rpx;
 			display: flex;
+
 			.tab {
 				flex: 1;
 				position: relative;
 				font-size: 30rpx;
-				color: #000;
+				color: $uni-text-color;
 				height: 90rpx;
 				line-height: 90rpx;
 				text-align: center;
 				font-family: PingFangSC-Regular;
+
 				.line {
 					position: absolute;
 					left: calc(50% - 25rpx);
 					bottom: 0rpx;
 					width: 40rpx;
 					height: 16rpx;
-					background-image:url(../../static/img/line.png) ;
+					background-image: url(../../static/img/index/line.png);
 					background-repeat: no-repeat;
 					background-size: 40rpx 16rpx;
 					display: none;
 				}
-		
+
 				&.act {
 					font-size: 30rpx;
 					font-weight: 600;
-					color: #000;
+					color: $uni-text-color;
+
 					.line {
 						display: block;
 					}
 				}
 			}
 		}
-		.listItem{
+
+		.listItem {
 			line-height: 60rpx;
-			color: #000;
+			color: $uni-text-color;
 			font-size: 28rpx;
 			font-weight: 500;
 			border-bottom: 2rpx solid #383B3F;
-			text{
+
+			text {
 				color: #aaaaaa;
 			}
-			
+
 		}
-		.colorc6{
-			color:#A6AFAE;
+
+		.colorc6 {
+			color: #A6AFAE;
 		}
 	}
-
 </style>
