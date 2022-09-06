@@ -116,6 +116,7 @@
 			</view>
 		</view>
 		<uni-load-more :status="status" v-if="shopList.length"></uni-load-more>
+		<common-footer style="margin-bottom: 20px;"></common-footer>
 		<uni-footer currentTab="0"></uni-footer>
 		<u-popup :show="smshow" mode="center" :round="10" @close="close">
 			<view class="smpop">
