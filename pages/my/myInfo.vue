@@ -4,7 +4,7 @@
 		<view class="iptBox flexBox">
 			<view class="label">头像</view>
 			<view class="rBox flexBox">
-				<image  @tap="chooseImg()" class="headIcon" :src="showSrc" mode="aspectFill"></image>
+				<image @tap="chooseImg()" class="headIcon" :src="showSrc" mode="aspectFill"></image>
 			</view>
 		</view>
 
@@ -15,7 +15,7 @@
 				<image class="arrowIcon" src="../../static/img/my/right.png" mode=""></image>
 			</view>
 		</view>
-		
+
 		<view class="iptBox flexBox">
 			<view class="label">手机号</view>
 			<view class="rBox flexBox">
@@ -31,7 +31,7 @@
 				<image class="arrowIcon" src="../../static/img/my/right.png" mode=""></image>
 			</view>
 		</view>
-		
+
 		<view class="iptBox flexBox" @tap="go('myCollection')">
 			<view class="label">收款信息</view>
 			<view class="rBox flexBox">
@@ -39,32 +39,35 @@
 				<image class="arrowIcon" src="../../static/img/my/right.png" mode=""></image>
 			</view>
 		</view>
-		
+
 		<view class="box">
 			<view class="p1">文昌(NFT)</view>
 			<view class=" iptBox1  flexBox">
 				<view class="label">我的地址</view>
 				<view class="center">
 					{{userInfo.wallet_address}}
-					<image class="copy" @tap="copy(userInfo.wallet_address)" src="../../static/img/my/copy.png" mode=""></image>
+					<image class="copy" @tap="copy(userInfo.wallet_address)" src="../../static/img/my/copy.png" mode="">
+					</image>
 				</view>
 			</view>
 			<view class=" iptBox1  flexBox">
 				<view class="label">我的私钥</view>
 				<view class="center">
 					{{userInfo.wallet_private_key}}
-					<image class="copy" @tap="copy(userInfo.wallet_private_key)" src="../../static/img/my/copy.png" mode=""></image>
+					<image class="copy" @tap="copy(userInfo.wallet_private_key)" src="../../static/img/my/copy.png"
+						mode=""></image>
 				</view>
 			</view>
 			<view class=" iptBox1  flexBox">
 				<view class="label">我的公钥</view>
 				<view class="center">
 					{{userInfo.wallet_public_key}}
-					<image class="copy" @tap="copy(userInfo.wallet_public_key)" src="../../static/img/my/copy.png" mode=""></image>
+					<image class="copy" @tap="copy(userInfo.wallet_public_key)" src="../../static/img/my/copy.png"
+						mode=""></image>
 				</view>
 			</view>
 		</view>
-		
+
 		<!-- <view class="box">
 			<view class="p1">币安智能链(BSC)</view>
 			<view class=" iptBox1  flexBox">
@@ -82,7 +85,7 @@
 				</view>
 			</view>
 		</view> -->
-		
+
 		<!-- <view class="box">
 			<view class="p1">火币生态链(HECO)</view>
 			<view class=" iptBox1  flexBox">
@@ -100,7 +103,7 @@
 				</view>
 			</view>
 		</view> -->
-		
+
 	</view>
 </template>
 
@@ -116,31 +119,30 @@
 		onShow() {
 			this.getMemInfo();
 		},
-		onLoad() {
-		},
+		onLoad() {},
 		methods: {
-			show(imgs){
+			show(imgs) {
 				uni.previewImage({
 					urls: [imgs],
 					longPressActions: {
 						itemList: ['更换图片', '保存图片'],
-						success: (data)=> {
-							if(data.tapIndex === 1){
+						success: (data) => {
+							if (data.tapIndex === 1) {
 								console.log(data.tapIndex)
 								uni.saveImageToPhotosAlbum({
 									filePath: imgs,
-									success: ()=> {
+									success: () => {
 										uni.showToast({
 											title: '保存成功',
 											icon: "none"
 										});
 									}
 								})
-							} else{
+							} else {
 								console.log(data.tapIndex)
 								this.chooseImg();
 							}
-							
+
 						},
 						fail: function(err) {
 							console.log(err.errMsg);
@@ -228,7 +230,7 @@
 
 			.label {
 				font-size: 32rpx;
-				color: #000;
+				color: $uni-text-color;
 			}
 
 			.rBox {
@@ -261,18 +263,19 @@
 			height: 20rpx;
 			// background-color: #23272C;
 		}
-		
-		.box{
+
+		.box {
 			border-bottom: 2rpx solid #666262;
-			.p1{
-				color: #000;
+
+			.p1 {
+				color: $uni-text-color;
 				height: 80rpx;
 				line-height: 80rpx;
 				margin-left: 30rpx;
 			}
-			
+
 		}
-		
+
 		.iptBox1 {
 			height: auto;
 			margin: 0 30rpx;
@@ -282,7 +285,7 @@
 			.label {
 				width: 25%;
 				font-size: 32rpx;
-				color: #000;
+				color: $uni-text-color;
 			}
 
 			.center {
