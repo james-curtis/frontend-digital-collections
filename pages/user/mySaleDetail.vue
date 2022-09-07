@@ -26,7 +26,7 @@
 			<view class="describe">{{info.title}}</view>
 		</view>
 		<view class="goodsinfo">
-			<view class="iptBox  flexBox">
+			<view class="iptBox flexBox">
 				<view class="label">创作者</view>
 				<view class="center">{{info.creator}}
 					<!-- <image class="copy" src="../../static/img/my/copy.png" mode=""></image> -->
@@ -357,11 +357,11 @@
 		}
 
 		.msgBox {
-			background-color: #fff;
+			background-color: $uni-bg-color;
 			padding: 30rpx;
 
 			.goodsName {
-				color: #000;
+				color: $uni-text-color;
 				font-size: 36rpx;
 				font-weight: 500;
 				margin-bottom: 20rpx;
@@ -376,7 +376,7 @@
 			}
 
 			.priceBox {
-				color: #000;
+				color: $uni-text-color;
 				font-size: 24rpx;
 				font-weight: 500;
 
@@ -390,20 +390,30 @@
 
 		.descBox {
 			padding: 20rpx 30rpx;
-			background-color: #fff;
+			background-color: $uni-bg-color;
 			color: #aaa;
 
 			.item {
 				font-size: 26rpx;
 				font-weight: 500;
-				color: #000;
+				color: $uni-text-color-grey;
 				margin-bottom: 10rpx;
+			}
+
+			.desinfo {
+				overflow: hidden;
+				font-size: 24rpx;
+				word-wrap: break-word;
+
+				video {
+					width: 100%;
+				}
 			}
 		}
 
 		.goodsinfo {
 			padding: 0 30rpx;
-			background-color: #fff;
+			background-color: $uni-bg-color;
 			margin: 20rpx 0;
 
 			.iptBox {
@@ -413,12 +423,12 @@
 				.label {
 					width: 20%;
 					font-size: 24rpx;
-					color: #000;
+					color: $uni-text-color-grey;
 				}
 
 				.center {
 					width: 75%;
-					color: #000;
+					color: $uni-text-color-grey;
 					font-size: 24rpx;
 					line-height: 44rpx;
 					word-break: break-word;
@@ -437,7 +447,7 @@
 
 			.iptBox1 {
 				.center {
-					color: #000;
+					color: $uni-text-color-grey;
 					font-weight: 500;
 				}
 			}
