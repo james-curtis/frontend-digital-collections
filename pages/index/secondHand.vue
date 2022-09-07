@@ -302,7 +302,7 @@
 			.goodsItem {
 				width: 335rpx;
 				margin-bottom: 25rpx;
-				background: #FFFFFF;
+				background: $uni-text-color-inverse;
 				border-radius: 20rpx;
 
 				.goodsImg {
@@ -329,7 +329,7 @@
 						flex: 1;
 						font-size: 28rpx;
 						font-weight: 500;
-						color: #000000;
+						color: $uni-text-color;
 						white-space: nowrap;
 						overflow: hidden;
 						text-overflow: ellipsis;
@@ -345,7 +345,7 @@
 					}
 
 					.goodsPrice {
-						color: #000000;
+						color: $uni-text-color;
 						font-size: 28rpx;
 						font-weight: 500;
 					}

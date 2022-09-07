@@ -17,8 +17,8 @@
 					height="40px"></u--image>
 			</view>
 			<view class="notice-text">
-				<u-notice-bar url="/pages/notice/notice" :icon="''" :font-size="15" :text="firstNotice.title" bgColor=""
-					color="#67c5cd"></u-notice-bar>
+				<u-notice-bar v-if="firstNotice.title" url="/pages/notice/notice" :icon="''" :font-size="15"
+					:text="firstNotice.title" bgColor="" color="#67c5cd"></u-notice-bar>
 			</view>
 		</view>
 		<!-- 三个筛选 -->
@@ -119,15 +119,8 @@
 				</view>
 			</view>
 		</view>
-		<view class="jxbox" v-if="showType=='3'">
-			<view class="list mt-20" v-for="(item,index) in shopList" :key="index" @click="detail(item)">
-				<image :src="item.image" mode="" class="twoimg"></image>
-				<view class="size-30 black bold plr-30 mt-10">{{item.title}}</view>
-				<view class="jxbox-content size-26 mt-10 plr-30" style="color: #666666;word-break:break-all;">
-					<!-- <u-parse :content="item.content"></u-parse>-->
-					{{item.desc}}
-				</view>
-			</view>
+		<view class="" v-if="showType=='3'" style="margin: 10px 0 0;">
+			<list-two-row :goods-list="shopList"></list-two-row>
 		</view>
 		<uni-load-more :status="status" v-if="shopList.length"></uni-load-more>
 		<common-footer style="margin-bottom: 20px;"></common-footer>
@@ -269,7 +262,7 @@
 				this.go('goodsDetail?goodsId=' + a.id)
 			},
 			getList() {
-				if (this.showType != '0') {
+				if (!['0', '3'].includes(this.showType)) {
 					this.$http.get(this.showType == '2' ? 'index/noticeList' : 'index/calendar', {
 						page: this.page,
 						pagesize: this.pagesize,
