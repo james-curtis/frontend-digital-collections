@@ -1,18 +1,19 @@
 <template>
 	<view class="container" :style="{'background-image': 'url('+ bg_img +')'}">
 		<!-- <view class="img center mb-60"> -->
-			<!-- <image src="../../static/img/share/info.png" mode="aspectFill" class="info"></image> -->
-			<!-- <view class="info"></view> -->
+		<!-- <image src="../../static/img/share/info.png" mode="aspectFill" class="info"></image> -->
+		<!-- <view class="info"></view> -->
 		<!-- </view> -->
-		
-			<view class="share-icon" @click="showBtn()">
-				<u-icon name="share-square" color="#fff" size="28"></u-icon>
-			</view>
-		
-		
+
+		<view class="share-icon" @click="showBtn()">
+			<u-icon name="share-square" color="#fff" size="28"></u-icon>
+		</view>
+
+
 		<view class="erweima">
-			<qrcode ref="qrcode" :val="register_url" :size="size" :background="background" :foreground="foreground" :pdground="pdground"
-			:icon="icon" :iconSize="iconsize" :lv="lv" :onval="onval" :loadMake="loadMake" @result="qrR" />
+			<qrcode ref="qrcode" :val="register_url" :size="size" :background="background" :foreground="foreground"
+				:pdground="pdground" :icon="icon" :iconSize="iconsize" :lv="lv" :onval="onval" :loadMake="loadMake"
+				@result="qrR" />
 		</view>
 		<view class="w560" v-if="btnFlag">
 			<view class="ptb-16 plr-50 size-28 white bg1" @click="save">请截图保存图片</view>
@@ -36,8 +37,8 @@
 	export default {
 		data() {
 			return {
-				team:[],
-				register_url:'',
+				team: [],
+				register_url: '',
 				btnFlag: false,
 				qr_code_img: '',
 				//二维码
@@ -67,15 +68,15 @@
 			// })
 			this.$http.get('user/share').then(res => {
 				if (res.code == 1) {
-					this.register_url=res.data.register_url
-					this.qr_code_img=res.data.qr_code_img
-					this.bg_img=res.data.invite_image
+					this.register_url = res.data.register_url
+					this.qr_code_img = res.data.qr_code_img
+					this.bg_img = res.data.invite_image
 				}
 			})
-			
+
 		},
 		methods: {
-			
+
 			creatQrcode() {
 				this.$refs.qrcode._makeCode()
 			},
@@ -99,7 +100,7 @@
 						}
 					}
 				});
-			
+
 			},
 			showBtn() {
 				this.btnFlag = true
@@ -109,7 +110,7 @@
 	};
 </script>
 <style>
-	page{
+	page {
 		background: #fff;
 	}
 </style>
@@ -124,8 +125,9 @@
 		background-attachment: fixed;
 		position: relative;
 		overflow: hidden;
+
 		// padding-bottom: 100rpx;
-		.share-icon{
+		.share-icon {
 			position: absolute;
 			z-index: 1000;
 			top: 14rpx;
@@ -133,11 +135,12 @@
 			width: 64rpx;
 			height: 64rpx;
 			border-radius: 50%;
-			background-color: rgba(0,0,0,.5);
+			background-color: rgba(0, 0, 0, .5);
 			display: flex;
 			align-items: center;
 			justify-content: center;
 		}
+
 		.info {
 			width: 654rpx;
 			height: 186rpx;
@@ -154,9 +157,10 @@
 			// box-sizing: border-box;
 			display: flex;
 			justify-content: center;
-			.tki-qrcode{
-				position: absolute!important;
-				bottom: 220rpx;
+
+			.tki-qrcode {
+				position: absolute !important;
+				bottom: 20vh;
 			}
 		}
 
@@ -216,7 +220,7 @@
 			margin-bottom: 30rpx;
 			display: flex;
 			justify-content: space-around;
-			position:absolute;
+			position: absolute;
 			bottom: 60rpx;
 		}
 
