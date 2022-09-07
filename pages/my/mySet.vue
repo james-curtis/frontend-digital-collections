@@ -21,11 +21,20 @@
 					<!-- <image class="arrowIcon" src="../../static/img/my/right.png" mode=""></image> -->
 				</view>
 			</view>
-			<view class="iptItem flexBox" @tap="go('../login/privacyPolicy?type=1')">
-				<image class="leftIcon" src="../../static/img/my/b2.png" mode=""></image>
-				<view class="flex flex1">
-					<view class="label">用户协议</view>
-					<view class="centercon"></view>
+
+			<view class="iptItem flexBox" v-if="userInfo.name">
+				<image class="leftIcon" src="../../static/img/my/b6.png" mode=""></image>
+				<view class="bb flex flex1">
+					<view class="label">实名认证</view>
+					<view class="centercon">{{userInfo.name}}</view>
+					<image class="arrowIcon" src="../../static/img/my/right.png" mode=""></image>
+				</view>
+			</view>
+			<view class="iptItem flexBox" v-if="!userInfo.name" @tap="go('authentication')">
+				<image class="leftIcon" src="../../static/img/my/b6.png" mode=""></image>
+				<view class="flex bb flex1">
+					<view class="label">实名认证</view>
+					<view class="centercon">未认证</view>
 					<image class="arrowIcon" src="../../static/img/my/right.png" mode=""></image>
 				</view>
 			</view>
@@ -49,23 +58,17 @@
 					<image class="arrowIcon" src="../../static/img/my/right.png" mode=""></image>
 				</view>
 			</view> -->
-			<view class="iptItem flexBox" v-if="userInfo.name">
-				<image class="leftIcon" src="../../static/img/my/b6.png" mode=""></image>
-				<view class="bb flex flex1">
-					<view class="label">实名认证</view>
-					<view class="centercon">{{userInfo.name}}</view>
+
+			<view class="iptItem flexBox" @tap="go('../login/privacyPolicy?type=1')">
+				<image class="leftIcon" src="../../static/img/my/b2.png" mode=""></image>
+				<view class="flex flex1">
+					<view class="label">用户协议</view>
+					<view class="centercon"></view>
 					<image class="arrowIcon" src="../../static/img/my/right.png" mode=""></image>
 				</view>
 			</view>
-			<view class="iptItem flexBox" v-if="!userInfo.name" @tap="go('authentication')">
-				<image class="leftIcon" src="../../static/img/my/b6.png" mode=""></image>
-				<view class="flex bb flex1">
-					<view class="label">实名认证</view>
-					<view class="centercon">未认证</view>
-					<image class="arrowIcon" src="../../static/img/my/right.png" mode=""></image>
-				</view>
-			</view>
-		<!-- 	<view class="iptItem flexBox" @tap="go('/pages/my/service')">
+
+			<!-- 	<view class="iptItem flexBox" @tap="go('/pages/my/service')">
 				<image class="leftIcon" src="../../static/img/my/my-kf.png" mode=""></image>
 				<view class="bb flex flex1">
 					<view class="label">客服</view>
@@ -145,6 +148,7 @@
 	.bb {
 		border-bottom: 1px solid #BFBFBF;
 	}
+
 	.content {
 		.topic {
 			color: #666666;
