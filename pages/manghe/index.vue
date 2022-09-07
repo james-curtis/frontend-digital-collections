@@ -23,14 +23,16 @@
 				</view>
 				<image class="goodsImg" :src="item.image" mode=""></image>
 				<view class="goodsinfo">
-					<view class="goodName">{{item.name}}</view>
+					<view class="flexBox goodName">
+						<text>{{item.name}}</text>
+						<view class="price" style="margin-left: 20rpx;">¥{{item.price}}</view>
+					</view>
 					<view class="flexBox">
 						<view class="label">{{item.goods_category_name}}</view>
 						<view class="flexBox LimitBox">
-							<view class="Limit">总量</view>
-							<view class="stock">{{item.mhstock}}份</view>
+							<view class="Limit">剩余/总量</view>
+							<view class="stock">{{item.surplus}}/{{item.mhstock}}</view>
 						</view>
-						<view class="price" style="margin-left: 20rpx;">¥{{item.price}}</view>
 					</view>
 
 				</view>
