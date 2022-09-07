@@ -773,8 +773,13 @@
 			}
 
 			.desinfo {
+				overflow: hidden;
 				font-size: 24rpx;
 				word-wrap: break-word;
+
+				video {
+					width: 100%;
+				}
 			}
 		}
 

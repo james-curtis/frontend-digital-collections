@@ -41,23 +41,23 @@ const checkImg = (html) => {
 	});
 	newContent = newContent.replace(/<br[^>]*\/>/gi, '');
 
-	newContent = newContent.replace(/<img [^>]*src=['"]([^'"]+)[^>]*>/gi, function(match, capture) {
-		// let domainURL = "https://www.cucine.wang";
-		// capture = domainURL + capture.split(domainURL + "")[0];
-		let arr = capture.split("//");
-		let str = arr[0] + "//" + arr[arr.length - 1];
-		var newStr = "<img src=" + str + ' alt="" />';
-		return newStr;
-	});
+	// newContent = newContent.replace(/<img [^>]*src=['"]([^'"]+)[^>]*>/gi, function(match, capture) {
+	// 	// let domainURL = "https://www.cucine.wang";
+	// 	// capture = domainURL + capture.split(domainURL + "")[0];
+	// 	let arr = capture.split("//");
+	// 	let str = arr[0] + "//" + arr[arr.length - 1];
+	// 	var newStr = "<img src=" + str + ' alt="" />';
+	// 	return newStr;
+	// });
 
 	newContent = newContent.replace(/\<img/gi,
 		'<img style="max-width:100%;height:auto;display:block;margin:0 auto;"');
 	return newContent;
 }
 const filterHtmlTag = (str = "") => {
-  let content = str.replace(/<\/?[^>]*>/g,"");//去除标签
-  content = content .replace(/[|]*\n/,"");//去除行尾空格
-  return content;
+	let content = str.replace(/<\/?[^>]*>/g, ""); //去除标签
+	content = content.replace(/[|]*\n/, ""); //去除行尾空格
+	return content;
 }
 export default {
 	checkEmail,
