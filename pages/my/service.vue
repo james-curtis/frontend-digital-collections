@@ -69,7 +69,7 @@
 			font-size: 43rpx;
 			font-family: KaiTi;
 			font-weight: bold;
-			color: #000;
+			color: $uni-text-color;
 		}
 
 		.text {
@@ -79,7 +79,7 @@
 			font-size: 24rpx;
 			font-family: Microsoft YaHei;
 			font-weight: bold;
-			color: #000;
+			color: $uni-text-color;
 		}
 
 		.box {
@@ -93,7 +93,7 @@
 				font-size: 30rpx;
 				font-family: Microsoft YaHei;
 				font-weight: bold;
-				color: #000000;
+				color: $uni-text-color;
 				line-height: 60rpx;
 			}
 
