@@ -2,11 +2,11 @@ let baseUrl
 if (process.env.NODE_ENV === 'development') {
 	//本地路径
 	//baseUrl = '/dpc/';
-	baseUrl = 'http://digital.cc/api/'
+	baseUrl = 'http://nft1.jzjxxy.top/api/'
 } else {
 	//线上路径
 	// baseUrl = 'http://116.62.223.117/api/'
-	baseUrl = '/api/'
+	baseUrl = '/api/api/'
 }
 const post = (url, data, hideloding) => {
 

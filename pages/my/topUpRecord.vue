@@ -1,12 +1,12 @@
 <template>
 	<view class="content">
 		<view class="item ptb-22 bb" v-for="(item,index) in recordsList" :key="index">
-			<view class="list-top">
+			<view class="list-top item-text">
 				<text>{{item.pay_type=='4'?'支付宝':(item.pay_type=='2'?'支付宝':'微信')}}充值</text>
 				<text>{{item.money}}</text>
 			</view>
-			<view class="colorc6 black size-28">
-				{{item.create_time | formatDate}}
+			<view class="colorc6 size-28">
+				<text class="item-text">{{item.create_time | formatDate}}</text>
 				<!-- {{item.create_time}} -->
 			</view>
 		</view>
@@ -39,7 +39,7 @@
 				type = type || 0;
 				var timestamp = parseFloat(time) > 0 ? time * 1000 : 0;
 				var date = new Date(timestamp);
-			
+
 				var month = date.getMonth() + 1;
 				var day = date.getDate(),
 					hour = date.getHours(),
@@ -137,5 +137,9 @@
 		justify-content: space-between;
 		color: #000;
 		margin-bottom: 20rpx;
+	}
+
+	.item-text {
+		color: $uni-text-color;
 	}
 </style>
