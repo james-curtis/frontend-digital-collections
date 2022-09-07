@@ -39,20 +39,30 @@
 			</view>
 			<view class="goodsinfo">
 				<view class="iptBox  flexBox">
-					<view class="label">创作者</view>
+					<view class="label">作品名称</view>
+					<view class="center">{{info.name}}
+					</view>
+				</view>
+				<view class="iptBox  flexBox">
+					<view class="label">作品编号</view>
+					<view class="center">{{info.id}}
+					</view>
+				</view>
+				<view class="iptBox  flexBox">
+					<view class="label">作品指纹</view>
 					<view class="center">{{info.creator}}
 						<!-- <image class="copy" src="../../static/img/my/copy.png" mode=""></image> -->
 					</view>
 				</view>
 				<view class="iptBox flexBox">
-					<view class="label">拥有者</view>
+					<view class="label">合约地址</view>
 					<view class="center">
 						<text>{{info.owner}}</text>
 						<image class="copy" @tap="copy(info.owner)" src="../../static/img/my/copy.png" mode=""></image>
 					</view>
 				</view>
 				<view class="iptBox iptBox1 flexBox">
-					<view class="label">铸造平台</view>
+					<view class="label">合约平台</view>
 					<view class="center">{{info.casting_name}}</view>
 				</view>
 				<view class="iptBox iptBox1 flexBox">
