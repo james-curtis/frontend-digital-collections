@@ -11,12 +11,17 @@
 					<image class="headIcon" :src="member.head_image" mode="aspectFill"></image>
 				</view>
 				<view class="msgBox">
-					<view class="name">{{member.nick_name}}</view>
-					<!-- <view class="tel">{{member.phone}}</view> -->
-					<view class="rz">
-						<image class="rz-img" src="../../static/img/my/rz.png" mode=""></image>
-						{{member.name?'已认证':'未认证'}}
+					<view class="name">
+						<text>{{member.nick_name}}</text>
+						<view class="rz">
+							<image class="rz-img" src="../../static/img/my/rz.png" mode=""></image>
+							{{member.name?'已认证':'未认证'}}
+						</view>
 					</view>
+					<view class="wallet_address">
+						钱包：{{member.wallet_address}}
+					</view>
+					<!-- <view class="tel">{{member.phone}}</view> -->
 				</view>
 				<view class="setupImg size-28 flex white minbold ptb-20 pl-20">
 					<image src="../../static/img/my/my-sz.png" @tap="go('mySet')" mode=""></image>
@@ -275,10 +280,19 @@
 					margin-left: 30rpx;
 
 					.name {
+						display: flex;
+						gap: 10px;
+						align-items: center;
 						// color: #333333;
 						color: #fff;
 						font-size: 30rpx;
 						margin-bottom: 10rpx;
+
+						.rz {
+							// margin-top: 20rpx;
+							border: 1rpx solid #FFFFFF;
+							border-radius: 10rpx;
+						}
 					}
 
 					.tel {
@@ -287,12 +301,21 @@
 						font-size: 24rpx;
 					}
 
+					.wallet_address {
+						overflow: hidden;
+						text-overflow: ellipsis;
+						white-space: nowrap;
+						width: 60vw;
+						height: 36rpx;
+						color: #FFFFFF;
+						font-size: 20rpx;
+						text-align: center;
+						line-height: 36rpx;
+					}
+
 					.rz {
-						margin-top: 20rpx;
 						width: 130rpx;
 						height: 36rpx;
-						border: 1rpx solid #FFFFFF;
-						border-radius: 10rpx;
 						color: #FFFFFF;
 						font-size: 20rpx;
 						text-align: center;
