@@ -31,10 +31,14 @@
 				<text>发售日历</text>
 				<view class="line"></view>
 			</view>
-			<!-- <view @tap="tab('2')" :class="showType == '2' ? 'tab act' : 'tab'">
+			<view @tap="tab('2')" :class="showType == '2' ? 'tab act' : 'tab'">
 				<text>内容精选</text>
 				<view class="line"></view>
-			</view> -->
+			</view>
+			<view @tap="tab('3')" :class="showType == '3' ? 'tab act' : 'tab'">
+				<text>全部</text>
+				<view class="line"></view>
+			</view>
 		</view>
 		<view class="listBox" v-if="showType=='0'">
 			<view class="listItem" v-for="(item,index) in shopList" :key="index" @tap="next(item)">
@@ -76,12 +80,12 @@
 		<view class="plr-30" v-if="showType=='1'">
 			<view class="con bg1 ptb-24 plr-24">
 				<view v-for="(item,index) in shopList" :key="index">
-					<view class="title flex">
+					<view class="title flex calc">
 						<image src="../../static/img/data.png" mode="" class="width36 height34"></image>
 						<view class="size-26 black ml-12">{{item.time}}</view>
 					</view>
 					<view v-for="(itm,idex) in item.data" :key="idex">
-						<view class="size-24 black mt-16 mb-20">{{itm.time}}</view>
+						<view class="size-24 black mt-16 mb-20 calc">{{itm.time}}</view>
 						<view v-for="(itm2,idx) in itm.data" :key="idx">
 							<view class="conlist mb-30 flex" v-for="(itm3,idx3) in itm2.goods" :key="idx3">
 								<image :src="itm3.image" mode="aspectFill" class="conimg"></image>
@@ -106,6 +110,16 @@
 			</view>
 		</view>
 		<view class="jxbox" v-if="showType=='2'">
+			<view class="list mt-20" v-for="(item,index) in shopList" :key="index" @click="detail(item)">
+				<image :src="item.image" mode="" class="twoimg"></image>
+				<view class="size-30 black bold plr-30 mt-10">{{item.title}}</view>
+				<view class="jxbox-content size-26 mt-10 plr-30" style="color: #666666;word-break:break-all;">
+					<!-- <u-parse :content="item.content"></u-parse>-->
+					{{item.desc}}
+				</view>
+			</view>
+		</view>
+		<view class="jxbox" v-if="showType=='3'">
 			<view class="list mt-20" v-for="(item,index) in shopList" :key="index" @click="detail(item)">
 				<image :src="item.image" mode="" class="twoimg"></image>
 				<view class="size-30 black bold plr-30 mt-10">{{item.title}}</view>
@@ -726,5 +740,9 @@
 			border-radius: 20rpx;
 			padding-bottom: 20rpx;
 		}
+	}
+
+	.calc {
+		color: $uni-text-color;
 	}
 </style>

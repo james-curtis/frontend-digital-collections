@@ -107,9 +107,7 @@
 			</view>
 
 		</uni-popup>
-		<view class="tech-tip">
-			<image src="../../static/img/tect-tip.png" mode=""></image>
-		</view>
+		<common-footer></common-footer>
 	</view>
 </template>
 
@@ -455,8 +453,18 @@
 			.item {
 				font-size: 26rpx;
 				font-weight: 500;
-				color: #000;
+				color: $uni-text-color-grey;
 				margin-bottom: 10rpx;
+			}
+
+			.desinfo {
+				overflow: hidden;
+				font-size: 24rpx;
+				word-wrap: break-word;
+
+				video {
+					width: 100%;
+				}
 			}
 		}
 
@@ -473,12 +481,12 @@
 				.label {
 					width: 20%;
 					font-size: 24rpx;
-					color: #666666;
+					color: $uni-text-color-grey;
 				}
 
 				.center {
 					width: 75%;
-					color: #333333;
+					color: $uni-text-color-grey;
 					font-size: 24rpx;
 					word-break: break-word;
 					line-height: 44rpx;
