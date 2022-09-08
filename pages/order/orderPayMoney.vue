@@ -12,6 +12,12 @@
 			<view class="orderNumber">下单时间：<text class="black">{{goodsInfo.create_time}}</text></view>
 		</view>
 
+		<view class="Payment">账户信息</view>
+		<view class="input_box">
+			<label class="item" v-for="(info,index) in accountInfo" :key='index'>
+				<text class="black">{{info.name}}：{{info.account}}</text>
+			</label>
+		</view>
 
 		<view class="Payment">支付方式</view>
 		<view class="input_box">
@@ -24,7 +30,6 @@
 				</label>
 			</radio-group>
 		</view>
-
 		<view @tap="submit" class="subBtn">确认支付</view>
 	</view>
 </template>
@@ -78,7 +83,8 @@
 				goodsInfo: {},
 				payType: "",
 				orderOID: "", //订单号
-				is_market: 0
+				is_market: 0,
+				accountInfo: {}
 			};
 		},
 		onLoad(e) {
@@ -89,8 +95,13 @@
 			if (e.is_market) {
 				this.is_market = e.is_market;
 			}
+			this.getAccountInfo()
 		},
 		methods: {
+			async getAccountInfo() {
+				const res = await this.$http.get('account/account')
+				this.accountInfo = res.data
+			},
 			payTypeChange(e) {
 				console.log(e.target.value);
 				this.payType = e.target.value;
