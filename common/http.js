@@ -1,4 +1,4 @@
-let baseUrl
+let baseUrl = '/'
 if (process.env.NODE_ENV === 'development') {
 	//本地路径
 	//baseUrl = '/dpc/';

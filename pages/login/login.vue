@@ -91,53 +91,56 @@
 		},
 		onLoad() {},
 		mounted() {
-			// #ifdef  H5
-			let that = this;
-			var script = document.createElement('script');
-			script.src = "https://static.geetest.com/v4/gt4.js";
-			document.body.appendChild(script);
-			script.onload = script.onreadystatechange = function() {
-				initGeetest4({
-					captchaId: '81d8a54c8db56db9b02c2ab011ac6a60',
-					// captchaId: '647f5ed2ed8acb4be36784e01556bb71',
-					product: 'bind'
-				}, function(captcha) {
-					console.log(captcha)
-					//captcha.appendTo("#captcha"); // 调用appendTo将验证码插入到页的某一个元素中，这个元素用户可以自定义
-					document.getElementById('btn').addEventListener('click', function() {
-						//if (check()) { // 检查是否可以进行提交
-						if (that.tim != '') {
-							return;
-						}
-						if (!that.mobile1) {
-							that.toast('请输入正确的手机号码');
-							return;
-						}
-						captcha.showCaptcha();
-						// }
-					});
-					captcha.onSuccess(function() { // web端的回调
-						var result = captcha.getValidate();
-						console.log(result)
-						that.$http.post("login/check_login_request", {
-							// captcha_id: result.captcha_id,
-							captcha_output: result.captcha_output,
-							gen_time: result.gen_time,
-							lot_number: result.lot_number,
-							pass_token: result.pass_token,
-						}).then(res => {
-							console.log(res);
-							if (res.login == "success") {
-								that.getCode()
-							} else {
-								that.toast("验证失败！");
-							}
-						})
-					});
+			if (false) {
 
-				});
-			};
-			// #endif
+				// #ifdef  H5
+				let that = this;
+				var script = document.createElement('script');
+				script.src = "https://static.geetest.com/v4/gt4.js";
+				document.body.appendChild(script);
+				script.onload = script.onreadystatechange = function() {
+					initGeetest4({
+						captchaId: '81d8a54c8db56db9b02c2ab011ac6a60',
+						// captchaId: '647f5ed2ed8acb4be36784e01556bb71',
+						product: 'bind'
+					}, function(captcha) {
+						console.log(captcha)
+						//captcha.appendTo("#captcha"); // 调用appendTo将验证码插入到页的某一个元素中，这个元素用户可以自定义
+						document.getElementById('btn').addEventListener('click', function() {
+							//if (check()) { // 检查是否可以进行提交
+							if (that.tim != '') {
+								return;
+							}
+							if (!that.mobile1) {
+								that.toast('请输入正确的手机号码');
+								return;
+							}
+							captcha.showCaptcha();
+							// }
+						});
+						captcha.onSuccess(function() { // web端的回调
+							var result = captcha.getValidate();
+							console.log(result)
+							that.$http.post("login/check_login_request", {
+								// captcha_id: result.captcha_id,
+								captcha_output: result.captcha_output,
+								gen_time: result.gen_time,
+								lot_number: result.lot_number,
+								pass_token: result.pass_token,
+							}).then(res => {
+								console.log(res);
+								if (res.login == "success") {
+									that.getCode()
+								} else {
+									that.toast("验证失败！");
+								}
+							})
+						});
+
+					});
+				};
+				// #endif
+			}
 		},
 		// onShow() {
 		// 	this.md()

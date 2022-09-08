@@ -12,14 +12,15 @@
 		</view>
 		<view class="iptItem">
 			<view class="iptBox flexBox">
-				<input v-model='code' type="number" placeholder="请输入验证码" class="ipt" placeholder-class="iptP" />
-
-				<!-- #ifdef  H5 -->
-				<view id="btn" class="codeBtn">{{btnMsg}}</view>
-				<!-- #endif -->
-				<!-- #ifdef APP-PLUS -->
+				<input v-model="captcha" maxlength="11" type="text" placeholder="请输入右侧验证码" class="ipt"
+					placeholder-class="iptP" />
+				<image :src="captchaUrl" class="captcha-icon" @click="getCapthcaUrl"></image>
+			</view>
+		</view>
+		<view class="iptItem">
+			<view class="iptBox flexBox">
+				<input v-model='code' type="number" placeholder="请输入短信验证码" class="ipt" placeholder-class="iptP" />
 				<view class="codeBtn" @tap="getCode">{{btnMsg}}</view>
-				<!-- #endif -->
 			</view>
 		</view>
 		<view class="iptItem ">
@@ -74,6 +75,7 @@
 </template>
 
 <script>
+	import http from '@/common/http.js'
 	import md5 from '@/common/md5.min.js';
 	export default {
 		data() {
@@ -89,7 +91,9 @@
 				flag: false,
 				flag1: false,
 				disabled: false,
-				isRed: false
+				isRed: false,
+				captcha: '',
+				captchaUrl: '',
 			}
 		},
 		onShow() {},
@@ -103,55 +107,61 @@
 			}
 		},
 		mounted() {
-			// #ifdef  H5
-			let that = this;
-			var script = document.createElement('script');
-			script.src = "https://static.geetest.com/v4/gt4.js";
-			document.body.appendChild(script);
-			script.onload = script.onreadystatechange = function() {
-				initGeetest4({
-					captchaId: '81d8a54c8db56db9b02c2ab011ac6a60',
-					product: 'bind'
-				}, function(captcha) {
-					console.log(captcha)
-					//captcha.appendTo("#captcha"); // 调用appendTo将验证码插入到页的某一个元素中，这个元素用户可以自定义
-					document.getElementById('btn').addEventListener('click', function() {
-						//if (check()) { // 检查是否可以进行提交
-						if (that.tim != '') {
-							return;
-						}
-						if (!that.phone) {
-							that.toast('请输入正确的手机号码');
-							return;
-						}
-						captcha.showCaptcha();
-						// }
-					});
-
-					captcha.onSuccess(function() { // web端的回调
-						var result = captcha.getValidate();
-						console.log(result)
-						that.$http.post("login/check_login_request", {
-							// captcha_id: result.captcha_id,
-							captcha_output: result.captcha_output,
-							gen_time: result.gen_time,
-							lot_number: result.lot_number,
-							pass_token: result.pass_token,
-						}).then(res => {
-							console.log(res);
-							if (res.login == "success") {
-								that.getCode()
-							} else {
-								that.toast("验证失败！");
+			if (false) {
+				// #ifdef  H5
+				let that = this;
+				var script = document.createElement('script');
+				script.src = "https://static.geetest.com/v4/gt4.js";
+				document.body.appendChild(script);
+				script.onload = script.onreadystatechange = function() {
+					initGeetest4({
+						captchaId: '81d8a54c8db56db9b02c2ab011ac6a60',
+						product: 'bind'
+					}, function(captcha) {
+						console.log(captcha)
+						//captcha.appendTo("#captcha"); // 调用appendTo将验证码插入到页的某一个元素中，这个元素用户可以自定义
+						document.getElementById('btn').addEventListener('click', function() {
+							//if (check()) { // 检查是否可以进行提交
+							if (that.tim != '') {
+								return;
 							}
-						})
-					});
+							if (!that.phone) {
+								that.toast('请输入正确的手机号码');
+								return;
+							}
+							captcha.showCaptcha();
+							// }
+						});
 
-				});
-			};
-			// #endif
+						captcha.onSuccess(function() { // web端的回调
+							var result = captcha.getValidate();
+							console.log(result)
+							that.$http.post("login/check_login_request", {
+								// captcha_id: result.captcha_id,
+								captcha_output: result.captcha_output,
+								gen_time: result.gen_time,
+								lot_number: result.lot_number,
+								pass_token: result.pass_token,
+							}).then(res => {
+								console.log(res);
+								if (res.login == "success") {
+									that.getCode()
+								} else {
+									that.toast("验证失败！");
+								}
+							})
+						});
+
+					});
+				};
+				// #endif
+			}
+			this.getCapthcaUrl()
 		},
 		methods: {
+			getCapthcaUrl() {
+				this.captchaUrl = `${http.baseUrl}login/getCaptcha?t=${Date.now()}`
+			},
 			sub() {
 				if (!this.phone) {
 					this.toast('请输入正确的手机号码');
@@ -205,9 +215,11 @@
 				})
 			},
 			getCode() {
-
-
 				if (this.tim != '') {
+					return;
+				}
+				if (!this.captcha) {
+					this.toast('请输入右侧的图片验证码');
 					return;
 				}
 				if (!this.phone) {
@@ -220,7 +232,8 @@
 				this.$http.post('login/sendCode', {
 					phone: this.phone,
 					type: '1',
-					sign: sign
+					sign: sign,
+					captcha: this.captcha
 				}).then(res => {
 					if (res.code == 1) {
 						this.toast(res.msg);
@@ -311,6 +324,11 @@
 					color: #AAAAAA;
 					font-size: 30rpx;
 					font-weight: 500;
+				}
+
+				.captcha-icon {
+					width: 200rpx;
+					height: 80rpx;
 				}
 
 				.rightIcon {
