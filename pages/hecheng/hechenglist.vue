@@ -15,6 +15,18 @@
 				</view>
 				<!-- <view class="gotoMangheBtn" @tap="gotoMangheDetail(item)">立即合成</view> -->
 			</view>
+			<view class="goodsList sub-good" v-if="Object.entries(goodsDetail).length">
+				<view class="sub-good-item" v-for="(subItemNeedCount,subItemId,index) in item.hcgoods_id"
+					:key="subItemId" v-if="getSubGood(subItemId)">
+					<u--image width='300rpx' height='300rpx' class="sub-good-item__pic" radius='10'
+						:src='getSubGood(subItemId).image'>
+					</u--image>
+					<view class="sub-good-item__name">
+						<text>{{getSubGood(subItemId).name}}</text>
+						<text>{{myCollectionStatGetter(subItemId)}}/{{subItemNeedCount}}</text>
+					</view>
+				</view>
+			</view>
 		</view>
 		<uni-load-more :status="status" v-if="goodsList.length"></uni-load-more>
 	</view>
@@ -29,6 +41,14 @@
 				pagesize: 15,
 				page: 1,
 				flag: false, //上拉加载
+				goodsDetail: [],
+				myCollectionList: [],
+				myCollectionStat: {}
+			}
+		},
+		computed: {
+			myCollectionStatGetter() {
+				return id => this.myCollectionStat[id] ?? 0
 			}
 		},
 		onShow() {
@@ -48,36 +68,69 @@
 			this.Reset();
 		},
 		methods: {
+			async getCollectionList() {
+				const res = await this.$http.post('order/collectionList', {
+					status: 1
+				})
+				this.myCollectionList = res.data
+				this.myCollectionStat = res.data.reduce((prev, cursor) => {
+					if (!prev[cursor.goods_id])
+						prev[cursor.goods_id] = 0
+					prev[cursor.goods_id]++
+					return prev
+				}, {})
+			},
 			Reset() {
 				this.flag = false;
 				this.page = 1;
 				this.goodsList = [];
 				this.getList()
+				this.getCollectionList()
 			},
 			gotoMangheDetail(item) {
 				this.go('hechangDetail?id=' + item.id)
 			},
-			getList() {
+			async getList() {
 				let data = {
 					typeStatus: this.status,
 					page: this.page,
 					pagesize: this.pagesize
 				}
-				this.$http.post('index/synthesisList', data).then(res => {
-					if (res.data.length == 0) {
+				const res = await this.$http.post('index/synthesisList', data)
+				if (res.data.length == 0) {
+					this.flag = true;
+					this.status = 'noMore'
+				} else {
+					res.data.forEach(e => e.hcgoods_id = e.hcgoods_id.split(',').reduce((prev, cursor) => {
+						if (!prev[cursor])
+							prev[cursor] = 0
+						prev[cursor]++
+						return prev;
+					}, {}))
+					this.goodsList = this.goodsList.concat(res.data);
+					if (res.data.length < this.pagesize) {
 						this.flag = true;
 						this.status = 'noMore'
-					} else {
-						this.goodsList = this.goodsList.concat(res.data);
-						if (res.data.length < this.pagesize) {
-							this.flag = true;
-							this.status = 'noMore'
-						}
 					}
-
-				})
+				}
+				this.getGoodsDetail()
 			},
-		}
+			async getGoodsDetail() {
+				let goods = this.goodsList.flatMap((e) => Object.keys(e.hcgoods_id))
+				goods = [...new Set(goods)]
+				const list = await goods.reduce(async (prev, cursor) => {
+					const res = await this.$http.get('goods/goodsDetail', {
+						id: cursor
+					})
+					prev[Number(res.data.id)] = res.data
+					return prev;
+				}, {})
+				this.goodsDetail = list
+			},
+			getSubGood(id) {
+				return this.goodsDetail[Number(id)]
+			}
+		},
 	}
 </script>
 
@@ -93,6 +146,25 @@
 			background-color: #1B1A1A;
 
 			.goodsList {
+
+				&.sub-good {
+					display: grid;
+					grid-template-columns: repeat(2, 1fr);
+					grid-column-gap: 30rpx;
+					justify-items: center;
+
+					.sub-good-item {
+						&__name {
+							color: $uni-text-color-grey;
+							padding: 10px 0;
+							display: flex;
+							flex-direction: column;
+							align-items: center;
+							gap: 10px
+						}
+					}
+				}
+
 				padding: 30rpx 0;
 				display: flex;
 				align-items: center;
