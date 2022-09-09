@@ -41,7 +41,7 @@
 				pagesize: 15,
 				page: 1,
 				flag: false, //上拉加载
-				goodsDetail: [],
+				goodsDetail: {},
 				myCollectionList: [],
 				myCollectionStat: {}
 			}
@@ -118,13 +118,13 @@
 			async getGoodsDetail() {
 				let goods = this.goodsList.flatMap((e) => Object.keys(e.hcgoods_id))
 				goods = [...new Set(goods)]
-				const list = await goods.reduce(async (prev, cursor) => {
+				const list = {}
+				for (const good of goods) {
 					const res = await this.$http.get('goods/goodsDetail', {
-						id: cursor
+						id: good
 					})
-					prev[Number(res.data.id)] = res.data
-					return prev;
-				}, {})
+					list[Number(res.data.id)] = res.data
+				}
 				this.goodsDetail = list
 			},
 			getSubGood(id) {
