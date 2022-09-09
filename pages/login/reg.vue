@@ -159,8 +159,14 @@
 			this.getCapthcaUrl()
 		},
 		methods: {
-			getCapthcaUrl() {
-				this.captchaUrl = `${http.baseUrl}login/getCaptcha?t=${Date.now()}`
+			async getCapthcaUrl() {
+				const res = await uni.request({
+					url: `${http.baseUrl}login/getCaptcha`,
+					responseType: 'arraybuffer',
+					withCredentials: true
+				})
+				const url = 'data:image/png;base64,' + uni.arrayBufferToBase64(res[1].data);
+				this.captchaUrl = url
 			},
 			sub() {
 				if (!this.phone) {

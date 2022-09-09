@@ -25,6 +25,7 @@ const post = (url, data, hideloding) => {
 			'token': token
 		},
 		dataType: 'json',
+		withCredentials: true
 	}
 	let promise = new Promise(function(resolve, reject) {
 		uni.request(httpDefaultOpts).then(
@@ -84,6 +85,7 @@ const get = (url, data, hideloding) => {
 			'token': token
 		},
 		dataType: 'json',
+		withCredentials: true
 	}
 	let promise = new Promise(function(resolve, reject) {
 		uni.request(httpDefaultOpts).then(
