@@ -18,12 +18,12 @@
 			<view class="goodsList sub-good" v-if="Object.entries(goodsDetail).length">
 				<view class="sub-good-item" v-for="(subItemNeedCount,subItemId,index) in item.hcgoods_id"
 					:key="subItemId" v-if="getSubGood(subItemId)">
-					<u--image width='300rpx' height='300rpx' class="sub-good-item__pic" radius='10'
+					<u--image width='130rpx' height='130rpx' class="sub-good-item__pic" radius='10'
 						:src='getSubGood(subItemId).image'>
 					</u--image>
 					<view class="sub-good-item__name">
-						<text>{{getSubGood(subItemId).name}}</text>
-						<text>{{myCollectionStatGetter(subItemId)}}/{{subItemNeedCount}}</text>
+						<text>{{getSubGood(subItemId).name}}*{{subItemNeedCount}}</text>
+						<!-- <text>{{myCollectionStatGetter(subItemId)}}/{{subItemNeedCount}}</text> -->
 					</view>
 				</view>
 			</view>
