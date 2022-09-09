@@ -66,15 +66,18 @@
 				money: '',
 				payType: '',
 				payList: [{
-					id: 1,
-					name: '银行卡'
-				}, {
-					id: 2,
-					name: '支付宝'
-				}, {
-					id: 3,
-					name: '微信'
-				}],
+						id: 1,
+						name: '银行卡'
+					},
+					// {
+					// 	id: 2,
+					// 	name: '支付宝'
+					// },
+					// {
+					// 	id: 3,
+					// 	name: '微信'
+					// },
+				],
 				txRate: ""
 			}
 		},
