@@ -27,13 +27,7 @@
 			"path": "pages/index/secondGoodsDetail",
 			"style": {
 				"navigationBarTitleText": "详情",
-				"enablePullDownRefresh": false,
-				"app-plus": {
-					"titleNView": {
-						"backgroundColor": "#ffffff",
-						"titleColor": "#000000"
-					}
-				}
+				"enablePullDownRefresh": false
 			}
 		},
 		{

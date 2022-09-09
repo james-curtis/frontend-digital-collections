@@ -3,10 +3,10 @@
 		<view class="bigbox">
 			<view class="Box">
 				<view class="rotateBox" :style="'background-image: url('+info.image+');background-size: 100% 100%'">
-					<image class="image" src="../../static/img/index/bj3.png" ></image>
+					<image class="image" src="../../static/img/index/bj3.png"></image>
 				</view>
 			</view>
-			
+
 			<view class="Box1">
 				<image class="img" src="../../static/img/index/b1.png" mode=""></image>
 				<view class="center">
@@ -19,8 +19,8 @@
 				<image class="img" src="../../static/img/index/b2.png" mode=""></image>
 			</view>
 		</view>
-		
-		
+
+
 
 
 		<view class="msgBox">
@@ -29,11 +29,11 @@
 				<view class="priceBox">当前价: <text>¥{{info.price}}</text> </view>
 				<view class="category_name">{{info.goods_category_name}} </view>
 			</view>
-			
+
 			<view class="describe">{{info.title}}</view>
 		</view>
 		<view class="goodsinfo">
-			
+
 			<view class="iptBox  flexBox">
 				<view class="label">创作者</view>
 				<view class="center">{{info.creator}}
@@ -77,7 +77,7 @@
 			<view class="price">¥{{info.price}}</view>
 			<view class="subBtn" @tap="pay()">立即购买</view>
 		</view>
-		
+
 	</view>
 </template>
 
@@ -97,7 +97,7 @@
 		onShow() {},
 		methods: {
 			pay() {
-				this.go('orderMakeSure?goodsId=' + this.goodsId+'&type=second');
+				this.go('orderMakeSure?goodsId=' + this.goodsId + '&type=second');
 			},
 			getData() {
 				this.$http.get('order/memberGoodsDetail', {
@@ -113,22 +113,38 @@
 	}
 </script>
 <style lang="scss" scoped>
-	@keyframes myfirst
-	{
-		0%   { transform: rotatey(0deg)}
-		25%   { transform: rotatey(90deg)}
-		50%   { transform: rotatey(180deg)}
-		75%   { transform: rotatey(270deg)}
-		100% { transform: rotatey(360deg)}
+	@keyframes myfirst {
+		0% {
+			transform: rotatey(0deg)
+		}
+
+		25% {
+			transform: rotatey(90deg)
+		}
+
+		50% {
+			transform: rotatey(180deg)
+		}
+
+		75% {
+			transform: rotatey(270deg)
+		}
+
+		100% {
+			transform: rotatey(360deg)
+		}
 	}
+
 	.content {
 		padding-bottom: 150rpx;
-		.bigbox{
+
+		.bigbox {
 			background: url(../../static/img/index/bg.jpg) no-repeat left top;
 			background-size: 100%;
 			background-color: #000;
 		}
-		.Box{
+
+		.Box {
 			width: 100%;
 			height: 680rpx;
 			padding-bottom: 50rpx;
@@ -140,17 +156,20 @@
 			align-items: center;
 			perspective: 1000;
 			-webkit-perspective: 1000;
-			.rotateBox{
+
+			.rotateBox {
 				width: 540rpx;
 				height: 540rpx;
 				animation: myfirst 10s linear 150ms 100;
-				.image{
+
+				.image {
 					width: 540rpx;
 					height: 540rpx;
 				}
 			}
 		}
-		.Box1{
+
+		.Box1 {
 			width: 100%;
 			height: 360rpx;
 			margin-top: -120rpx;
@@ -160,19 +179,22 @@
 			display: flex;
 			justify-content: center;
 			align-items: flex-end;
-			.img{
+
+			.img {
 				width: 84rpx;
 				height: 152rpx;
 				margin: 0 15rpx;
 			}
-			.center{
+
+			.center {
 				max-width: 500rpx;
 				height: 152rpx;
 				display: flex;
 				flex-direction: column;
-				justify-content:space-around;
+				justify-content: space-around;
 				align-items: center;
-				.goodsName{
+
+				.goodsName {
 					color: #FFFFFF;
 					font-size: 30rpx;
 					text-align: center;
@@ -183,6 +205,7 @@
 					-webkit-box-orient: vertical;
 					-webkit-line-clamp: 2;
 				}
+
 				.LimitBox {
 					height: 40rpx;
 					line-height: 40rpx;
@@ -190,6 +213,7 @@
 					border-radius: 6rpx;
 					font-size: 12px;
 					text-align: center;
+
 					.Limit {
 						width: 60rpx;
 						padding: 0 10rpx;
@@ -197,7 +221,7 @@
 						color: #010101;
 						background-color: #F1E2BC;
 					}
-				
+
 					.stock {
 						padding: 0 10rpx;
 						color: #F1E2BC;
@@ -222,21 +246,21 @@
 		}
 
 		.msgBox {
-			background-color: #FFFFFF;
+			background-color: $uni-bg-color-grey;
 			// background-color: #23272C;
 			padding: 20rpx;
 			margin: 0 30rpx;
 			border-radius: 10rpx;
 			box-shadow: 0rpx 0rpx 15rpx 6rpx rgba(52, 52, 52, 0.1);
-		
+
 			.goodsName {
 				// color: #333333;
-				color: #FFFFFF;
+				color: $uni-text-color;
 				font-size: 36rpx;
 				font-weight: 500;
 				margin-bottom: 20rpx;
 			}
-		
+
 			.category_name {
 				height: 40rpx;
 				line-height: 40rpx;
@@ -247,7 +271,7 @@
 				color: #1E1817;
 				margin-right: 20rpx;
 			}
-		
+
 			.number {
 				height: 40rpx;
 				line-height: 40rpx;
@@ -258,7 +282,7 @@
 				font-size: 20rpx;
 				font-weight: 500;
 			}
-		
+
 			.describe {
 				color: #666666;
 				font-size: 26rpx;
@@ -266,23 +290,23 @@
 				font-weight: 500;
 				margin-top: 20rpx;
 			}
-		
+
 			.priceBox {
 				// color: #AE3523;
-				color: #000000;
+				color: $uni-text-color;
 				font-size: 24rpx;
 				font-weight: 500;
-		
+
 				text {
 					font-weight: 500;
 					font-size: 36rpx;
 					margin-left: 10rpx;
 				}
 			}
-		
+
 			.rule {
 				// background: #F4F4F4;
-				background: #ffffff;
+				background: $uni-bg-color-grey;
 				border-radius: 20rpx;
 				padding: 20rpx;
 				color: #777777;
@@ -291,14 +315,14 @@
 				margin-top: 20rpx;
 				box-shadow: 0px 0px 15rpx 6rpx rgba(52, 52, 52, 0.1);
 				border-radius: 10rpx;
-		
+
 				.rule1 {
-					color: #000000;
+					color: $uni-text-color;
 					margin-bottom: 10rpx;
 				}
 			}
 		}
-		
+
 		.descBox {
 			margin: 0 30rpx;
 			padding: 20rpx 30rpx;
@@ -306,7 +330,7 @@
 			color: #AAAAAA;
 			box-shadow: 0px 0px 15rpx 6rpx rgba(52, 52, 52, 0.1);
 			border-radius: 10rpx;
-		
+
 			.item {
 				font-size: 26rpx;
 				font-weight: 500;
@@ -317,22 +341,22 @@
 
 		.goodsinfo {
 			padding: 0 30rpx;
-			background-color: #FFFFFF;
+			background-color: $uni-bg-color-grey;
 			// background-color: #23272C;
 			margin: 20rpx 30rpx;
 			box-shadow: 0px 0px 15rpx 6rpx rgba(52, 52, 52, 0.1);
 			border-radius: 10rpx;
-		
+
 			.iptBox {
 				padding: 20rpx 0;
 				border-bottom: 1rpx solid #F0F0F0;
-		
+
 				.label {
 					width: 20%;
 					font-size: 24rpx;
-					color: 000000;
+					color: $uni-text-color;
 				}
-		
+
 				.center {
 					width: 75%;
 					color: #AAAAAA;
@@ -343,16 +367,16 @@
 					// position: relative;
 					// display: f;
 				}
-		
+
 				.copy {
 					width: 44rpx;
 					height: 44rpx;
 					display: inline-block;
 					// position: absolute;
-		
+
 				}
 			}
-		
+
 			// .iptBox1 {
 			// 	.center {
 			// 		color: #333333;
@@ -360,15 +384,18 @@
 			// 	}
 			// }
 		}
-		.tech-tip{
+
+		.tech-tip {
 			margin-top: 30rpx;
 			display: flex;
 			justify-content: center;
-			image{
+
+			image {
 				width: 427rpx;
 				height: 42rpx;
 			}
 		}
+
 		.footerBox {
 			position: fixed;
 			left: 0;
@@ -380,20 +407,20 @@
 			// border-top: 1rpx solid #BFBFBF;
 			// background-color: rgba(0, 0, 0, 0.7);
 			box-shadow: 0rpx -4rpx 32rpx 0rpx rgba(180, 180, 180, 0.5);
-		
+
 			.price {
 				// color: #AE3523;
 				color: #000000;
 				font-size: 40rpx;
 				margin-left: 30rpx;
 			}
-		
+
 			.count {
 				color: #777777;
 				font-size: 28rpx;
 				margin-left: 30rpx;
 			}
-		
+
 			.subBtn {
 				width: 360rpx;
 				height: 88rpx;
@@ -409,7 +436,7 @@
 				border-radius: 44rpx;
 				margin-right: 30rpx;
 			}
-		
+
 			.subnrn1 {
 				background: #8c8c8c;
 			}
