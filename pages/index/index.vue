@@ -21,6 +21,7 @@
 					:text="firstNotice.title" bgColor="" color="#67c5cd"></u-notice-bar>
 			</view>
 		</view>
+		<search-bar></search-bar>
 		<!-- 三个筛选 -->
 		<view :class="[scrollTopt>230?'fixedbotto':'','tabBox']" v-if="rlflag">
 			<view @tap="tab('0')" :class="showType == '0' ? 'tab act' : 'tab'">

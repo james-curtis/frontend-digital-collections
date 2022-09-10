@@ -107,6 +107,9 @@
 				this.getGoodsList();
 			}
 		},
+		beforeMount() {
+			this.search = this.$route.query?.search
+		},
 		methods: {
 			searchClick() {
 				this.gid = '';
@@ -214,6 +217,7 @@
 			border-radius: 10rpx;
 			box-shadow: 0rpx 0rpx 15rpx 6rpx rgba(52, 52, 52, 0.1);
 			display: flex;
+			color: $uni-text-color;
 
 			input {
 				width: calc(100% - 140rpx);
