@@ -201,7 +201,7 @@
 			width: 100%;
 			padding-top: 20rpx;
 			height: 100rpx;
-			// background-color: #FFFFFF;
+			background-color: $uni-bg-color;
 			display: flex;
 			position: fixed;
 			top: var(--window-top);
