@@ -1,7 +1,7 @@
 <template>
 	<view class="content container">
 		<view class="status_bar flexBox">
-			<image class="img-logo" src="../../static/img/index/index-logo.png" mode="widthFix"></image>
+			<logo></logo>
 		</view>
 		<swiper class="banner" indicator-dots="true" circular="true" autoplay="true" interval="3000" duration="800"
 			indicator-color="#FFFFFF" indicator-active-color="#00D18B">
@@ -422,6 +422,7 @@
 			width: calc(100% - 40rpx);
 			padding: 0 20rpx;
 			height: 80rpx;
+			justify-content: center;
 
 			padding-top: var(--status-bar-height);
 
