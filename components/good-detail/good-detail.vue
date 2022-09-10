@@ -1,90 +1,185 @@
 <template>
-	<good-detail :good-detail="goodDetail" :goods-id="goodsId" v-if="goodDetail">
-		<template #actionBar="{info,flag}">
-			<view class="footerBox flex_bt">
-				<view class="price">¥{{info.price}}</view>
-				<view class="subBtn " @tap="pay()" v-if="flag=='false'">立即购买</view>
-				<view class="subBtn subnrn1" v-if="flag=='true'" @click="toast1()">
-					<countdown v-if="status==2" :startTime="startTime" :endTime="enTime" style="margin:0 auto" />
-					<view v-else>已结束</view>
+	<view class="content">
+
+		<view class="bigbox">
+			<view class="Box">
+				<view class="rotateBox" :style="'background-image: url('+info.image+');background-size: 100% 100%'">
+					<image class="image" src="../../static/img/index/bj3.png"></image>
 				</view>
 			</view>
-		</template>
-	</good-detail>
+			<view class="Box1">
+				<image class="img" src="../../static/img/index/b1.png" mode=""></image>
+				<view class="center">
+					<view class="goodsName">{{info.name}}</view>
+					<slot name="goodStockDesc" :info='info'>
+						<view class="flex">
+							<view class="flexBox LimitBox">
+								<view class="Limit">剩余</view>
+								<view class="stock">{{info.surplus}}份</view>
+							</view>
+							<view class="flexBox LimitBox">
+								<view class="Limit">限购</view>
+								<view class="stock">{{info.xgstatus}}份</view>
+							</view>
+						</view>
+					</slot>
+
+				</view>
+				<image class="img" src="../../static/img/index/b2.png" mode=""></image>
+			</view>
+		</view>
+
+		<view class="type1">
+			<view class="msgBox">
+				<!-- <view class="goodsName">{{info.name}}</view> -->
+				<view class="flex_bt">
+					<view class="priceBox">当前价: <text>¥{{info.price}}</text> </view>
+					<view class="category_name" v-if="info.goods_category_name">{{info.goods_category_name}} </view>
+				</view>
+
+				<view class="describe">{{info.title}}</view>
+			</view>
+			<view class="goodsinfo">
+				<view class="iptBox  flexBox">
+					<view class="label">{{good_desc.name}}</view>
+					<view class="center">{{info.name}}
+					</view>
+				</view>
+				<view class="iptBox  flexBox">
+					<view class="label">{{good_desc.id}}</view>
+					<view class="center">{{info.id}}
+					</view>
+				</view>
+				<view class="iptBox  flexBox">
+					<view class="label">{{good_desc.creator}}</view>
+					<view class="center">{{info.creator}}
+						<!-- <image class="copy" src="../../static/img/my/copy.png" mode=""></image> -->
+					</view>
+				</view>
+				<view class="iptBox flexBox">
+					<view class="label">{{good_desc.owner}}</view>
+					<view class="center">
+						<text>{{info.owner}}</text>
+						<image class="copy" @tap="copy(info.owner)" src="../../static/img/my/copy.png" mode=""></image>
+					</view>
+				</view>
+				<view class="iptBox iptBox1 flexBox">
+					<view class="label">{{good_desc.casting_name}}</view>
+					<view class="center">{{info.casting_name}}</view>
+				</view>
+				<view class="iptBox iptBox1 flexBox">
+					<view class="label">{{good_desc.casting_time}}</view>
+					<view class="center">{{info.casting_time}}</view>
+				</view>
+			</view>
+			<view class="descBox" v-if="info.content">
+				<view class="item">{{good_desc.content}}</view>
+				<view class="desinfo" v-html="util.checkImg(info.content)"></view>
+			</view>
+			<view class="descBox" v-if="gmsm">
+				<view class="item">{{good_desc.gmsm}}</view>
+				<view class="desinfo" v-html="util.checkImg(gmsm)"></view>
+			</view>
+			<slot name='actionBar' :info="info" :flag='flag'></slot>
+		</view>
+
+		<slot name='footer'>
+			<common-footer></common-footer>
+		</slot>
+	</view>
 </template>
 
 <script>
+	import {
+		mapState
+	} from 'vuex'
 	import countdown from "@/components/cz-countdown/cz-countdown.vue"
 	export default {
+		name: 'GoodDetail',
 		components: {
 			countdown,
 		},
-		data() {
-			return {
-				goodsId: null,
-				goodDetail: null,
-				gmsm: ''
+		props: {
+			goodDetail: {
+				type: Object,
+				required: true
+			},
+			goodsId: {
+				type: [String, Number],
+				required: true
 			}
 		},
-		onLoad(e) {
-			this.goodsId = e.goodsId;
+		data() {
+			return {
+				gmsm: '',
+			}
 		},
-		beforeMount() {
-			this.rz();
-			this.getData();
+		computed: {
+			info() {
+				return this.goodDetail
+			},
+			text() {
+				let res = ''
+				if (this.status == 1 && (this.surplus < 0 || this.surplus == 0)) {
+					res = '已售罄'
+				}
+				if (this.status == 2) {
+					res = '未开始'
+				}
+				if (this.status == 3 && (this.surplus < 0 || this.surplus == 0)) {
+					res = '已售罄'
+				}
+				if (this.status == 3 && this.surplus > 0) {
+					res = '已结束'
+				}
+				return res;
+			},
+			flag() {
+				let res = 'false'
+				if (this.status == 1 && (this.surplus < 0 || this.surplus == 0)) {
+					res = 'true'
+				}
+				if (this.status == 2) {
+					res = 'true'
+				}
+				if (this.status == 3 && (this.surplus < 0 || this.surplus == 0)) {
+					res = 'true'
+				}
+				if (this.status == 3 && this.surplus > 0) {
+					res = 'true'
+				}
+				return res
+			},
+			//售卖状态
+			status() {
+				return this.goodDetail.status
+			},
+			surplus() {
+				return this.goodDetail.surplus
+			},
+			startTime() {
+				return this.goodDetail.dq_time
+			},
+			enTime() {
+				return this.goodDetail.start_time
+			},
+			...mapState({
+				good_desc: s => s.good.good_desc
+			})
+		},
+		created() {
+			this.getGmsm()
 		},
 		methods: {
-			async rz() {
-				try {
-					let res = await this.$http.get('user/userInfo');
-					if (res.code == 1) {
-						if (res.data.name) {
-							this.rzflag = true;
-						} else {
-							this.rzflag = false;
-						}
-					}
-				} catch (e) {}
-			},
-			async pay() {
-				if (this.rzflag) {
-					if (this.info.xgstatus - 0 > this.info.gmcount - 0) {
-						this.go('orderMakeSure?goodsId=' + this.goodsId);
-					} else {
-						this.toast("购买次数已达上限。");
-					}
-				} else {
-					this.toast("未实名认证，请先实名认证");
-					setTimeout(() => {
-						this.go('/pages/my/authentication');
-					}, 500)
-				}
-			},
-			toast1() {
-				if (this.rzflag) {
-					this.toast(this.text);
-					if (this.status == 2) {
-						this.getData()
-					}
-				} else {
-					this.toast("未实名认证，请先实名认证");
-					setTimeout(() => {
-						this.go('/pages/my/authentication');
-					}, 500)
-				}
-			},
-			getData() {
-				this.$http.get('goods/goodsDetail', {
-					id: this.goodsId
-				}).then(res => {
-					if (res.code == 1) {
-						this.goodDetail = res.data
-					}
+			getGmsm() {
+				this.$http.get('index/cp_gmsm').then(res => {
+					this.gmsm = res
 				})
 			},
 		}
 	}
 </script>
+
 <style lang="scss" scoped>
 	@keyframes myfirst {
 		0% {

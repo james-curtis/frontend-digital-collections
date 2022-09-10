@@ -1,7 +1,7 @@
 export default {
 	state: { //存放状态
-		"beian": "",
-		"name": ""
+		beian: "",
+		name: ""
 	},
 	mutations: {
 		SET_CONFIG(state, data) {

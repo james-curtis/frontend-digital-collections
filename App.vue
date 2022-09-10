@@ -17,6 +17,9 @@
 			this.$http.get("index/siteConfig").then(res => {
 				this.$store.commit('SET_CONFIG', res)
 			})
+			this.$http.get('login/getGoodDesc').then(res => {
+				this.$store.commit('SET_GOOD_DESC', res.data)
+			})
 		},
 		onShow() {},
 		onHide() {}

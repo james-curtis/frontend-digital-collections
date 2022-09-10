@@ -1,114 +1,43 @@
 <template>
-	<view class="content">
-		<view class="bigbox">
-			<view class="Box">
-				<view class="rotateBox" :style="'background-image: url('+info.image+');background-size: 100% 100%'">
-					<image class="image" src="../../static/img/index/bj3.png"></image>
-				</view>
-			</view>
-			<view class="Box1">
-				<image class="img" src="../../static/img/index/b1.png" mode=""></image>
-				<view class="center">
-					<view class="goodsName">{{info.name}}</view>
-					<!-- <view class="flexBox LimitBox">
-						<view class="Limit">限量</view>
-						<view class="stock">{{info.surplus}}份</view>
-					</view> -->
-				</view>
-				<image class="img" src="../../static/img/index/b2.png" mode=""></image>
+	<good-detail :good-detail="info" :goods-id="goodsId" v-if="info">
+		<template #goodStockDesc>
+			{{''}}
+		</template>
+		<template #footer>
+			<view class="footerBox flex_bt">
+				<view class="subBtn subBtn1" @tap="openSalePopup()" v-if="btnflag||rank==1">出 售</view>
+				<view class="subBtn" @tap="openTransferPopup()">转 赠</view>
 			</view>
 
-		</view>
+			<uni-popup ref="salePopup" type="center" :mask-click="false">
+				<view class="specs_boxs">
+					<view class="flex">
+						<input type="digit" v-model="price" class="ipt" placeholder-class="iptP"
+							placeholder="请输入出售价格" />
+					</view>
+					<view class="btnBox flex">
+						<view class="btn" @tap="closeSalePopup()">取消</view>
+						<view class="btn btn1" @tap="sale()">确定</view>
+					</view>
+				</view>
+			</uni-popup>
 
-		<view class="msgBox">
-			<!-- <view class="goodsName">{{info.name}}</view> -->
-			<view class="priceBox">当前价: <text>¥{{info.price}}</text> </view>
-			<view class="describe">{{info.title}}</view>
-		</view>
-		<view class="goodsinfo">
-			<view class="iptBox  flexBox">
-				<view class="label">创作者</view>
-				<view class="center">{{info.creator}}
-					<!-- <image class="copy" src="../../static/img/my/copy.png" mode=""></image> -->
+			<uni-popup ref="TransferPopup" type="center" :mask-click="false">
+				<view class="specs_boxs">
+					<view class="flex">
+						<input type="number" v-model="phone" class="ipt" placeholder-class="iptP"
+							placeholder="请输入受赠人手机号码" />
+					</view>
+					<view class="btnBox flex">
+						<view class="btn" @tap="closeTransferPopup()">取消</view>
+						<view class="btn btn1" @tap="Transfer()">确定</view>
+					</view>
 				</view>
-			</view>
-			<view class="iptBox  flexBox">
-				<view class="label">编号</view>
-				<view class="center">{{info.goods_number}}
-					<!-- <image class="copy" src="../../static/img/my/copy.png" mode=""></image> -->
-				</view>
-			</view>
-			<view class="iptBox flexBox">
-				<view class="label">拥有者</view>
-				<view class="center">
-					<text>{{info.owner}}</text>
-					<image class="copy" @tap="copy(info.owner)" src="../../static/img/my/copy.png" mode=""></image>
-				</view>
-			</view>
-			<view class="iptBox iptBox1 flexBox">
-				<view class="label">铸造平台</view>
-				<view class="center">{{info.casting_name}}</view>
-			</view>
-			<view class="iptBox iptBox1 flexBox">
-				<view class="label">铸造时间</view>
-				<view class="center">{{info.casting_time}}</view>
-			</view>
-			<view class="iptBox iptBox1 flexBox" v-if="info.number">
-				<view class="label">藏品编号</view>
-				<view class="center">{{info.number}}</view>
-			</view>
-			<!-- <view class="iptBox iptBox1 flexBox">
-				<view class="label">合约地址</view>
-				<view class="center">
-					{{info.contract_address}}
-					<image class="copy" @tap="copy(info.contract_address)" src="../../static/img/my/copy.png" mode="">
-					</image>
-				</view>
-			</view> -->
-			<view class="iptBox iptBox1 flexBox">
-				<view class="label">交易哈希</view>
-				<view class="center">
-					{{info.blockchain}}
-					<image class="copy" @tap="copy(info.blockchain)" src="../../static/img/my/copy.png" mode=""></image>
-				</view>
-			</view>
-		</view>
-		<view class="descBox" v-if="info.content">
-			<view class="item">藏品介绍</view>
-			<view class="desinfo" v-html="util.checkImg(info.content)"></view>
-		</view>
-		<view class="footerBox flex_bt">
-			<view class="subBtn subBtn1" @tap="openSalePopup()" v-if="btnflag||rank==1">出 售</view>
-			<view class="subBtn" @tap="openTransferPopup()">转 赠</view>
-		</view>
 
-		<uni-popup ref="salePopup" type="center" :mask-click="false">
-			<view class="specs_boxs">
-				<view class="flex">
-					<input type="digit" v-model="price" class="ipt" placeholder-class="iptP" placeholder="请输入出售价格" />
-				</view>
-				<view class="btnBox flex">
-					<view class="btn" @tap="closeSalePopup()">取消</view>
-					<view class="btn btn1" @tap="sale()">确定</view>
-				</view>
-			</view>
-		</uni-popup>
-
-		<uni-popup ref="TransferPopup" type="center" :mask-click="false">
-			<view class="specs_boxs">
-				<view class="flex">
-					<input type="number" v-model="phone" class="ipt" placeholder-class="iptP"
-						placeholder="请输入受赠人手机号码" />
-				</view>
-				<view class="btnBox flex">
-					<view class="btn" @tap="closeTransferPopup()">取消</view>
-					<view class="btn btn1" @tap="Transfer()">确定</view>
-				</view>
-			</view>
-
-		</uni-popup>
-		<common-footer></common-footer>
-	</view>
+			</uni-popup>
+			<common-footer></common-footer>
+		</template>
+	</good-detail>
 </template>
 
 <script>

@@ -2,7 +2,7 @@ let baseUrl = '/'
 if (process.env.NODE_ENV === 'development') {
 	//本地路径
 	//baseUrl = '/dpc/';
-	baseUrl = 'http://nft1.jzjxxy.top/api/'
+	baseUrl = 'http://nft1.liulifrpnode1.ml/api/'
 } else {
 	//线上路径
 	// baseUrl = 'http://116.62.223.117/api/'

@@ -1,84 +1,19 @@
 <template>
-	<view class="content">
-		<view class="bigbox">
-			<view class="Box">
-				<view class="rotateBox" :style="'background-image: url('+info.image+');background-size: 100% 100%'">
-					<image class="image" src="../../static/img/index/bj3.png"></image>
-				</view>
+	<good-detail :good-detail="info" :goods-id="goodsId">
+		<template #goodStockDesc>
+			<view class="flexBox LimitBox">
+				<view class="Limit">限量</view>
+				<view class="stock">{{info.surplus}}份</view>
 			</view>
-
-			<view class="Box1">
-				<image class="img" src="../../static/img/index/b1.png" mode=""></image>
-				<view class="center">
-					<view class="goodsName">{{info.name}}</view>
-					<view class="flexBox LimitBox">
-						<view class="Limit">限量</view>
-						<view class="stock">{{info.surplus}}份</view>
-					</view>
-				</view>
-				<image class="img" src="../../static/img/index/b2.png" mode=""></image>
+		</template>
+		<template #footer>
+			<view class="footerBox flex_bt">
+				<view class="price">¥{{info.price}}</view>
+				<view class="subBtn" @tap="pay()">立即购买</view>
 			</view>
-		</view>
+		</template>
+	</good-detail>
 
-
-
-
-		<view class="msgBox">
-			<!-- <view class="goodsName">{{info.name}}</view> -->
-			<view class="flex_bt">
-				<view class="priceBox">当前价: <text>¥{{info.price}}</text> </view>
-				<view class="category_name">{{info.goods_category_name}} </view>
-			</view>
-
-			<view class="describe">{{info.title}}</view>
-		</view>
-		<view class="goodsinfo">
-
-			<view class="iptBox  flexBox">
-				<view class="label">创作者</view>
-				<view class="center">{{info.creator}}
-					<!-- <image class="copy" src="../../static/img/my/copy.png" mode=""></image> -->
-				</view>
-			</view>
-			<view class="iptBox flexBox">
-				<view class="label">拥有者</view>
-				<view class="center">
-					<text>{{info.owner}}</text>
-					<image class="copy" @tap="copy(info.owner)" src="../../static/img/my/copy.png" mode=""></image>
-				</view>
-			</view>
-			<view class="iptBox iptBox1 flexBox">
-				<view class="label">铸造平台</view>
-				<view class="center">{{info.casting_name}}</view>
-			</view>
-			<view class="iptBox iptBox1 flexBox">
-				<view class="label">铸造时间</view>
-				<view class="center">{{info.casting_time}}</view>
-			</view>
-			<view class="iptBox iptBox1" v-if="info.number">
-				<view class="label">藏品编号</view>
-				<view class="center">
-					{{info.number}}
-				</view>
-			</view>
-			<!-- <view class="iptBox iptBox1 flexBox">
-				<view class="label">区块链</view>
-				<view class="center">{{info.blockchain}}</view>
-			</view> -->
-		</view>
-		<view class="descBox" v-if="info.content">
-			<view class="item">藏品介绍</view>
-			<view class="desinfo" v-html="util.checkImg(info.content)"></view>
-		</view>
-		<view class="tech-tip">
-			<image src="../../static/img/tect-tip.png" mode=""></image>
-		</view>
-		<view class="footerBox flex_bt">
-			<view class="price">¥{{info.price}}</view>
-			<view class="subBtn" @tap="pay()">立即购买</view>
-		</view>
-
-	</view>
 </template>
 
 <script>
