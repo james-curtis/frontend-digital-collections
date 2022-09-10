@@ -1,76 +1,82 @@
 <template>
 	<view class="content">
-		<view class="status_bar flexBox" :class="[scrollTopt>0?'fixedbotto':'','']">
-			<view class="search">
-				<input type="text" v-model="search" placeholder="请输入搜索内容">
-				<view class="search-btn" @tap="searchClick">
-					搜索
+		<view v-if="isMarketOpen">
+			<view class="status_bar flexBox" :class="[scrollTopt>0?'fixedbotto':'','']">
+				<view class="search">
+					<input type="text" v-model="search" placeholder="请输入搜索内容">
+					<view class="search-btn" @tap="searchClick">
+						搜索
+					</view>
 				</view>
 			</view>
-		</view>
-		<swiper class="banner" indicator-dots="true" circular="true" autoplay="true" interval="2000" duration="500"
-			indicator-color="#FFFFFF" indicator-active-color="#00D18B">
-			<swiper-item v-for="(item, index) in banner" :key="index">
-				<image :src="item.image" mode=""></image>
-			</swiper-item>
-		</swiper>
+			<swiper class="banner" indicator-dots="true" circular="true" autoplay="true" interval="2000" duration="500"
+				indicator-color="#FFFFFF" indicator-active-color="#00D18B">
+				<swiper-item v-for="(item, index) in banner" :key="index">
+					<image :src="item.image" mode=""></image>
+				</swiper-item>
+			</swiper>
 
-		<view class="tabBox flex_bt">
-			<scroll-view class="scroll-view_H" scroll-x="true" scroll-left="120">
-				<view :class="gid == item.id ? 'tab scroll-view-item_H act' : 'tab scroll-view-item_H'"
-					v-for="(item, index) in CategoryList" @tap="reload(item.id)" :key="index">{{item.name}}</view>
-			</scroll-view>
-			<image class="right" v-if="block" @tap="block = !block" src="../../static/img/index/a2.png" mode=""></image>
-			<image class="right" v-if="!block" @tap="block = !block" src="../../static/img/index/a1.png" mode="">
-			</image>
-		</view>
+			<view class="tabBox flex_bt">
+				<scroll-view class="scroll-view_H" scroll-x="true" scroll-left="120">
+					<view :class="gid == item.id ? 'tab scroll-view-item_H act' : 'tab scroll-view-item_H'"
+						v-for="(item, index) in CategoryList" @tap="reload(item.id)" :key="index">{{item.name}}</view>
+				</scroll-view>
+				<image class="right" v-if="block" @tap="block = !block" src="../../static/img/index/a2.png" mode="">
+				</image>
+				<image class="right" v-if="!block" @tap="block = !block" src="../../static/img/index/a1.png" mode="">
+				</image>
+			</view>
 
 
-		<view class="goodsList" v-if="block">
-			<view class="goodsItem" v-for="(item, index) in GoodsList" :key="index"
-				@tap="go(`secondGoodsDetail?goodsId=${item.id}`)">
-				<image class="goodsImg" :src="item.image" mode=""></image>
-				<view class="goodsinfo">
-					<view class="flex_bt">
-						<view class="goodsName">{{item.name}}</view>
-						<!-- <view class="label">{{item.goods_category_name}}</view> -->
-					</view>
-					<view class="flexBox flex_bt" style="margin-top: 20rpx;">
-						<view class="label">{{item.goods_category_name}}</view>
-						<view class="goodsPrice">
-							{{item.price}}
+			<view class="goodsList" v-if="block">
+				<view class="goodsItem" v-for="(item, index) in GoodsList" :key="index"
+					@tap="go(`secondGoodsDetail?goodsId=${item.id}`)">
+					<image class="goodsImg" :src="item.image" mode=""></image>
+					<view class="goodsinfo">
+						<view class="flex_bt">
+							<view class="goodsName">{{item.name}}</view>
+							<!-- <view class="label">{{item.goods_category_name}}</view> -->
 						</view>
-					</view>
+						<view class="flexBox flex_bt" style="margin-top: 20rpx;">
+							<view class="label">{{item.goods_category_name}}</view>
+							<view class="goodsPrice">
+								{{item.price}}
+							</view>
+						</view>
 
-					<!-- 	<view class="">
+						<!-- 	<view class="">
 						<view class="goodsPrice">
 							<text class="size-22">当前 ¥</text>{{item.price}}
 						</view>
 					</view> -->
 
+					</view>
 				</view>
 			</view>
-		</view>
 
-		<view class="goodsList1" v-if="!block">
-			<view class="goodsItem flex" v-for="(item, index) in GoodsList" :key="index"
-				@tap="go(`secondGoodsDetail?goodsId=${item.id}`)">
-				<image class="goodsImg" :src="item.image" mode=""></image>
-				<view class="goodsinfo">
-					<view class="goodsName">{{item.name}}</view>
-					<view class="label">{{item.goods_category_name}}</view>
-					<view class="creator">{{item.creator}}</view>
-					<view class="goodsPrice">当前 ¥ <text style="font-size: 36rpx;">{{item.price}}</text></view>
+			<view class="goodsList1" v-if="!block">
+				<view class="goodsItem flex" v-for="(item, index) in GoodsList" :key="index"
+					@tap="go(`secondGoodsDetail?goodsId=${item.id}`)">
+					<image class="goodsImg" :src="item.image" mode=""></image>
+					<view class="goodsinfo">
+						<view class="goodsName">{{item.name}}</view>
+						<view class="label">{{item.goods_category_name}}</view>
+						<view class="creator">{{item.creator}}</view>
+						<view class="goodsPrice">当前 ¥ <text style="font-size: 36rpx;">{{item.price}}</text></view>
+					</view>
 				</view>
 			</view>
-		</view>
 
-		<uni-load-more :status="status" v-if="GoodsList.length"></uni-load-more>
+			<uni-load-more :status="status" v-if="GoodsList.length"></uni-load-more>
+		</view>
 		<uni-footer currentTab="1"></uni-footer>
 	</view>
 </template>
 
 <script>
+	import {
+		mapState
+	} from 'vuex'
 	export default {
 		data() {
 			return {
@@ -89,6 +95,12 @@
 				block: true,
 				scrollTopt: 0,
 			};
+		},
+		computed: {
+			...mapState({
+				isMarketOpen: s => s.config.isMarketOpen,
+				appMarketCloseImg: s => s.config.appMarketCloseImg,
+			})
 		},
 		onLoad(e) {
 			this.Reset();
@@ -109,6 +121,18 @@
 		},
 		beforeMount() {
 			this.search = this.$route.query?.search
+		},
+		watch: {
+			appMarketCloseImg: {
+				handler(val) {
+					console.log(`val`, val);
+					// #ifdef H5
+					if (!this.isMarketOpen)
+						document.body.style.setProperty('--bkg', `url(${val})`)
+					// #endif
+				},
+				immediate: true
+			}
 		},
 		methods: {
 			searchClick() {
@@ -189,6 +213,12 @@
 	}
 </script>
 <style lang="scss" scoped>
+	page {
+		background-image: var(--bkg);
+		background-size: 100% 100%;
+		background-repeat: no-repeat;
+	}
+
 	/deep/uni-swiper .uni-swiper-wrapper {
 		overflow: inherit;
 	}

@@ -50,12 +50,12 @@
 		},
 		methods: {
 			switchNav(index, item) {
-				if (this.rank == 0) {
-					if (index == 1) {
-						this.toast("市场暂没有开放");
-						return;
-					}
-				}
+				// if (this.rank == 0) {
+				// 	if (index == 1) {
+				// 		this.toast("市场暂没有开放");
+				// 		return;
+				// 	}
+				// }
 				if (index != this.currentTab) {
 					console.log(item.pagePath)
 					uni.redirectTo({

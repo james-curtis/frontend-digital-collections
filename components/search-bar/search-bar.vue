@@ -14,15 +14,25 @@
 		name: 'SearchBar',
 		data() {
 			return {
-				scrollTopt: 0,
 				search: "",
+			}
+		},
+		props: {
+			click: {
+				type: Function,
+			},
+			scrollTopt: {
+				type: Number,
+				default: 0
 			}
 		},
 		methods: {
 			searchClick() {
-				uni.redirectTo({
-					url: `secondHand?search=${this.search}`
-				})
+				if (this.click) this.click()
+				else
+					uni.redirectTo({
+						url: `secondHand?search=${this.search}`
+					})
 			},
 		}
 	}
