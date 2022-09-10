@@ -1,20 +1,23 @@
 <template>
 	<view class="content">
-		<view class="iptBox">
-			<text class="label">支付宝账号:</text>
-			<input v-model="ali_name" type="text" placeholder="请输入支付宝账号" class="ipt" placeholder-class="iptP" />
-		</view>
-		<view class="iptBox1">
-			<view class="label">请上传支付宝收款码:</view>
-			<image @tap="chooseImg" class="headIcon" :src="alipayImg" mode=""></image>
-		</view>
-		<view class="iptBox">
-			<text class="label">微信姓名:</text>
-			<input v-model="wx_name" type="text" placeholder="请输入微信姓名" class="ipt" placeholder-class="iptP" />
-		</view>
-		<view class="iptBox1">
-			<view class="label">请上传微信收款码:</view>
-			<image @tap="chooseImg1" class="headIcon" :src="wxImg" mode=""></image>
+		<u-alert :description='notify_desc' effect='light'></u-alert>
+		<view v-if="false">
+			<view class="iptBox">
+				<text class="label">支付宝账号:</text>
+				<input v-model="ali_name" type="text" placeholder="请输入支付宝账号" class="ipt" placeholder-class="iptP" />
+			</view>
+			<view class="iptBox1">
+				<view class="label">请上传支付宝收款码:</view>
+				<image @tap="chooseImg" class="headIcon" :src="alipayImg" mode=""></image>
+			</view>
+			<view class="iptBox">
+				<text class="label">微信姓名:</text>
+				<input v-model="wx_name" type="text" placeholder="请输入微信姓名" class="ipt" placeholder-class="iptP" />
+			</view>
+			<view class="iptBox1">
+				<view class="label">请上传微信收款码:</view>
+				<image @tap="chooseImg1" class="headIcon" :src="wxImg" mode=""></image>
+			</view>
 		</view>
 		<view class="iptBox">
 			<text class="label">收款姓名:</text>
@@ -32,15 +35,28 @@
 			<text class="label">银行卡号:</text>
 			<input v-model="bank_number" type="number" placeholder="请输入银行卡号" class="ipt" placeholder-class="iptP" />
 		</view>
+		<view class="iptBox">
+			<text class="label">备注信息:</text>
+			<input v-model="bank_comment" type="text" placeholder="如果有特殊说明填写在这里" class="ipt" placeholder-class="iptP" />
+		</view>
 
 		<view class="iptBox">
 			<text class="label">手机号:</text>
-			<input v-model="phone" type="number" maxlength="11" class="ipt" placeholder-class="iptP" />
+			<input v-model="phone" disabled type="number" maxlength="11" class="ipt" placeholder-class="iptP" />
 		</view>
-		<view class="iptBox">
-			<text class="label">验证码:</text>
-			<input v-model="code" type="text" placeholder="请输入验证码" class="ipt" placeholder-class="iptP" />
-			<view class="codeBtn" @tap="getCode">{{btnMsg}}</view>
+		<view class="" v-if="false">
+			<view class="iptBox captcha">
+				<text class="label">图片验证码:</text>
+				<input v-model="captcha" type="text" placeholder="请输入右侧图片验证码" class="ipt" placeholder-class="iptP" />
+				<view class="codeBtn">
+					<image :src="captchaUrl" class="captcha-icon" @click="getCapthcaUrl"></image>
+				</view>
+			</view>
+			<view class="iptBox">
+				<text class="label">短信验证码:</text>
+				<input v-model="code" type="text" placeholder="请输入短信验证码" class="ipt" placeholder-class="iptP" />
+				<view class="codeBtn" @tap="getCode">{{btnMsg}}</view>
+			</view>
 		</view>
 		<!-- <view class="tips">
 			*温馨提示：需要同时提交三个收款信息
@@ -52,6 +68,7 @@
 </template>
 
 <script>
+	import http from '@/common/http.js'
 	export default {
 		data() {
 			return {
@@ -67,15 +84,36 @@
 				bank_name: '',
 				bank_number: '',
 				bank_branch: '',
+				bank_comment: '',
 				phone: '',
 				code: '',
+				captchaUrl: '',
+				captcha: '',
+				notify_desc: ''
 			};
 		},
 		onLoad(e) {
 			this.phone = uni.getStorageSync("phone");
 			this.getData();
 		},
+		mounted() {
+			this.getCapthcaUrl()
+			this.getNotify()
+		},
 		methods: {
+			async getNotify() {
+				const res = await this.$http.get('user/getPurchaseConfig')
+				this.notify_desc = res.data.purchase_notify
+			},
+			async getCapthcaUrl() {
+				const res = await uni.request({
+					url: `${http.baseUrl}login/getCaptcha`,
+					responseType: 'arraybuffer',
+					withCredentials: true
+				})
+				const url = 'data:image/png;base64,' + uni.arrayBufferToBase64(res[1].data);
+				this.captchaUrl = url
+			},
 			getData() {
 				this.$http.get('user/collection').then(res => {
 					if (res.code == 1) {
@@ -87,6 +125,7 @@
 						this.bank_name = res.data.bank_name;
 						this.bank_number = res.data.bank_number;
 						this.bank_branch = res.data.bank_branch;
+						this.bank_comment = res.data.bank_comment;
 						if (this.ali_image) {
 							this.alipayImg = this.ali_image;
 						}
@@ -131,10 +170,10 @@
 				// 	return;
 				// }
 
-				if (!this.code) {
-					this.toast("请输入验证码");
-					return;
-				}
+				// if (!this.code) {
+				// 	this.toast("请输入验证码");
+				// 	return;
+				// }
 				let data = {
 					ali_name: this.ali_name,
 					ali_image: this.ali_image,
@@ -144,6 +183,7 @@
 					bank_name: this.bank_name,
 					bank_number: this.bank_number,
 					bank_branch: this.bank_branch,
+					bank_comment: this.bank_comment,
 					code: this.code,
 				}
 				this.$http.post('user/collectMoney', data).then(res => {
@@ -162,7 +202,8 @@
 				}
 				this.$http.post('login/sendCode', {
 					phone: this.phone,
-					type: '2'
+					type: '2',
+					capthca: this.captcha
 				}).then(res => {
 					if (res.code == 1) {
 						this.toast(res.msg);
@@ -267,6 +308,11 @@
 			box-shadow: 0px 0px 15rpx 6rpx rgba(52, 52, 52, 0.1);
 			border-radius: 10rpx;
 
+			&.captcha {
+				height: 120rpx;
+				line-height: 120rpx;
+			}
+
 			.ipt {
 				flex: 1;
 				font-size: 28rpx;
@@ -292,6 +338,12 @@
 				font-size: 26rpx;
 				font-weight: 500;
 				color: #FFDD9D;
+
+				.captcha-icon {
+					width: 200rpx;
+					height: 80rpx;
+					vertical-align: middle;
+				}
 			}
 		}
 

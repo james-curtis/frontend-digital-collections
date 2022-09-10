@@ -41,7 +41,7 @@
 		</view>
 
 		<view class="box">
-			<view class="p1">文昌(NFT)</view>
+			<view class="p1">天河链(NFT)</view>
 			<view class=" iptBox1  flexBox">
 				<view class="label">我的地址</view>
 				<view class="center">
