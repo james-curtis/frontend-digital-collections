@@ -1,7 +1,6 @@
 <template>
 	<view class="content">
-		<image class="login-logo" src="../../static/img/login/login-logo.png" mode=""></image>
-
+		<logo class="login-logo"></logo>
 		<view class="formBox">
 			<view class="tabBox flexBox">
 				<view :class="showType == '1' ? 'tab act' : 'tab'" @tap="reload(1)">密码登录</view>
@@ -75,6 +74,9 @@
 </template>
 
 <script>
+	import {
+		mapState
+	} from 'vuex'
 	import md5 from '@/common/md5.min.js';
 	export default {
 		data() {
@@ -90,6 +92,21 @@
 			}
 		},
 		onLoad() {},
+		computed: {
+			...mapState({
+				appRegisterBackgroundImage: s => s.config.appRegisterBackgroundImage,
+			})
+		},
+		watch: {
+			appRegisterBackgroundImage: {
+				handler(val) {
+					// #ifdef H5
+					document.body.style.setProperty('--bkg', `url(${val})`)
+					// #endif
+				},
+				immediate: true
+			}
+		},
 		mounted() {
 			if (false) {
 
@@ -294,16 +311,23 @@
 </script>
 
 <style lang="scss" scoped>
+	page {
+		background-image: var(--bkg);
+		background-size: 100% 100%;
+		background-repeat: no-repeat;
+	}
+
 	.content {
 		/* padding: 0 0 200rpx; */
 		/* margin-bottom: 200rpx; */
 		overflow: hidden;
 		position: relative;
 
-		.login-logo {
+		/deep/ .login-logo {
+			visibility: hidden;
 			display: block;
-			width: 240rpx;
-			height: 156rpx;
+			width: 500rpx;
+			height: 130rpx !important;
 			margin: 140rpx auto 40rpx;
 			// margin-top: 60rpx;
 			overflow: hidden;
