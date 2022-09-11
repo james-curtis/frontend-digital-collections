@@ -32,13 +32,13 @@
 		methods: {
 			getData(a) {
 				this.$http.post('login/config').then(res => {
-					if(res.code == 1){
-						if(this.type == 1){
+					if (res.code == 1) {
+						if (this.type == 1) {
 							this.list = res.data.users_content
-						} else if(this.type == 2){
+						} else if (this.type == 2) {
 							this.list = res.data.conceal_content
 						}
-					} 
+					}
 				})
 			}
 
@@ -48,6 +48,10 @@
 <style lang="scss" scoped>
 	.info {
 		padding: 30rpx;
-		color: #000;
+		color: $uni-text-color;
+
+		/deep/ td {
+			border-color: $uni-text-color !important;
+		}
 	}
 </style>

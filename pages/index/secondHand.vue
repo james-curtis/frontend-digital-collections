@@ -38,7 +38,8 @@
 							<!-- <view class="label">{{item.goods_category_name}}</view> -->
 						</view>
 						<view class="flexBox flex_bt" style="margin-top: 20rpx;">
-							<view class="label">{{item.goods_category_name}}</view>
+							<view class="label" v-if="item.goods_category_name">{{item.goods_category_name}}</view>
+							<view class="goodsPrice" v-else>{{''}}</view>
 							<view class="goodsPrice">
 								{{item.price}}
 							</view>

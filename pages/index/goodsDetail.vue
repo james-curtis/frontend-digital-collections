@@ -1,5 +1,5 @@
 <template>
-	<good-detail :good-detail="goodDetail" :goods-id="goodsId" v-if="goodDetail">
+	<good-detail :good-detail="info" :goods-id="goodsId" v-if="info">
 		<template #actionBar="{info,flag}">
 			<view class="footerBox flex_bt">
 				<view class="price">¥{{info.price}}</view>
@@ -22,7 +22,7 @@
 		data() {
 			return {
 				goodsId: null,
-				goodDetail: null,
+				info: null,
 				gmsm: ''
 			}
 		},
@@ -78,7 +78,7 @@
 					id: this.goodsId
 				}).then(res => {
 					if (res.code == 1) {
-						this.goodDetail = res.data
+						this.info = res.data
 					}
 				})
 			},
