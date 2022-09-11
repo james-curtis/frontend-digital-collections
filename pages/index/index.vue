@@ -427,10 +427,6 @@
 
 			padding-top: var(--status-bar-height);
 
-			.img-logo {
-				margin-top: 20rpx;
-				width: 280rpx;
-			}
 
 		}
 

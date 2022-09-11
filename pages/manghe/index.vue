@@ -1,9 +1,7 @@
 <template>
 	<view class="content container">
 		<view class="status_bar flexBox">
-			<view class="leftTit">
-				<image class="logo" src="../../static/img/index/index-logo.png" mode="widthFix"></image>
-			</view>
+			<logo></logo>
 		</view>
 		<swiper class="banner" indicator-dots="true" circular="true" autoplay="true" interval="3000" duration="800"
 			indicator-color="#FFFFFF" indicator-active-color="#00D18B">

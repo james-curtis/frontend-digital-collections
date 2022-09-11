@@ -18,3 +18,10 @@
 		}
 	}
 </script>
+
+<style lang="scss" scoped>
+	.img-logo {
+		margin-top: 20rpx;
+		width: 280rpx;
+	}
+</style>
