@@ -143,11 +143,12 @@
 	</view>
 </template>
 <script>
+	import {
+		mapState
+	} from 'vuex'
 	export default {
 		data() {
 			return {
-				banner: [],
-				shopList: [],
 				status: 'more',
 				pagesize: 15,
 				page: 1,
@@ -159,19 +160,24 @@
 				text1: "",
 				firstNotice: {},
 				smshow: false,
-				rlflag: true
+				rlflag: true,
+				isRequesting: false
 			}
+		},
+		computed: {
+			...mapState({
+				banner: s => s.indexData.banner,
+				shopList: s => s.indexData.shopList,
+			})
 		},
 		onLoad(e) {
 			this.getBanner()
-			this.shopList = [];
 			this.getList();
 			const that = this
 			uni.$on('init', () => {
 				if (that.showType == '0') {
 					that.flag = false;
 					that.page = 1;
-					that.shopList = [];
 					that.getList();
 				}
 			})
@@ -193,7 +199,6 @@
 			this.getBanner();
 			this.flag = false;
 			this.page = 1;
-			this.shopList = [];
 			this.getList();
 		},
 		methods: {
@@ -241,7 +246,6 @@
 					this.showType = n;
 					this.flag = false;
 					this.page = 1;
-					this.shopList = [];
 					this.getList();
 				}
 			},
@@ -251,7 +255,9 @@
 				}
 				if (this.gid != a) {
 					this.gid = a;
-					this.shopList = [];
+					this.$store.commit('SET_INDEX_DATA_STATE', {
+						shopList: []
+					})
 					this.getList();
 				}
 
@@ -263,41 +269,23 @@
 				this.go('goodsDetail?goodsId=' + a.id)
 			},
 			getList() {
-				if (!['0', '3'].includes(this.showType)) {
-					this.$http.get(this.showType == '2' ? 'index/noticeList' : 'index/calendar', {
-						page: this.page,
-						pagesize: this.pagesize,
-					}).then(res => {
-						if (res.code == 1) {
-							if (res.data.length == 0) {
-								this.flag = true;
-								this.status = 'noMore'
-							} else {
-								this.shopList = this.shopList.concat(res.data);
-								if (res.data.length < this.pagesize) {
-									this.flag = true;
-									this.status = 'noMore'
-								}
-							}
-						} else {
-							this.flag = true;
-							this.status = 'noMore'
-						}
-					})
-					return false
-				}
-				this.$http.get('goods/goodsList', {
-					goods_category_id: this.gid,
-					page: this.page,
-					pagesize: this.pagesize,
-				}).then(res => {
+				if (this.isRequesting) return false;
+				this.isRequesting = true;
+				const cursor_page = this.page
+				const cb = (res) => {
 					uni.stopPullDownRefresh();
 					if (res.code == 1) {
 						if (res.data.data.length == 0) {
 							this.flag = true;
 							this.status = 'noMore'
 						} else {
-							this.shopList = this.shopList.concat(res.data.data);
+							let data = res.data.data
+							if (cursor_page !== 1) {
+								data = this.shopList.concat(res.data.data)
+							}
+							this.$store.commit('SET_INDEX_DATA_STATE', {
+								shopList: data
+							})
 							if (res.data.data.length < this.pagesize) {
 								this.flag = true;
 								this.status = 'noMore'
@@ -307,7 +295,21 @@
 						this.flag = true;
 						this.status = 'noMore'
 					}
-				})
+
+					this.isRequesting = false;
+				}
+				if (!['0', '3'].includes(this.showType)) {
+					this.$http.get(this.showType == '2' ? 'index/noticeList' : 'index/calendar', {
+						page: cursor_page,
+						pagesize: this.pagesize,
+					}).then(res => cb(res))
+					return false
+				}
+				this.$http.get('goods/goodsList', {
+					goods_category_id: this.gid,
+					page: cursor_page,
+					pagesize: this.pagesize,
+				}).then(res => cb(res))
 			},
 			getBanner() {
 				this.$http.get('index/bannerList', {
@@ -315,7 +317,10 @@
 				}).then(res => {
 					uni.stopPullDownRefresh();
 					if (res.code == 1) {
-						this.banner = res.data;
+						// this.banner = res.data;
+						this.$store.commit('SET_INDEX_DATA_STATE', {
+							banner: res.data
+						})
 					}
 				})
 			}

@@ -3,17 +3,25 @@
 </template>
 
 <script>
+	import {
+		mapState
+	} from 'vuex'
 	export default {
 		name: 'Logo',
 		data() {
-			return {
-				logoUrl: ''
-			}
+			return {}
+		},
+		computed: {
+			...mapState({
+				logoUrl: s => s.config.appLogo
+			})
 		},
 		beforeMount() {
 			(async () => {
 				const res = await this.$http.get('login/getSysLogo')
-				this.logoUrl = res.data.logo
+				this.$store.commit('SET_CONFIG', {
+					appLogo: res.data.logo
+				})
 			})()
 		}
 	}

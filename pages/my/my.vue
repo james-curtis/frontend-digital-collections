@@ -116,6 +116,9 @@
 </template>
 
 <script>
+	import {
+		mapState
+	} from 'vuex'
 	export default {
 		data() {
 			return {
@@ -125,14 +128,18 @@
 				page: 1,
 
 				accountList: {},
-				collectionList: [],
-				member: {},
 				countInfo: {},
 				flag: true,
 				showType: '1',
 				backgroundColor: '',
 				rank: null
 			}
+		},
+		computed: {
+			...mapState({
+				member: s => s.user.member,
+				collectionList: s => s.user.collectionList,
+			})
 		},
 		onShow() {
 			this.getMemInfo();
@@ -153,7 +160,7 @@
 				if (this.showType != n) {
 					this.showType = n;
 					this.goodsList = [];
-					this.collectionList = [];
+					this.$store.dispatch('clearList')
 					if (n == 3) {
 						this.status = 'more';
 						this.page = 1;
@@ -175,14 +182,7 @@
 				}
 			},
 			getList() {
-				let data = {
-					status: this.showType
-				}
-				this.$http.post('order/collectionList', data).then(res => {
-					if (res.code == 1) {
-						this.collectionList = res.data;
-					}
-				})
+				this.$store.dispatch('getList', this.showType)
 			},
 			gotoMangheDetail(item) {
 				this.go('/pages/manghe/openMangheDetail?goodsId=' + item.goods_id);
@@ -225,15 +225,9 @@
 				})
 			},
 			getMemInfo() {
-				this.$http.get('user/userInfo').then(res => {
-					if (res.code == 1) {
-						this.member = res.data;
-						uni.setStorageSync('phone', res.data.phone);
-						uni.setStorageSync('wx_auth', res.data.wx_small_auth);
-						this.getList();
-						this.getAccount();
-					}
-				})
+				this.$store.dispatch('getMemInfo')
+				this.getList();
+				// this.getAccount();
 			},
 		}
 	}
