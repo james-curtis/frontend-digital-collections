@@ -3,6 +3,8 @@ export default {
 		beian: "",
 		appLogo: "",
 		name: "",
+		contactPhone: "",
+		contactQR: "",
 		appMarketCloseImg: "",
 		appRegisterBackgroundImage: "",
 		isMarketOpen: true
