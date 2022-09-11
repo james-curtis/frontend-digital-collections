@@ -7,6 +7,6 @@ if (process.env.NODE_ENV === 'development') {
 	baseUrl = 'http://api.alpha.jzjxxy.top/api/'
 }
 
-export default {
+export {
 	baseUrl
 }

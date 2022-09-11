@@ -1,6 +1,6 @@
 import {
 	baseUrl
-} from '@/app.config.js'
+} from '../app.config.js'
 const post = (url, data, hideloding) => {
 
 	let token = ''
