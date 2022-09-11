@@ -77,6 +77,9 @@
 <script>
 	import http from '@/common/http.js'
 	import md5 from '@/common/md5.min.js';
+	import {
+		mapState
+	} from 'vuex'
 	export default {
 		data() {
 			return {
@@ -104,6 +107,21 @@
 			}
 			if (e.goods_id) {
 				this.goods_id = e.goods_id;
+			}
+		},
+		computed: {
+			...mapState({
+				appRegisterBackgroundImage: s => s.config.appRegisterBackgroundImage,
+			})
+		},
+		watch: {
+			appRegisterBackgroundImage: {
+				handler(val) {
+					// #ifdef H5
+					document.body.style.setProperty('--bkg', `url(${val})`)
+					// #endif
+				},
+				immediate: true
 			}
 		},
 		mounted() {
@@ -263,6 +281,12 @@
 	}
 </script>
 <style lang="scss" scoped>
+	page {
+		background-image: var(--bkg);
+		background-size: 100% 100%;
+		background-repeat: no-repeat;
+	}
+
 	.content {
 		position: relative;
 		padding: 0 30rpx;

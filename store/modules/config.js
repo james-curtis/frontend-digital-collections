@@ -3,6 +3,7 @@ export default {
 		beian: "",
 		name: "",
 		appMarketCloseImg: "",
+		appRegisterBackgroundImage: "",
 		isMarketOpen: true
 	},
 	mutations: {

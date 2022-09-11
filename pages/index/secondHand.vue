@@ -126,7 +126,6 @@
 		watch: {
 			appMarketCloseImg: {
 				handler(val) {
-					console.log(`val`, val);
 					// #ifdef H5
 					if (!this.isMarketOpen)
 						document.body.style.setProperty('--bkg', `url(${val})`)
