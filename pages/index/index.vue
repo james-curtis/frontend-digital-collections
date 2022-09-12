@@ -23,12 +23,12 @@
 		</view>
 		<search-bar></search-bar>
 		<!-- 三个筛选 -->
-		<view :class="[scrollTopt>230?'fixedbotto':'','tabBox']" v-if="rlflag">
+		<view :class="[scrollTopt>230?'fixedbotto':'','tabBox']">
 			<view @tap="tab('0')" :class="showType == '0' ? 'tab act' : 'tab'">
 				<text>数字藏品</text>
 				<view class="line"></view>
 			</view>
-			<view @tap="tab('1')" :class="showType == '1' ? 'tab act' : 'tab'">
+			<view @tap="tab('1')" :class="showType == '1' ? 'tab act' : 'tab'" v-if="rlflag">
 				<text>发售日历</text>
 				<view class="line"></view>
 			</view>
@@ -164,7 +164,6 @@
 				text1: "",
 				firstNotice: {},
 				smshow: false,
-				rlflag: true,
 				isRequesting: false
 			}
 		},
@@ -172,6 +171,7 @@
 			...mapState({
 				banner: s => s.indexData.banner,
 				shopList: s => s.indexData.shopList,
+				rlflag: s => s.config.isOpenIndexPageCalendar,
 			})
 		},
 		onLoad(e) {
@@ -206,16 +206,6 @@
 			this.getList();
 		},
 		methods: {
-			async getrlflag() {
-				try {
-					let res = await this.$http.get("login/buy_rl_handle");
-					if (res == 1) {
-						this.rlflag = true;
-					} else {
-						this.rlflag = false;
-					}
-				} catch (e) {}
-			},
 			close() {
 				this.smshow = false;
 			},

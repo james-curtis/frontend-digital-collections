@@ -8,6 +8,7 @@ export default {
 		appMarketCloseImg: "",
 		appRegisterBackgroundImage: "",
 		isMarketOpen: true,
+		isOpenIndexPageCalendar: true,
 		yundunAppKey: '',
 		yundunScene: '',
 	},
