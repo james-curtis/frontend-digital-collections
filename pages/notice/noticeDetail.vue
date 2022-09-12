@@ -3,7 +3,7 @@
 		<view class="notice-containter">
 			<view class="notice-title">{{noticeContent.title}}</view>
 			<view class="notice-time">{{noticeContent.create_time}}</view>
-		<!-- 	<view class="notice-img">
+			<!-- 	<view class="notice-img">
 				<image :src="noticeContent.image" mode=""></image>
 			</view> -->
 			<view class="notice-content" v-html="util.checkImg(noticeContent.content)"></view>
@@ -12,7 +12,7 @@
 </template>
 
 <script>
-	export default{
+	export default {
 		data() {
 			return {
 				noticeId: "",
@@ -20,7 +20,7 @@
 			}
 		},
 		onLoad(options) {
-			if(options.id) {
+			if (options.id) {
 				this.noticeId = options.id
 				this.goDetail()
 			}
@@ -55,11 +55,12 @@
 		z-index: 100;
 		/*  #ifdef MP-WEIXIN */
 		padding-top: var(--status-bar-height);
+
 		/*  #endif  */
 		.leftTit {
 			width: 10%;
 		}
-	
+
 		.tit {
 			flex: 1;
 			text-align: center;
@@ -67,17 +68,19 @@
 			font-size: 32rpx;
 		}
 	}
-	
-	.notice-containter{
-		padding:0 40rpx 30rpx;
-		.notice-title{
+
+	.notice-containter {
+		padding: 0 40rpx 30rpx;
+
+		.notice-title {
 			padding: 20rpx 0;
 			text-align: left;
 			font-size: 32rpx;
 			font-weight: bold;
-			color: #000;
+			color: $uni-text-color;
 		}
-		.notice-time{
+
+		.notice-time {
 			text-align: left;
 			height: 50rpx;
 			line-height: 50rpx;
@@ -85,16 +88,19 @@
 			margin-bottom: 20rpx;
 			font-size: 26rpx;
 		}
-		.notice-content{
-			margin-top:10rpx;
+
+		.notice-content {
+			margin-top: 10rpx;
 			text-align: justify;
-			color: #000;
+			color: $uni-text-color;
 			font-size: 28rpx;
 		}
-		.notice-img{
+
+		.notice-img {
 			width: 100%;
 			height: 270rpx;
-			image{
+
+			image {
 				width: 100%;
 				height: 270rpx;
 				border-radius: 30rpx;
