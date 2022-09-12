@@ -1,6 +1,6 @@
 <template>
 	<view class="goodsList">
-		<view class="goodsItem" v-for="(item, index) in goodsList" :key="index"
+		<view class="goodsItem" v-for="(item, index) in goodsList" :key="item.id"
 			@tap="go(`secondGoodsDetail?goodsId=${item.id}`)">
 			<image class="goodsImg" :src="item.image" mode=""></image>
 			<view class="goodsinfo">

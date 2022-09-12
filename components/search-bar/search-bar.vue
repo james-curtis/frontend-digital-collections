@@ -14,7 +14,7 @@
 		name: 'SearchBar',
 		data() {
 			return {
-				search: "",
+				search: this.searchData,
 			}
 		},
 		props: {
@@ -24,6 +24,17 @@
 			scrollTopt: {
 				type: Number,
 				default: 0
+			},
+			searchData: {
+				type: String,
+				default: ''
+			}
+		},
+		watch: {
+			search: {
+				handler(val) {
+					this.$emit('update:searchData', val)
+				}
 			}
 		},
 		methods: {
@@ -40,14 +51,16 @@
 
 <style scoped lang="scss">
 	.status_bar {
-		width: calc(100% - 40rpx);
+		// width: calc(100% - 40rpx);
+		flex: 1;
 		padding: 0 20rpx;
 		height: 80rpx;
 
 		padding-top: var(--status-bar-height);
 
 		.search {
-			width: calc(100%);
+			// width: calc(100%);
+			flex: 1;
 			height: 60rpx;
 			border-radius: 10rpx;
 			box-shadow: 0rpx 0rpx 15rpx 6rpx rgba(52, 52, 52, 0.1);
@@ -55,8 +68,8 @@
 			color: $uni-text-color;
 
 			input {
-				width: calc(100% - 140rpx);
-				;
+				flex: 1;
+				// width: calc(100% - 140rpx);
 				height: 60rpx;
 				font-size: 26rpx;
 				padding: 0 20rpx;

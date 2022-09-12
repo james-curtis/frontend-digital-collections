@@ -21,7 +21,7 @@
 					:text="firstNotice.title" bgColor="" color="#67c5cd"></u-notice-bar>
 			</view>
 		</view>
-		<search-bar></search-bar>
+		<search-bar class='search-bar' :searchData.sync="search" :click="searchList"></search-bar>
 		<!-- 三个筛选 -->
 		<view :class="[scrollTopt>230?'fixedbotto':'','tabBox']">
 			<view @tap="tab('0')" :class="showType == '0' ? 'tab act' : 'tab'">
@@ -43,7 +43,7 @@
 		</view>
 		<!-- 数字藏品 -->
 		<view class="listBox" v-if="showType=='0'">
-			<view class="listItem" v-for="(item,index) in shopList" :key="index" @tap="next(item)">
+			<view class="listItem" v-for="(item,index) in shopList" :key="item.id" @tap="next(item)">
 				<view class="mask">
 					<view class="state" v-if="item.status == 1 &&  item.surplus > 0">{{item.end_time}} 结束</view>
 					<view class="state state1" v-if="item.status == 1 &&   (item.surplus < 0 || item.surplus == 0)">
@@ -82,7 +82,7 @@
 		<!-- 发售日历 -->
 		<view class="plr-30" v-if="showType=='1'">
 			<view class="con bg1 ptb-24 plr-24">
-				<view v-for="(item,index) in shopList" :key="index">
+				<view v-for="(item,index) in shopList" :key="item.id">
 					<view class="title flex calc">
 						<image src="../../static/img/data.png" mode="" class="width36 height34"></image>
 						<view class="size-26 black ml-12">{{item.time}}</view>
@@ -164,7 +164,8 @@
 				text1: "",
 				firstNotice: {},
 				smshow: false,
-				isRequesting: false
+				isRequesting: false,
+				search: ''
 			}
 		},
 		computed: {
@@ -205,6 +206,10 @@
 			this.getList();
 		},
 		methods: {
+			searchList() {
+				this.page = 1;
+				this.getList();
+			},
 			close() {
 				this.smshow = false;
 			},
@@ -281,6 +286,10 @@
 						if (len == 0) {
 							this.flag = true;
 							this.status = 'noMore'
+							if (cursor_page === 1)
+								this.$store.commit('SET_INDEX_DATA_STATE', {
+									shopList: []
+								})
 						} else {
 							let data = null
 							if (cursor_type === typeMap.calendar) data = res.data
@@ -313,6 +322,7 @@
 					this.$http.get(this.showType == '2' ? 'index/noticeList' : 'index/calendar', {
 						page: cursor_page,
 						pagesize: this.pagesize,
+						search: this.search
 					}).then(res => cb(res))
 					return false
 				}
@@ -320,6 +330,7 @@
 					goods_category_id: this.gid,
 					page: cursor_page,
 					pagesize: this.pagesize,
+					search: this.search
 				}).then(res => cb(res))
 			},
 			getBanner() {
@@ -728,6 +739,15 @@
 					margin: 0 16rpx;
 					display: flex;
 				}
+			}
+		}
+
+		.search-bar {
+			padding: 0 30rpx;
+			width: auto;
+
+			/deep/ .search {
+				background-color: $uni-bg-color-grey;
 			}
 		}
 
