@@ -5,6 +5,7 @@
 			"style": {
 				"navigationStyle": "custom",
 				"backgroundColor": "",
+				"navigationBarTitleText": "首页",
 				"enablePullDownRefresh": true
 			}
 		},
@@ -69,7 +70,7 @@
 			"style": {
 				"navigationStyle": "custom",
 				"backgroundColor": "#23272C",
-				"navigationBarTitleText": "",
+				"navigationBarTitleText": "我的",
 				"enablePullDownRefresh": false
 			}
 		},
@@ -136,6 +137,7 @@
 			"path": "pages/my/share",
 			"style": {
 				"navigationStyle": "custom",
+				"navigationBarTitleText": "海报",
 				"app-plus": {
 					"titleNView": {
 						"type": "transparent",
@@ -260,9 +262,9 @@
 		{
 			"path": "pages/login/login",
 			"style": {
-				"navigationBarTitleText": "",
 				"enablePullDownRefresh": false,
-				"navigationStyle": "custom"
+				"navigationStyle": "custom",
+				"navigationBarTitleText": "登录"
 			}
 		},
 		{
@@ -296,7 +298,7 @@
 		{
 			"path": "pages/login/bindPhone",
 			"style": {
-				"navigationBarTitleText": "",
+				"navigationBarTitleText": "绑定手机号",
 				"enablePullDownRefresh": false
 			}
 		},
@@ -311,14 +313,14 @@
 			"path": "pages/manghe/index",
 			"style": {
 				"navigationStyle": "custom",
-				"backgroundColor": "",
+				"backgroundColor": "盲盒",
 				"enablePullDownRefresh": true
 			}
 		},
 		{
 			"path": "pages/manghe/goodsMangheDetail",
 			"style": {
-				"navigationBarTitleText": "",
+				"navigationBarTitleText": "详细",
 				"enablePullDownRefresh": false,
 				"app-plus": {
 					"titleNView": {
@@ -332,7 +334,7 @@
 		{
 			"path": "pages/manghe/openMangheDetail",
 			"style": {
-				"navigationBarTitleText": "",
+				"navigationBarTitleText": "详细",
 				"enablePullDownRefresh": false,
 				"app-plus": {
 					"titleNView": {
@@ -380,6 +382,7 @@
 		}, {
 			"path": "pages/login/valid",
 			"style": {
+				"navigationBarTitleText": "验证码",
 				"enablePullDownRefresh": false
 			}
 		}

@@ -57,7 +57,7 @@
 				// 	}
 				// }
 				if (index != this.currentTab) {
-					console.log(item.pagePath)
+					// console.log(item.pagePath)
 					uni.redirectTo({
 						url: item.pagePath
 					})
