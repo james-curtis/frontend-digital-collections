@@ -166,6 +166,7 @@
 			padding: 0 20rpx;
 			height: 80rpx;
 			padding-top: var(--status-bar-height);
+			justify-content: center;
 
 			.logo {
 				margin-top: 20rpx;
