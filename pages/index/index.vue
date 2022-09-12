@@ -186,7 +186,6 @@
 				}
 			})
 			this.getNotice();
-			this.getrlflag();
 		},
 		onPageScroll(e) {
 			this.scrollTopt = e.scrollTop;
