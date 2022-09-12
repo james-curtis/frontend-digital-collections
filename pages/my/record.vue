@@ -25,7 +25,7 @@
 						藏品编号：{{item.order_num}}
 					</view>
 					<view class="list-bh">
-						{{active==0?'受赠于':'转赠于'}}:{{item.zzr_phone}}
+						{{active==0?`受赠于：${item.zzr_phone}`:`转赠给${item.target_phone}`}}
 					</view>
 				</view>
 			</view>
@@ -55,6 +55,7 @@
 		methods: {
 			tab(id) {
 				this.active = id;
+				this.list = []
 				this.getlist();
 			},
 			async getlist() {
@@ -93,7 +94,7 @@
 			display: block;
 			width: 51rpx;
 			height: 5rpx;
-			background: #024EFF;
+			background: $uni-text-color;
 			border-radius: 3rpx;
 			position: absolute;
 			bottom: -10rpx;
@@ -104,7 +105,7 @@
 		}
 
 		.nav-active {
-			color: #024EFF;
+			color: $uni-text-color;
 		}
 	}
 
@@ -143,7 +144,7 @@
 						font-size: 30rpx;
 						font-family: Microsoft YaHei;
 						font-weight: bold;
-						color: #000000;
+						color: $uni-text-color;
 						overflow: hidden;
 						text-overflow: ellipsis;
 						white-space: nowrap;
@@ -155,7 +156,7 @@
 						font-size: 24rpx;
 						font-family: Microsoft YaHei;
 						font-weight: bold;
-						color: #024EFF;
+						color: $uni-text-color;
 						white-space: nowrap;
 					}
 				}
