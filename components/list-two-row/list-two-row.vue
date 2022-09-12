@@ -4,7 +4,7 @@
 			@tap="go(`secondGoodsDetail?goodsId=${item.id}`)">
 			<view class="mask">
 				<view class="" v-if="item.status == 3 && item.surplus > 0 ">
-					<image src='../../static/img/index/soldout.png' class="mask"></image>
+					<image :src='goodEnd' class="mask"></image>
 				</view>
 			</view>
 			<image class="goodsImg" :src="item.image" mode=""></image>
@@ -37,10 +37,18 @@
 </template>
 
 <script>
+	import {
+		mapState
+	} from 'vuex'
 	export default {
 		name: 'ListTwoRow',
 		props: {
 			goodsList: Array
+		},
+		computed: {
+			...mapState({
+				goodEnd: s => s.config.goodEnd
+			})
 		}
 	}
 </script>

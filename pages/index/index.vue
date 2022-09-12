@@ -58,7 +58,7 @@
 					<view class="" v-if="item.status == 3 && item.surplus > 0 ">
 						<!-- <image src="../../static/img/index/time.png" mode="" class="time"></image>
 						已结束 -->
-						<image src='../../static/img/index/soldout.png' class="mask"></image>
+						<image :src='goodEnd' class="mask"></image>
 					</view>
 					<!-- <view class="center flex_column">
 						<image :src="item.image" mode="aspectFill"></image>
@@ -174,6 +174,7 @@
 				banner: s => s.indexData.banner,
 				shopList: s => s.indexData.shopList,
 				rlflag: s => s.config.isOpenIndexPageCalendar,
+				goodEnd: s => s.config.goodEnd,
 			})
 		},
 		onLoad(e) {
