@@ -41,6 +41,7 @@
 				<view class="line"></view>
 			</view>
 		</view>
+		<!-- 数字藏品 -->
 		<view class="listBox" v-if="showType=='0'">
 			<view class="listItem" v-for="(item,index) in shopList" :key="index" @tap="next(item)">
 				<view class="mask">
@@ -78,6 +79,7 @@
 				</view>
 			</view>
 		</view>
+		<!-- 发售日历 -->
 		<view class="plr-30" v-if="showType=='1'">
 			<view class="con bg1 ptb-24 plr-24">
 				<view v-for="(item,index) in shopList" :key="index">
@@ -110,6 +112,7 @@
 				</view>
 			</view>
 		</view>
+		<!-- 精选内容 -->
 		<view class="jxbox" v-if="showType=='2'">
 			<view class="list mt-20" v-for="(item,index) in shopList" :key="index" @click="detail(item)">
 				<image :src="item.image" mode="" class="twoimg"></image>
@@ -120,6 +123,7 @@
 				</view>
 			</view>
 		</view>
+		<!-- 全部 -->
 		<view class="" v-if="showType=='3'" style="margin: 10px 0 0;">
 			<list-two-row :goods-list="shopList"></list-two-row>
 		</view>
@@ -272,21 +276,39 @@
 				if (this.isRequesting) return false;
 				this.isRequesting = true;
 				const cursor_page = this.page
+				const cursor_type = Number(this.showType)
+				const typeMap = {
+					shop: 0,
+					calendar: 1
+				}
 				const cb = (res) => {
 					uni.stopPullDownRefresh();
 					if (res.code == 1) {
-						if (res.data.data.length == 0) {
+						let len = 0
+						if (cursor_type !== typeMap.calendar)
+							len = res.data.data.length
+						else
+							len = res.data.length
+						if (len == 0) {
 							this.flag = true;
 							this.status = 'noMore'
 						} else {
-							let data = res.data.data
+							let data = null
+							if (cursor_type === typeMap.calendar) data = res.data
+							else data = res.data.data
+
 							if (cursor_page !== 1) {
-								data = this.shopList.concat(res.data.data)
+								if (cursor_type !== typeMap.calendar)
+									data = this.shopList.concat(res.data.data)
+								else
+									data = this.shopList.concat(res.data)
 							}
+							console.log(`data`, data);
 							this.$store.commit('SET_INDEX_DATA_STATE', {
 								shopList: data
 							})
-							if (res.data.data.length < this.pagesize) {
+
+							if (len < this.pagesize) {
 								this.flag = true;
 								this.status = 'noMore'
 							}
