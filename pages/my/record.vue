@@ -14,7 +14,7 @@
 				<view class="list-con">
 					<view class="list-con-top">
 						<view class="list-title">
-							{{item.title}}
+							{{item.name}}
 						</view>
 						<view class="list-type">
 							<!-- 注册赠送 -->
