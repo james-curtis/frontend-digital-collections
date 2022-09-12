@@ -6,7 +6,7 @@
 			<!-- 	<view class="notice-img">
 				<image :src="noticeContent.image" mode=""></image>
 			</view> -->
-			<view class="notice-content" v-html="util.checkImg(noticeContent.content)"></view>
+			<u-parse class="notice-content" :content="util.checkImg(noticeContent.content)"></u-parse>
 		</view>
 	</view>
 </template>
