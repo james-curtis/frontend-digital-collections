@@ -55,9 +55,10 @@
 						<image src="../../static/img/index/time.png" mode="" class="time"></image>
 						已售罄
 					</view>
-					<view class="state state1" v-if="item.status == 3 && item.surplus > 0 ">
-						<image src="../../static/img/index/time.png" mode="" class="time"></image>
-						已结束
+					<view class="" v-if="item.status == 3 && item.surplus > 0 ">
+						<!-- <image src="../../static/img/index/time.png" mode="" class="time"></image>
+						已结束 -->
+						<image src='../../static/img/index/soldout.png' class="mask"></image>
 					</view>
 					<!-- <view class="center flex_column">
 						<image :src="item.image" mode="aspectFill"></image>
@@ -301,7 +302,6 @@
 								else
 									data = this.shopList.concat(res.data)
 							}
-							console.log(`data`, data);
 							this.$store.commit('SET_INDEX_DATA_STATE', {
 								shopList: data
 							})

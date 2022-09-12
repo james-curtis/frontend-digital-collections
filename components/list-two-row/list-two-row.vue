@@ -2,6 +2,11 @@
 	<view class="goodsList">
 		<view class="goodsItem" v-for="(item, index) in goodsList" :key="item.id"
 			@tap="go(`secondGoodsDetail?goodsId=${item.id}`)">
+			<view class="mask">
+				<view class="" v-if="item.status == 3 && item.surplus > 0 ">
+					<image src='../../static/img/index/soldout.png' class="mask"></image>
+				</view>
+			</view>
 			<image class="goodsImg" :src="item.image" mode=""></image>
 			<view class="goodsinfo">
 				<view class="flex_bt">
@@ -72,6 +77,66 @@
 			margin-bottom: 25rpx;
 			background: $uni-text-color-inverse;
 			border-radius: 20rpx;
+			position: relative;
+
+			.mask {
+				width: 330rpx;
+				height: 300rpx;
+				border-radius: 30rpx;
+				position: absolute;
+				left: 0;
+				top: 0;
+				z-index: 10;
+
+				.state {
+					display: inline-block;
+					padding: 0 18rpx;
+					height: 40rpx;
+					line-height: 40rpx;
+					text-align: center;
+					color: #fff;
+					font-size: 24rpx;
+					border-radius: 22rpx;
+					background: linear-gradient(90deg, #00D18B 0%, #00D18B 100%);
+					margin-top: 30rpx;
+					margin-left: 28rpx;
+				}
+
+				.state1 {
+					color: rgba(255, 255, 255, 0.6);
+					background: #010004;
+					border-radius: 22rpx;
+					font-size: 24rpx;
+					font-family: PingFangSC-Regular, PingFang SC;
+					font-weight: 400;
+					color: #FFFFFF;
+					display: flex;
+					max-width: 150rpx;
+					box-sizing: border-box;
+
+					.time {
+						height: 26rpx;
+						width: 26rpx;
+						margin-right: 8rpx;
+						margin: auto 8rpx auto 0;
+					}
+				}
+
+				.center {
+					width: 235rpx;
+					height: 177rpx;
+					background: url(../../static/img/index/bj.png) no-repeat left top;
+					background-size: 100%;
+					margin: 40rpx auto;
+
+					image {
+						width: 150rpx;
+						height: 150rpx;
+						border-radius: 12rpx;
+					}
+				}
+			}
+
 
 			.goodsImg {
 				width: 330rpx;
