@@ -74,7 +74,7 @@
 			</view>
 			<view class="descBox" v-if="info.content">
 				<view class="item">{{good_desc.content}}</view>
-				<view class="desinfo" v-html="util.checkImg(info.content)"></view>
+				<u-parse class="desinfo" :content="util.checkImg(info.content)"></u-parse>
 			</view>
 			<view class="descBox" v-if="gmsm">
 				<view class="item">{{good_desc.gmsm}}</view>

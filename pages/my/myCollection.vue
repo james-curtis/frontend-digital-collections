@@ -35,10 +35,10 @@
 			<text class="label">银行卡号:</text>
 			<input v-model="bank_number" type="number" placeholder="请输入银行卡号" class="ipt" placeholder-class="iptP" />
 		</view>
-		<view class="iptBox">
+		<!-- 		<view class="iptBox">
 			<text class="label">备注信息:</text>
 			<input v-model="bank_comment" type="text" placeholder="如果有特殊说明填写在这里" class="ipt" placeholder-class="iptP" />
-		</view>
+		</view> -->
 
 		<view class="iptBox">
 			<text class="label">手机号:</text>

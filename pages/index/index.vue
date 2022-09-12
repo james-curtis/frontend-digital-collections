@@ -32,10 +32,10 @@
 				<text>发售日历</text>
 				<view class="line"></view>
 			</view>
-			<view @tap="tab('2')" :class="showType == '2' ? 'tab act' : 'tab'">
+			<!-- 			<view @tap="tab('2')" :class="showType == '2' ? 'tab act' : 'tab'">
 				<text>内容精选</text>
 				<view class="line"></view>
-			</view>
+			</view> -->
 			<view @tap="tab('3')" :class="showType == '3' ? 'tab act' : 'tab'">
 				<text>全部</text>
 				<view class="line"></view>
@@ -133,7 +133,7 @@
 				</view>
 				<scroll-view :scroll-y="true" class="cppop-cons">
 					<image :src="firstNotice.image" mode=""></image>
-					<rich-text :nodes="util.checkImg(text1)"></rich-text>
+					<u-parse :content="util.checkImg(text1)"></u-parse>
 				</scroll-view>
 				<view class="smpop-btn" @click="smshow=false">
 					我知道了
