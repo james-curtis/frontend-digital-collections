@@ -377,6 +377,11 @@
 				"enablePullDownRefresh": false
 			}
 
+		}, {
+			"path": "pages/login/valid",
+			"style": {
+				"enablePullDownRefresh": false
+			}
 		}
 	],
 	"globalStyle": {

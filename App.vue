@@ -1,4 +1,9 @@
 <script>
+	import {
+		mapState,
+		mapGetters,
+		mapActions
+	} from 'vuex'
 	export default {
 		onLaunch(e) {
 			uni.setStorage({
@@ -20,9 +25,11 @@
 			this.$http.get('login/getGoodDesc').then(res => {
 				this.$store.commit('SET_GOOD_DESC', res.data)
 			})
+			this.init()
 		},
-		onShow() {},
-		onHide() {}
+		methods: {
+			init() {},
+		}
 	}
 </script>
 

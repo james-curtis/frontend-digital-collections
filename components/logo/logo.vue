@@ -16,14 +16,6 @@
 				logoUrl: s => s.config.appLogo
 			})
 		},
-		beforeMount() {
-			(async () => {
-				const res = await this.$http.get('login/getSysLogo')
-				this.$store.commit('SET_CONFIG', {
-					appLogo: res.data.logo
-				})
-			})()
-		}
 	}
 </script>
 

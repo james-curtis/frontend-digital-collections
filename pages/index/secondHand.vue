@@ -213,12 +213,6 @@
 	}
 </script>
 <style lang="scss" scoped>
-	page {
-		background-image: var(--bkg);
-		background-size: 100% 100%;
-		background-repeat: no-repeat;
-	}
-
 	/deep/uni-swiper .uni-swiper-wrapper {
 		overflow: inherit;
 	}

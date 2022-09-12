@@ -7,7 +7,9 @@ export default {
 		contactQR: "",
 		appMarketCloseImg: "",
 		appRegisterBackgroundImage: "",
-		isMarketOpen: true
+		isMarketOpen: true,
+		yundunAppKey: '',
+		yundunScene: '',
 	},
 	mutations: {
 		SET_CONFIG(state, data) {

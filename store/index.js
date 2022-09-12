@@ -10,6 +10,6 @@ export default new Vuex.Store({
 		config,
 		good,
 		indexData,
-		user
+		user,
 	}
 })
