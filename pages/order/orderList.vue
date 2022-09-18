@@ -70,10 +70,11 @@
 				flag: false, //上拉加载
 			}
 		},
-		onShow() {
+		onShow() {},
+		onLoad(e) {},
+		mounted() {
 			this.Reset();
 		},
-		onLoad(e) {},
 		onReachBottom() {
 			if (!this.flag) {
 				console.log(1)

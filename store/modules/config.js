@@ -11,6 +11,7 @@ export default {
 		isOpenIndexPageCalendar: true,
 		yundunAppKey: '',
 		yundunScene: '',
+		checkoutTips: '',
 
 		// 商品销售结束显示图片
 		goodEnd: '',

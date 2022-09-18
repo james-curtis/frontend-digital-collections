@@ -1,5 +1,16 @@
 <template>
 	<view class="content">
+		<uni-section class='card' title="存储账户" type="line" titleColor="var(--font-color)" padding="10px 20px">
+			<view class="line-text" v-if="member.uuid">
+				{{member.wallet_address}}
+				<image class="copy" @tap="copy(member.wallet_address)" src="../../static/img/my/copy.png" mode="">
+				</image>
+			</view>
+			<view class="tips">
+				*该账户由平台代创建，帮您存储数字藏品及寄售。未经允许，平台不会干涉该账户信息。
+			</view>
+		</uni-section>
+
 		<view class="storeBox">
 			<view class="goodsItem flex">
 				<image class="goodImg" :src="goodsInfo.image" mode=""></image>
@@ -11,6 +22,16 @@
 					</view>
 				</view>
 			</view>
+		</view>
+
+		<uni-section class='card' title="购买须知" type="line" titleColor="var(--font-color)" padding="10px 20px">
+			<view class="tips">
+				<u-parse :content='checkoutTips'></u-parse>
+			</view>
+		</uni-section>
+
+		<view class="storeBox" style="padding: 0 20px;background-color: transparent;color: #76fbac;font-size: 28rpx;">
+			*24小时内锁单5单未支付，将限制购买（含首发藏品）24小时
 		</view>
 
 		<view class="footerBox flex_bt">
@@ -25,6 +46,9 @@
 </template>
 
 <script>
+	import {
+		mapState
+	} from 'vuex'
 	export default {
 		data() {
 			return {
@@ -33,10 +57,19 @@
 				type: ''
 			}
 		},
+		computed: {
+			...mapState({
+				member: s => s.user.member,
+				checkoutTips: s => s.config.checkoutTips,
+			})
+		},
 		onLoad(e) {
 			this.goodsId = e.goodsId;
 			this.type = e.type;
 			this.getInfo();
+		},
+		mounted() {
+			this.refreshMemberInfo()
 		},
 		methods: {
 			submit() {
@@ -97,16 +130,59 @@
 					})
 				}
 			},
+			refreshMemberInfo() {
+				if (Object.entries(this.member).length !== 0) return true;
+				this.$store.dispatch('getMemInfo')
+			}
 		}
 	}
 </script>
 
 <style lang="scss" scoped>
 	.content {
+		--font-color: #{$uni-text-color};
+		--backgroud: #{$uni-bg-color-grey};
 		padding-top: 30rpx;
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+
+		.copy {
+			width: 44rpx;
+			height: 44rpx;
+			position: absolute;
+			bottom: 0;
+			right: 0;
+		}
+
+		/deep/ .card {
+			background-color: $uni-bg-color-grey;
+
+			.uni-section-content,
+			.uni-section__content-title {
+				color: $uni-text-color;
+			}
+
+			.uni-section-header__decoration {
+				background-color: #76f7ae;
+			}
+
+			.line-text {
+				position: relative;
+				text-overflow: ellipsis;
+				overflow: hidden;
+				white-space: nowrap;
+				padding-right: 25px;
+			}
+
+			.tips {
+				color: $uni-text-color-grey;
+			}
+		}
 
 		.storeBox {
 			background-color: $uni-bg-color-grey;
+			color: $uni-text-color;
 
 			.goodsItem {
 				margin: 0 30rpx;
