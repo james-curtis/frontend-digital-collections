@@ -1,5 +1,17 @@
 <template>
 	<view class="content">
+		<view class="input_box header-box">
+			<view class="time-icon">
+				<image class="clock-icon" src='../../static/img/order/clock.svg'></image>
+			</view>
+			<view class="title">
+				抢购成功
+			</view>
+			<view class="tips">
+				请在3分钟内付款，未付款藏品将被释放
+			</view>
+		</view>
+
 		<view class="goodsInfo">
 			<view class="goodsItem flex">
 				<image class="goodImg" :src="goodsInfo.goods_image" mode=""></image>
@@ -344,6 +356,26 @@
 			line-height: 60rpx;
 			padding-left: 30rpx;
 			margin: 42rpx 0 20rpx;
+		}
+
+		.header-box {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			gap: 10px;
+			background-color: $uni-bg-color-grey;
+			padding: 20px 0;
+			border-radius: 20rpx;
+
+			.title {
+				font-size: $uni-font-size-max;
+				color: $uni-text-color;
+			}
+
+			.clock-icon {
+				width: 100rpx;
+				height: 100rpx;
+			}
 		}
 
 		.input_box {
