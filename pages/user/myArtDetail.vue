@@ -5,7 +5,7 @@
 		</template>
 		<template #footer>
 			<view class="footerBox flex_bt">
-				<view class="subBtn subBtn1" @tap="openSalePopup()" v-if="btnflag||rank==1">出 售</view>
+				<view class="subBtn subBtn1" @tap="openSalePopup()" v-if="btnflag||rank==1">寄 售</view>
 				<view class="subBtn" @tap="openTransferPopup()">转 赠</view>
 			</view>
 
@@ -13,7 +13,7 @@
 				<view class="specs_boxs">
 					<view class="flex">
 						<input type="digit" v-model="price" class="ipt" placeholder-class="iptP"
-							placeholder="请输入出售价格" />
+							placeholder="请输入寄售价格" />
 					</view>
 					<view class="btnBox flex">
 						<view class="btn" @tap="closeSalePopup()">取消</view>
@@ -122,9 +122,9 @@
 				this.saleFlag = false;
 				this.$refs.salePopup.close()
 			},
-			sale() { //出售
+			sale() { //寄售
 				if (!this.price) {
-					this.toast('请输入出售价格');
+					this.toast('请输入寄售价格');
 					return;
 				}
 				let data = {
