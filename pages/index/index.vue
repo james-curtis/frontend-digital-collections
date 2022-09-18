@@ -696,6 +696,10 @@
 			.listItem:nth-child(2n) {
 				margin-right: 0rpx;
 			}
+
+			.listItem:nth-child(n) {
+				margin-right: 0rpx;
+			}
 		}
 
 		.conlist {

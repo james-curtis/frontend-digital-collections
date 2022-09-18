@@ -217,7 +217,7 @@
 				position: relative;
 
 				.mask {
-					width: 690rpx;
+					width: 100%;
 					height: 690rpx;
 					border-radius: 30rpx;
 					position: absolute;
@@ -262,7 +262,7 @@
 				}
 
 				.goodsImg {
-					width: 690rpx;
+					width: 100%;
 					height: 690rpx;
 					border-radius: 30rpx;
 					// -webkit-filter: blur(4px);
@@ -341,7 +341,7 @@
 				}
 			}
 
-			.listItem:nth-child(2n) {
+			.listItem:nth-child(n) {
 				margin-right: 0rpx;
 			}
 		}
