@@ -31,6 +31,19 @@
 				<view class="findpsd flex">
 					<view @tap="go('findPsd')" class="">忘记密码</view>
 				</view>
+
+				<view class="agreement-box flexBox">
+					<image @tap="isRead = !isRead" v-if="!isRead" class="rememberIcon"
+						src="../../static/img/my/uncheckIcon.png" mode=""></image>
+					<image @tap="isRead = !isRead" v-if="isRead" class="rememberIcon"
+						src="../../static/img/my/checkIcon.png" mode=""></image>
+					<view class="remeberBox">
+						<view @tap="isRead = !isRead">我已阅读并同意</view>
+						<view class="red" @tap="go('privacyPolicy?type=1')">《用户协议》</view>
+						<view class="red" @tap="go('privacyPolicy?type=2')">《隐私政策》</view>
+					</view>
+				</view>
+
 				<view @tap="Passwordlogin" class="subBtn">立即登录</view>
 				<view class="subBtn1" @tap="go('reg')">新用户注册</view>
 			</block>
@@ -88,7 +101,8 @@
 				mobile1: '',
 				code: '',
 				flag: false,
-				tim: ''
+				tim: '',
+				isRead: false
 			}
 		},
 		onLoad() {},
@@ -249,6 +263,10 @@
 				}
 				if (!this.password) {
 					this.toast('请输入登录密码');
+					return;
+				}
+				if (!this.isRead) {
+					this.toast('请阅读并同意协议');
 					return;
 				}
 				this.$http.post('login/login/', {
@@ -427,6 +445,31 @@
 				color: #777777;
 				font-size: 28rpx;
 			}
+		}
+
+		.agreement-box {
+			margin-top: 20rpx;
+			width: 100%;
+			height: 60rpx;
+			line-height: 60rpx;
+
+			.rememberIcon {
+				width: 32rpx;
+				height: 32rpx;
+				padding: 10rpx;
+			}
+
+			.remeberBox {
+				display: flex;
+				color: #AAAAAA;
+				font-size: 24rpx;
+				font-weight: 400;
+
+				.red {
+					color: #F0BA55;
+				}
+			}
+
 		}
 
 		.psdBox {
