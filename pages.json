@@ -75,6 +75,14 @@
 			}
 		},
 		{
+			"path": "pages/my/myArtList",
+			"style": {
+				"backgroundColor": "#23272C",
+				"navigationBarTitleText": "我的藏品",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
 			"path": "pages/my/art",
 			"style": {
 				"navigationBarTitleText": "我的艺术品",

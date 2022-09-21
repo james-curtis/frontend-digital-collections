@@ -100,13 +100,14 @@
 			<view class="" style="width: 100%;" v-if="goodsList.length&&showType==3">
 				<uni-load-more :status="status"></uni-load-more>
 			</view>
-			<view class="goodsItem" v-for="(item, index) in collectionList" :key="index" @tap="goDetail(item.id)"
-				v-if="showType==1||showType==2">
+			<view class="goodsItem" v-for="(item, index) in collectionListUnique" :key="item.id"
+				@tap="goUniqueList(item.goods_id)" v-if="showType==1||showType==2">
 				<image class="goodsImg" :src="item.goods_image" mode="aspectFill"></image>
 				<view class="goodsinfo" style="padding-left: 0;">
 					<view class="goodsName">{{item.goods_name}}</view>
+					<view class="goodsName">x{{item.children.length}}</view>
 				</view>
-				<view class="goodsinfo" style="padding: 0;">
+				<view class="goodsinfo" style="padding: 0;" v-if="false">
 					<view class="goodsName" style="font-size: 24rpx;">编号:{{item.mycp_number}}</view>
 				</view>
 			</view>
@@ -117,7 +118,8 @@
 
 <script>
 	import {
-		mapState
+		mapState,
+		mapGetters
 	} from 'vuex'
 	export default {
 		data() {
@@ -139,7 +141,8 @@
 			...mapState({
 				member: s => s.user.member,
 				collectionList: s => s.user.collectionList,
-			})
+			}),
+			...mapGetters(['collectionListUnique'])
 		},
 		onShow() {
 			this.getMemInfo();
@@ -155,6 +158,7 @@
 				this.getmhList();
 			}
 		},
+		mounted() {},
 		methods: {
 			reload(n) {
 				if (this.showType != n) {
@@ -180,6 +184,11 @@
 						url: '../user/mySaleDetail?goodsId=' + a
 					})
 				}
+			},
+			goUniqueList(id) {
+				uni.navigateTo({
+					url: 'myArtList?goodsId=' + id
+				})
 			},
 			getList() {
 				this.$store.dispatch('getList', this.showType)
@@ -504,6 +513,8 @@
 
 				.goodsinfo {
 					padding: 20rpx;
+					display: flex;
+					justify-content: space-between;
 
 					.goodsName {
 						font-size: 26rpx;

@@ -9,6 +9,17 @@ export default {
 			Object.assign(state, data)
 		}
 	},
+	getters: {
+		collectionListUnique(state) {
+			return Object.values(state.collectionList.reduce((prev, cursor, index, array) => {
+				if (!prev[cursor.goods_id])
+					prev[cursor.goods_id] = JSON.parse(JSON.stringify(cursor))
+				if (!prev[cursor.goods_id].children) prev[cursor.goods_id].children = []
+				prev[cursor.goods_id].children.push(cursor)
+				return prev;
+			}, {}))
+		}
+	},
 	actions: {
 		getMemInfo(ctx) {
 			http.get('user/userInfo').then(res => {
