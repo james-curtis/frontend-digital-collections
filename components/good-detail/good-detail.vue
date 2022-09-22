@@ -48,7 +48,7 @@
 				</view>
 				<view class="iptBox  flexBox">
 					<view class="label">{{good_desc.id}}</view>
-					<view class="center">{{mycpNumber?mycpNumber:info.id}}
+					<view class="center">{{info.number?info.number:info.id}}
 					</view>
 				</view>
 				<view class="iptBox  flexBox">
