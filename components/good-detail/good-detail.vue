@@ -2,12 +2,13 @@
 	<view class="content">
 
 		<view class="bigbox">
-			<view class="Box">
+			<img :src='info.image' style="width: 100%;height: auto;"></img>
+			<view class="Box" v-if="false">
 				<view class="rotateBox" :style="'background-image: url('+info.image+');background-size: 100% 100%'">
 					<image class="image" src="../../static/img/index/bj3.png"></image>
 				</view>
 			</view>
-			<view class="Box1">
+			<view class="Box1" v-if="false">
 				<image class="img" src="../../static/img/index/b1.png" mode=""></image>
 				<view class="center">
 					<view class="goodsName">{{info.name}}</view>
