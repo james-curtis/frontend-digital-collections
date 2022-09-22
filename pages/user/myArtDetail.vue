@@ -1,5 +1,5 @@
 <template>
-	<good-detail :good-detail="info" :goods-id="goodsId" v-if="info" :mycp-number='mycp_number'>
+	<good-detail :good-detail="info" :goods-id="goodsId" v-if="info" :styleType="3">
 		<template #goodStockDesc>
 			{{''}}
 		</template>

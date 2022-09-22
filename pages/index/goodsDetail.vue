@@ -1,11 +1,11 @@
 <template>
-	<good-detail :good-detail="info" :goods-id="goodsId" v-if="info">
+	<good-detail :good-detail="info" :goods-id="goodsId" v-if="info" :styleType="1">
 		<template #actionBar="{info,flag}">
 			<view class="footerBox flex_bt">
 				<view class="price">¥{{info.price}}</view>
 				<view class="subBtn " @tap="pay()" v-if="flag=='false'">立即购买</view>
 				<view class="subBtn subnrn1" v-if="flag=='true'" @click="toast1()">
-					<countdown v-if="status==2" :startTime="startTime" :endTime="enTime" style="margin:0 auto" />
+					<countdown v-if="info.status==2" :startTime="startTime" :endTime="enTime" style="margin:0 auto" />
 					<view v-else>已结束</view>
 				</view>
 			</view>
@@ -63,7 +63,7 @@
 			toast1() {
 				if (this.rzflag) {
 					this.toast(this.text);
-					if (this.status == 2) {
+					if (this.info.status == 2) {
 						this.getData()
 					}
 				} else {

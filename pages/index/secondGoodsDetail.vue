@@ -1,5 +1,5 @@
 <template>
-	<good-detail :good-detail="info" :goods-id="goodsId">
+	<good-detail :good-detail="info" :goods-id="goodsId" :styleType="2">
 		<template #goodStockDesc>
 			<view class="flexBox LimitBox">
 				<view class="Limit">限量</view>

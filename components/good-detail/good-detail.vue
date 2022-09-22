@@ -1,14 +1,13 @@
 <template>
 	<view class="content">
 
-		<view class="bigbox">
-			<img :src='info.image' style="width: 100%;height: auto;"></img>
-			<view class="Box" v-if="false">
+		<view class="bigbox" v-if="[2,3].includes(styleType)">
+			<view class="Box">
 				<view class="rotateBox" :style="'background-image: url('+info.image+');background-size: 100% 100%'">
-					<image class="image" src="../../static/img/index/bj3.png"></image>
+					<image v-if="[3].includes(styleType)" class="image" src="../../static/img/index/bj3.png"></image>
 				</view>
 			</view>
-			<view class="Box1" v-if="false">
+			<view class="Box1">
 				<image class="img" src="../../static/img/index/b1.png" mode=""></image>
 				<view class="center">
 					<view class="goodsName">{{info.name}}</view>
@@ -28,6 +27,23 @@
 				</view>
 				<image class="img" src="../../static/img/index/b2.png" mode=""></image>
 			</view>
+		</view>
+
+		<!-- 首页进入显示的商品页面 -->
+		<view class="bigbox" v-if="[1].includes(styleType)">
+			<img :src='info.image' style="width: 100%;height: auto;"></img>
+			<slot name="goodStockDesc" :info='info'>
+				<view class="flex good-stock-desc">
+					<view class="flexBox LimitBox">
+						<view class="Limit">剩余</view>
+						<view class="stock">{{info.surplus}}份</view>
+					</view>
+					<view class="flexBox LimitBox">
+						<view class="Limit">限购</view>
+						<view class="stock">{{info.xgstatus}}份</view>
+					</view>
+				</view>
+			</slot>
 		</view>
 
 		<view class="type1">
@@ -109,8 +125,14 @@
 				type: [String, Number],
 				required: true
 			},
-			mycpNumber: {
-				type: Number
+			/**
+			 * 1: 首页中点开的商品，图片完全展开
+			 * 2：盲盒页中点开的商品，去除相册框
+			 * 3：用户中心页面点开的商品，保留原样
+			 */
+			styleType: {
+				type: [Number],
+				required: true
 			}
 		},
 		data() {
@@ -570,6 +592,15 @@
 			background: url(../../static/img/index/bg.jpg) no-repeat left top;
 			background-size: 100%;
 			background-color: #000;
+			position: relative;
+
+			.good-stock-desc {
+				justify-content: center;
+				position: absolute;
+				bottom: 30px;
+				left: 50%;
+				transform: translateX(-50%);
+			}
 		}
 
 		.Box {
@@ -646,30 +677,31 @@
 					-webkit-line-clamp: 2;
 				}
 
-				.LimitBox {
-					// width: 200rpx;
-					height: 40rpx;
-					line-height: 40rpx;
-					background: #4C464A;
-					border-radius: 6rpx;
-					font-size: 24rpx;
-					text-align: center;
-					margin-right: 20rpx;
+			}
+		}
 
-					.Limit {
-						min-width: 60rpx;
-						padding: 0 8rpx;
-						border-radius: 6rpx;
-						color: #010101;
-						background-color: #F1E2BC;
-					}
+		.LimitBox {
+			// width: 200rpx;
+			height: 40rpx;
+			line-height: 40rpx;
+			background: #4C464A;
+			border-radius: 6rpx;
+			font-size: 24rpx;
+			text-align: center;
+			margin-right: 20rpx;
 
-					.stock {
-						min-width: 80rpx;
-						padding: 0 8rpx;
-						color: #F1E2BC;
-					}
-				}
+			.Limit {
+				min-width: 60rpx;
+				padding: 0 8rpx;
+				border-radius: 6rpx;
+				color: #010101;
+				background-color: #F1E2BC;
+			}
+
+			.stock {
+				min-width: 80rpx;
+				padding: 0 8rpx;
+				color: #F1E2BC;
 			}
 		}
 

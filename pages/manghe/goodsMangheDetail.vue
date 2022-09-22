@@ -3,7 +3,7 @@
 		<view class="bigbox">
 			<view class="Box">
 				<view class="rotateBox" :style="'background-image: url('+info.image+');background-size: 100% 100%'">
-					<image class="image" src="../../static/img/index/bj3.png"></image>
+					<image v-if="false" class="image" src="../../static/img/index/bj3.png"></image>
 				</view>
 			</view>
 			<view class="Box1">
