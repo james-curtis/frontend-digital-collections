@@ -1,5 +1,5 @@
 <template>
-	<good-detail :good-detail="info" :goods-id="goodsId" v-if="info">
+	<good-detail :good-detail="info" :goods-id="goodsId" v-if="info" :mycp-number='mycp_number'>
 		<template #goodStockDesc>
 			{{''}}
 		</template>
@@ -52,12 +52,14 @@
 				phone: '',
 				TransferFlag: false,
 				btnflag: false,
-				rank: null
+				rank: null,
+				mycp_number: undefined
 			}
 		},
 		onLoad(e) {
 			this.rank = uni.getStorageSync('rank');
 			this.goodsId = e.goodsId;
+			this.mycp_number = e.mycp_number;
 			this.getData();
 			this.getflag();
 		},

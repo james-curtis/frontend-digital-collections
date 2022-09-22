@@ -2,7 +2,8 @@
 	<view class="content container">
 
 		<view class="goodsList">
-			<view class="goodsItem" v-for="(item, index) in collectionList" :key="item.id" @tap="goDetail(item.id)">
+			<view class="goodsItem" v-for="(item, index) in collectionList" :key="item.id"
+				@tap="goDetail(item.id,item.mycp_number)">
 				<image class="goodsImg" :src="item.goods_image" mode="aspectFill"></image>
 				<view class="goodsinfo" style="padding-left: 0;">
 					<view class="goodsName">{{item.goods_name}}</view>
@@ -45,9 +46,9 @@
 			...mapGetters(['collectionListUnique']),
 		},
 		methods: {
-			goDetail(a) {
+			goDetail(a, mycp_number) {
 				uni.navigateTo({
-					url: '../user/myArtDetail?goodsId=' + a
+					url: `../user/myArtDetail?goodsId=${a}&mycp_number=${mycp_number}`
 				})
 			},
 		}

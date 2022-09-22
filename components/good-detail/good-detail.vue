@@ -48,7 +48,7 @@
 				</view>
 				<view class="iptBox  flexBox">
 					<view class="label">{{good_desc.id}}</view>
-					<view class="center">{{info.id}}
+					<view class="center">{{mycpNumber?mycpNumber:info.id}}
 					</view>
 				</view>
 				<view class="iptBox  flexBox">
@@ -108,6 +108,9 @@
 			goodsId: {
 				type: [String, Number],
 				required: true
+			},
+			mycpNumber: {
+				type: Number
 			}
 		},
 		data() {
