@@ -5,7 +5,7 @@
 		<!-- <view class="info"></view> -->
 		<!-- </view> -->
 
-		<view class="share-icon" @click="showBtn()">
+		<view class="share-icon" @click="showBtn()" v-if="false">
 			<u-icon name="share-square" color="#fff" size="28"></u-icon>
 		</view>
 
@@ -39,7 +39,7 @@
 			return {
 				team: [],
 				register_url: '',
-				btnFlag: false,
+				btnFlag: true,
 				qr_code_img: '',
 				//二维码
 				val: '', //二维码内容
