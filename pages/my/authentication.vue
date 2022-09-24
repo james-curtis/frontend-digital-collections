@@ -29,7 +29,8 @@
 			</view>
 			<view class="iptBox">
 				<text class="label">手机号</text>
-				<input v-model="phone" type="text" placeholder="请输入手机号" class="ipt" placeholder-class="iptP" />
+				<input v-model="phone" disabled="" type="text" placeholder="请输入手机号" class="ipt"
+					placeholder-class="iptP" />
 			</view>
 			<view class="iptBox">
 				<text class="label">身份证号</text>
@@ -46,6 +47,9 @@
 </template>
 
 <script>
+	import {
+		mapState
+	} from 'vuex'
 	export default {
 		data() {
 			return {
@@ -53,10 +57,15 @@
 				alipayImg: "../../static/img/my/upload.png",
 				name: '',
 				card: '',
-				phone: '',
 				card_front_image: '',
 				card_back_image: '',
 			};
+		},
+		computed: {
+			...mapState({
+				member: s => s.user.member,
+				phone: s => s.user.member.phone,
+			})
 		},
 		onLoad(e) {},
 		methods: {
