@@ -70,6 +70,9 @@
 
 			<uni-load-more :status="status" v-if="GoodsList.length"></uni-load-more>
 		</view>
+		<view class="content-wrapper">
+			<image :src="appMarketCloseImg" class="app-market-close-img"></image>
+		</view>
 		<uni-footer currentTab="1"></uni-footer>
 	</view>
 </template>
@@ -129,7 +132,7 @@
 				handler(val) {
 					// #ifdef H5
 					if (!this.isMarketOpen)
-						document.body.style.setProperty('--bkg', `url(${val})`)
+						document.body.style.setProperty('--bkg', `url(` + val + `)`)
 					// #endif
 				},
 				immediate: true
@@ -236,6 +239,16 @@
 		height: 12rpx;
 		background: #00D18B;
 		border-radius: 6rpx;
+	}
+
+	.content-wrapper {
+		width: 100vw;
+		height: calc(100vh - 120rpx);
+
+		.app-market-close-img {
+			width: 100%;
+			height: 100%;
+		}
 	}
 
 	.status_bar {
