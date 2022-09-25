@@ -70,7 +70,7 @@
 
 			<uni-load-more :status="status" v-if="GoodsList.length"></uni-load-more>
 		</view>
-		<view class="content-wrapper">
+		<view class="content-wrapper" v-else>
 			<image :src="appMarketCloseImg" class="app-market-close-img"></image>
 		</view>
 		<uni-footer currentTab="1"></uni-footer>
