@@ -101,6 +101,7 @@
 			...mapState({
 				isMarketOpen: s => s.config.isMarketOpen,
 				appMarketCloseImg: s => s.config.appMarketCloseImg,
+				secondMarketGoodList: s => s.good.secondMarketGoodList,
 			})
 		},
 		onLoad(e) {
@@ -131,6 +132,15 @@
 						document.body.style.setProperty('--bkg', `url(${val})`)
 					// #endif
 				},
+				immediate: true
+			},
+			GoodsList: {
+				handler(newValue) {
+					this.$store.commit('SET_GOOD_STORE_DESC', {
+						secondMarketGoodList: newValue
+					})
+				},
+				deep: true,
 				immediate: true
 			}
 		},

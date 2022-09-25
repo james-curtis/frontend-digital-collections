@@ -9,20 +9,48 @@
 		<template #footer>
 			<view class="footerBox flex_bt">
 				<view class="price">¥{{info.price}}</view>
-				<view class="subBtn" @tap="pay()">立即购买</view>
+				<view class="subBtn" @tap="pay()" v-if="isMyself">立即购买</view>
+				<view class="subBtn" @tap="$refs.TransferPopup.open()" v-else>赎回藏品</view>
 			</view>
+
+
+			<uni-popup ref="TransferPopup" type="center" :mask-click="false">
+				<view class="specs_boxs">
+					<view class="flex ipt">
+						是否取消出售藏品
+					</view>
+					<view class="btnBox flex">
+						<view class="btn" @tap="$refs.TransferPopup.close()">取消</view>
+						<view class="btn btn1" @tap="redeem()">确定</view>
+					</view>
+				</view>
+
+			</uni-popup>
 		</template>
 	</good-detail>
 
 </template>
 
 <script>
+	import {
+		mapState
+	} from 'vuex'
 	export default {
 		data() {
 			return {
 				goodsId: '',
 				banner: {},
 				info: {},
+			}
+		},
+		computed: {
+			...mapState({
+				secondMarketGoodList: s => s.good.secondMarketGoodList,
+				member: s => s.user.member,
+			}),
+			isMyself() {
+				const isFound = this.secondMarketGoodList.find(e => e.uid === this.member.id && e.id == this.goodsId)
+				return !!isFound;
 			}
 		},
 		onLoad(e) {
@@ -43,11 +71,62 @@
 						this.info = res.data;
 					}
 				})
+			},
+			// 赎回藏品
+			redeem() {
+				this.$http.get('order/redeem', {
+					id: this.goodsId
+				}).then(res => {
+					if (res.code == 1) {
+						this.toast(res.msg)
+						setTimeout(() => uni.navigateBack(), 2000)
+					}
+				})
 			}
 		}
 	}
 </script>
 <style lang="scss" scoped>
+	.specs_boxs {
+		padding: 50rpx 0 10rpx;
+		width: 600rpx;
+		background: #FFFFFF;
+		border-radius: 12rpx;
+		margin: 0 auto;
+
+		.ipt {
+			flex: 1;
+			height: 100rpx;
+			line-height: 100rpx;
+			font-size: 28rpx;
+			font-weight: 500;
+			color: #333;
+			padding-left: 30rpx;
+			margin: 0 30rpx;
+		}
+
+		.iptP {
+			color: #777777;
+			font-weight: 400;
+		}
+
+		.btnBox {
+			margin-top: 20rpx;
+
+			.btn {
+				flex: 1;
+				height: 80rpx;
+				line-height: 80rpx;
+				text-align: center;
+				font-size: 30rpx;
+			}
+
+			.btn1 {
+				color: #AE3523;
+			}
+		}
+	}
+
 	@keyframes myfirst {
 		0% {
 			transform: rotatey(0deg)

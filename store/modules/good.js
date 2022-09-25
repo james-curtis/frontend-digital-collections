@@ -9,11 +9,15 @@ export default {
 			casting_time: '铸造时间',
 			content: '藏品介绍',
 			gmsm: '购买说明',
-		}
+		},
+		secondMarketGoodList: []
 	},
 	mutations: {
 		SET_GOOD_DESC(state, data) {
 			Object.assign(state.good_desc, data)
+		},
+		SET_GOOD_STORE_DESC(state, data) {
+			Object.assign(state, data)
 		}
 	}
 }

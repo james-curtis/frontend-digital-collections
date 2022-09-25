@@ -175,6 +175,7 @@
 				shopList: s => s.indexData.shopList,
 				rlflag: s => s.config.isOpenIndexPageCalendar,
 				goodEnd: s => s.config.goodEnd,
+				member: s => s.user.member,
 			})
 		},
 		onLoad(e) {
@@ -189,6 +190,10 @@
 				}
 			})
 			this.getNotice();
+		},
+		mounted() {
+			if (Object.entries(this.member).length === 0)
+				this.$store.dispatch('getMemInfo')
 		},
 		onPageScroll(e) {
 			this.scrollTopt = e.scrollTop;
