@@ -2,10 +2,14 @@
 	<view class="container">
 		<view class="content">
 
-			<view class="Box">
+			<view class="Box" v-if="false">
 				<view class="rotateBox" :style="'background-image: url('+info.image+');background-size: 100% 100%'">
 					<image class="image" src="../../static/img/index/bj3.png"></image>
 				</view>
+			</view>
+
+			<view class="bigbox">
+				<img :src='info.image' style="width: 100%;height: auto;"></img>
 			</view>
 
 			<view class="type1">
@@ -59,7 +63,7 @@
 			this.isWin = false;
 			this.goodsId = e.id;
 		},
-		onShow() {
+		beforeMount() {
 			this.info = {};
 			this.isWin = false;
 			this.is_mask = false;
@@ -210,6 +214,23 @@
 					text-align: center;
 					color: #333;
 				}
+			}
+		}
+
+		.bigbox {
+			// background: url(../../static/img/detail-bg.png) no-repeat left top;
+			background: url(../../static/img/index/bg.jpg) no-repeat left top;
+			background-size: 100%;
+			background-color: #000;
+			position: relative;
+
+			.good-stock-desc {
+				justify-content: center;
+				position: absolute;
+				bottom: 30px;
+				left: 50%;
+				transform: translateX(-50%);
+				width: 100%;
 			}
 		}
 
