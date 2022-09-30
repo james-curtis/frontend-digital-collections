@@ -1,7 +1,7 @@
 <template>
 	<view class="goodsList">
 		<view class="goodsItem" v-for="(item, index) in goodsList" :key="item.id"
-			@tap="go(`secondGoodsDetail?goodsId=${item.id}`)">
+			@tap="go(`${turnPage}?goodsId=${item.id}`)">
 			<view class="mask">
 				<view class="" v-if="item.status == 3 && item.surplus > 0 ">
 					<image :src='goodEnd' class="mask"></image>
@@ -43,7 +43,12 @@
 	export default {
 		name: 'ListTwoRow',
 		props: {
-			goodsList: Array
+			goodsList: Array,
+			turnPage: {
+				type: String,
+				default: 'secondGoodsDetail'
+			}
+
 		},
 		computed: {
 			...mapState({

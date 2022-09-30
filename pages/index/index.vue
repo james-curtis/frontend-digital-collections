@@ -126,7 +126,7 @@
 		</view>
 		<!-- 全部 -->
 		<view class="" v-if="showType=='3'" style="margin: 10px 0 0;">
-			<list-two-row :goods-list="shopList"></list-two-row>
+			<list-two-row :goods-list="shopList" turn-page='/pages/index/goodsDetail'></list-two-row>
 		</view>
 		<uni-load-more :status="status" v-if="shopList.length"></uni-load-more>
 		<common-footer style="margin-bottom: 20px;"></common-footer>
