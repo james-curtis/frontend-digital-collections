@@ -4,7 +4,7 @@
 			{{''}}
 		</template>
 		<template #footer>
-			<view class="footerBox flex_bt">
+			<view class="footerBox flex_bt" v-if="info.is_can_buy">
 				<view class="subBtn subBtn1" @tap="openSalePopup()" v-if="btnflag||rank==1">寄 售</view>
 				<view class="subBtn" @tap="openTransferPopup()">转 赠</view>
 			</view>
