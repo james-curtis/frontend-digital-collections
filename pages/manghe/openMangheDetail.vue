@@ -4,7 +4,7 @@
 			<view class="bigbox">
 				<view class="Box">
 					<view class="rotateBox" :style="'background-image: url('+info.image+');background-size: 100% 100%'">
-						<image class="image" src="../../static/img/index/bj3.png"></image>
+						<image v-if="false" class="image" src="../../static/img/index/bj3.png"></image>
 					</view>
 				</view>
 			</view>
@@ -269,7 +269,7 @@
 
 			.goodsName {
 				// color: #333333;
-				color: #000;
+				color: $uni-text-color;
 				font-size: 36rpx;
 				font-weight: 500;
 				margin-bottom: 20rpx;
@@ -307,7 +307,7 @@
 
 			.priceBox {
 				// color: #AE3523;
-				color: #000;
+				color: $uni-text-color;
 				font-size: 24rpx;
 				font-weight: 500;
 
@@ -365,7 +365,7 @@
 
 			.price {
 				// color: #AE3523;
-				color: #000;
+				color: $uni-text-color;
 				font-size: 32rpx;
 				margin-left: 30rpx;
 
