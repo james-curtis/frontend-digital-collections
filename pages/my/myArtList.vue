@@ -26,7 +26,8 @@
 	export default {
 		data() {
 			return {
-				collectionList: []
+				collectionList: [],
+				showType: 1
 			}
 		},
 		watch: {
@@ -45,11 +46,20 @@
 			}),
 			...mapGetters(['collectionListUnique']),
 		},
+		created() {
+			if (this.$route.query?.showType)
+				this.showType = Number(this.$route.query?.showType)
+		},
 		methods: {
 			goDetail(a, mycp_number) {
-				uni.navigateTo({
-					url: `../user/myArtDetail?goodsId=${a}&mycp_number=${mycp_number}`
-				})
+				if (this.showType === 1)
+					uni.navigateTo({
+						url: `../user/myArtDetail?goodsId=${a}&mycp_number=${mycp_number}`
+					})
+				else if (this.showType === 2)
+					uni.navigateTo({
+						url: `../index/secondGoodsDetail?goodsId=${a}`
+					})
 			},
 		}
 	}

@@ -187,7 +187,7 @@
 			},
 			goUniqueList(id) {
 				uni.navigateTo({
-					url: 'myArtList?goodsId=' + id
+					url: `myArtList?goodsId=${id}&showType=${this.showType}`
 				})
 			},
 			getList() {
