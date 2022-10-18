@@ -1,6 +1,8 @@
 <template>
 	<view class="content">
-		<view class="listItem1">进行实名认证,需要本人亲自完成!</view>
+		<view class="listItem1">
+			<u-parse :content='beckoningTips'></u-parse>
+		</view>
 		<!-- <view class="listItem">
 			<view class="topic flexBox">
 				<view class="line"></view>
@@ -65,6 +67,7 @@
 			...mapState({
 				member: s => s.user.member,
 				phone: s => s.user.member.phone,
+				beckoningTips: s => s.config.beckoningTips,
 			})
 		},
 		onLoad(e) {},
