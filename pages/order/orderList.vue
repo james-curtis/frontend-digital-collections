@@ -43,7 +43,7 @@
 				</view>
 
 				<view class="handBox clearfix" v-if="item.status == '1'">
-					<view class="Btn" @tap="cancel(item)">取消订单</view>
+					<!-- <view class="Btn" @tap="cancel(item)">取消订单</view> -->
 					<!-- <view class="Btn payBtn" @tap="go('orderPayMoney')">立即支付</view> -->
 					<view class="Btn payBtn" @tap="go('orderPayMoney?orderId='+item.id)">立即支付</view>
 				</view>
