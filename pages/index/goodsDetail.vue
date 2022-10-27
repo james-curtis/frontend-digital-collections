@@ -5,7 +5,8 @@
 				<view class="price">¥{{info.price}}</view>
 				<view class="subBtn " @tap="pay()" v-if="flag=='false'">立即购买</view>
 				<view class="subBtn subnrn1" v-if="flag=='true'" @click="toast1()">
-					<countdown v-if="info.status==2" :startTime="startTime" :endTime="enTime" style="margin:0 auto" />
+					<countdown v-if="info.status==2" :startTime="info.start_time" :endTime="info.end_time"
+						style="margin:0 auto" />
 					<view v-else>已结束</view>
 				</view>
 			</view>
