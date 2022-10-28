@@ -1,5 +1,5 @@
 import http from '@/common/http.js'
-export default {
+const UserState = {
 	state: {
 		member: {},
 		collectionList: []
@@ -18,19 +18,21 @@ export default {
 				prev[cursor.goods_id].children.push(cursor)
 				return prev;
 			}, {}))
-		}
+		},
 	},
 	actions: {
-		getMemInfo(ctx) {
-			http.get('user/userInfo').then(res => {
-				if (res.code == 1) {
-					ctx.commit('SET_USER_DATA', {
-						member: res.data
-					})
-					uni.setStorageSync('phone', res.data.phone);
-					uni.setStorageSync('wx_auth', res.data.wx_small_auth);
-				}
-			})
+		async getMemInfo(ctx, useCache = false) {
+			if (useCache && Object.entries(ctx.state.member).length !== 0)
+				return ctx.state.member
+			const res = await http.get('user/userInfo')
+			if (res.code == 1) {
+				ctx.commit('SET_USER_DATA', {
+					member: res.data
+				})
+				uni.setStorageSync('phone', res.data.phone);
+				uni.setStorageSync('wx_auth', res.data.wx_small_auth);
+			}
+			return res
 		},
 		getList(ctx, showType) {
 			let data = {
@@ -51,3 +53,5 @@ export default {
 		},
 	}
 }
+
+export default UserState

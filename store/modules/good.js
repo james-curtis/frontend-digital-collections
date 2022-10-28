@@ -19,5 +19,6 @@ export default {
 		SET_GOOD_STORE_DESC(state, data) {
 			Object.assign(state, data)
 		}
-	}
+	},
+	actions: {}
 }

@@ -9,7 +9,7 @@
 		<template #footer>
 			<view class="footerBox flex_bt">
 				<view class="price">¥{{info.price}}</view>
-				<view class="subBtn" @tap="pay()" v-if="isMyself">立即购买</view>
+				<view class="subBtn" @tap="pay()" v-if="!isMyself">立即购买</view>
 				<view class="subBtn" @tap="$refs.TransferPopup.open()" v-else>赎回藏品</view>
 			</view>
 
@@ -41,24 +41,36 @@
 				goodsId: '',
 				banner: {},
 				info: {},
+				isMyself: false,
 			}
 		},
 		computed: {
 			...mapState({
-				secondMarketGoodList: s => s.good.secondMarketGoodList,
 				member: s => s.user.member,
 			}),
-			isMyself() {
-				const isFound = this.secondMarketGoodList.find(e => e.uid === this.member.id && e.id == this.goodsId)
-				return !!isFound;
+		},
+		watch: {
+			info: {
+				handler() {
+					this.checkIsMyself()
+				}
+			},
+			member: {
+				handler() {
+					this.checkIsMyself()
+				}
 			}
 		},
 		onLoad(e) {
 			this.goodsId = e.goodsId;
 			this.getData();
+			this.$store.dispatch('getMemInfo', true)
 		},
 		onShow() {},
 		methods: {
+			checkIsMyself() {
+				this.isMyself = (String(this.info?.uid) === String(this.member.id))
+			},
 			pay() {
 				this.go('orderMakeSure?goodsId=' + this.goodsId + '&type=second');
 			},
@@ -79,7 +91,9 @@
 				}).then(res => {
 					if (res.code == 1) {
 						this.toast(res.msg)
-						setTimeout(() => uni.navigateBack(), 2000)
+						setTimeout(() => uni.redirectTo({
+							url: '../my/my'
+						}), 1000)
 					}
 				})
 			}

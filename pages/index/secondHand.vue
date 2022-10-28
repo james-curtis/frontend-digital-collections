@@ -107,7 +107,7 @@
 				secondMarketGoodList: s => s.good.secondMarketGoodList,
 			})
 		},
-		onLoad(e) {
+		onShow(e) {
 			this.Reset();
 		},
 		onPageScroll(e) {
