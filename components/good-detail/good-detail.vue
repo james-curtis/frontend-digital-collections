@@ -30,21 +30,7 @@
 		</view>
 
 		<!-- 首页进入显示的商品页面 -->
-		<view class="bigbox" v-if="[1].includes(styleType)">
-			<img :src='info.image' style="width: 100%;height: auto;"></img>
-			<slot name="goodStockDesc" :info='info'>
-				<view class="flex good-stock-desc">
-					<view class="flexBox LimitBox">
-						<view class="Limit">剩余</view>
-						<view class="stock">{{info.surplus}}份</view>
-					</view>
-					<view class="flexBox LimitBox">
-						<view class="Limit">限购</view>
-						<view class="stock">{{info.xgstatus}}份</view>
-					</view>
-				</view>
-			</slot>
-		</view>
+		<good-big-pic v-if="[1].includes(styleType)" :info="info"></good-big-pic>
 
 		<view class="type1">
 			<view class="msgBox">
