@@ -27,7 +27,7 @@
 					</view>
 					<view class="flexBox">
 						<view class="label">{{item.goods_category_name}}</view>
-						<view class="flexBox LimitBox">
+						<view class="flexBox LimitBox" v-if="showRemainingItems">
 							<view class="Limit">剩余/总量</view>
 							<view class="stock">{{item.surplus}}/{{item.mhstock}}</view>
 						</view>
@@ -41,6 +41,9 @@
 	</view>
 </template>
 <script>
+	import {
+		mapState
+	} from 'vuex'
 	export default {
 		data() {
 			return {
@@ -54,6 +57,11 @@
 				showType: '0',
 				scrollTopt: 0,
 			}
+		},
+		computed: {
+			...mapState({
+				showRemainingItems: s => s.config.showRemainingItems
+			})
 		},
 		onLoad(e) {
 			this.getBanner()

@@ -19,7 +19,7 @@
 				<view class="flexBox flex_bt"
 					style="margin-top: 20rpx;flex-direction: column;align-items: flex-start;gap: 10px;">
 					<view class="label">{{item.goods_category_name}}</view>
-					<view class="flexBox LimitBox">
+					<view class="flexBox LimitBox" v-if="showRemainingItems">
 						<view class="Limit">剩余/总量</view>
 						<view class="stock">{{item.surplus}}/{{item.stock}}</view>
 					</view>
@@ -52,7 +52,8 @@
 		},
 		computed: {
 			...mapState({
-				goodEnd: s => s.config.goodEnd
+				goodEnd: s => s.config.goodEnd,
+				showRemainingItems: s => s.showRemainingItems
 			})
 		}
 	}

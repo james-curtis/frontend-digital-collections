@@ -11,7 +11,7 @@
 				<image class="img" src="../../static/img/index/b1.png" mode=""></image>
 				<view class="center">
 					<view class="goodsName">{{info.name}}</view>
-					<slot name="goodStockDesc" :info='info'>
+					<slot name="goodStockDesc" :info='info' v-if="showRemainingItems">
 						<view class="flex">
 							<view class="flexBox LimitBox">
 								<view class="Limit">剩余</view>
@@ -101,6 +101,9 @@
 		name: 'GoodDetail',
 		components: {
 			countdown,
+			...mapState({
+				showRemainingItems: s => s.showRemainingItems
+			})
 		},
 		props: {
 			goodDetail: {

@@ -72,7 +72,7 @@
 					</view>
 					<view class="flexBox" style="margin-top: 10rpx;">
 						<view class="label">{{item.goods_category_name}}</view>
-						<view class="flexBox LimitBox">
+						<view class="flexBox LimitBox" v-if="showRemainingItems">
 							<view class="Limit">剩余/总量</view>
 							<view class="stock">{{item.surplus}}/{{item.stock}}</view>
 						</view>
@@ -176,6 +176,7 @@
 				rlflag: s => s.config.isOpenIndexPageCalendar,
 				goodEnd: s => s.config.goodEnd,
 				member: s => s.user.member,
+				showRemainingItems: s => s.showRemainingItems
 			})
 		},
 		onLoad(e) {

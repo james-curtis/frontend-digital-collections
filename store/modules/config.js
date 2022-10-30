@@ -12,6 +12,7 @@ export default {
 		yundunAppKey: '',
 		yundunScene: '',
 		checkoutTips: '',
+		showRemainingItems: true,
 		beckoningTips: '进行实名认证,需要本人亲自完成!',
 
 		// 商品销售结束显示图片

@@ -1,7 +1,7 @@
 <template>
 	<view class="bigbox">
 		<img :src='info.image' style="width: 100%;height: auto;"></img>
-		<slot name="goodStockDesc" :info='info'>
+		<slot name="goodStockDesc" :info='info' v-if="showRemainingItems">
 			<view class="flex good-stock-desc">
 				<view class="flexBox LimitBox">
 					<view class="Limit">剩余</view>
@@ -17,8 +17,16 @@
 </template>
 
 <script>
+	import {
+		mapState
+	} from 'vuex'
 	export default {
 		name: 'GoodBigPic',
+		computed: {
+			...mapState({
+				showRemainingItems: s => s.showRemainingItems
+			})
+		},
 		props: {
 			info: {
 				type: Object,

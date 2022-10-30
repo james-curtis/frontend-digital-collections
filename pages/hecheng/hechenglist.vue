@@ -8,7 +8,7 @@
 						<view class="manghe_flag">合成</view>
 						<view class="">{{item.name}}</view>
 					</view>
-					<view class="flex">
+					<view class="flex" v-if="showRemainingItems">
 						<view class="time">总量:{{item.limitnum}}</view>
 						<view class="time">剩余:{{item.surplus}}</view>
 					</view>
@@ -33,6 +33,9 @@
 </template>
 
 <script>
+	import {
+		mapState
+	} from 'vuex'
 	export default {
 		data() {
 			return {
@@ -49,7 +52,10 @@
 		computed: {
 			myCollectionStatGetter() {
 				return id => this.myCollectionStat[id] ?? 0
-			}
+			},
+			...mapState({
+				showRemainingItems: s => s.showRemainingItems
+			})
 		},
 		onShow() {
 			this.Reset();
