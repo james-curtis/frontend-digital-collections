@@ -10,7 +10,7 @@
 				<image class="img" src="../../static/img/index/b1.png" mode=""></image>
 				<view class="center">
 					<view class="goodsName">{{info.name}}</view>
-					<view class="flexBox LimitBox">
+					<view class="flexBox LimitBox" v-if="showRemainingItems">
 						<view class="Limit">限量</view>
 						<view class="stock">{{info.surplus}}份</view>
 					</view>
@@ -94,6 +94,9 @@
 </template>
 
 <script>
+	import {
+		mapState
+	} from 'vuex'
 	export default {
 		data() {
 			return {
@@ -104,6 +107,11 @@
 				price: '',
 				saleFlag: false
 			}
+		},
+		computed: {
+			...mapState({
+				showRemainingItems: s => s.config.showRemainingItems
+			})
 		},
 		onLoad(e) {
 			this.goodsId = e.goodsId;

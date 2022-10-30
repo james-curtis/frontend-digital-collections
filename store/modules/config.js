@@ -17,6 +17,12 @@ export default {
 
 		// 商品销售结束显示图片
 		goodEnd: '',
+
+		// 商品余量描述
+		descSurplusOnPersonal: '流通',
+		descTotalOnPersonal: '总发行',
+		descSurplusOnMall: '剩余',
+		descTotalOnMall: '总量',
 	},
 	mutations: {
 		SET_CONFIG(state, data) {

@@ -3,6 +3,16 @@
 		<template #goodStockDesc>
 			{{''}}
 		</template>
+
+		<template #goodBigPicStockDesc='{info:innerInfo}'>
+			<view class="flex good-stock-desc" v-if="showRemainingItems">
+				<view class="flexBox LimitBox">
+					<view class="Limit">{{descSurplusOnPersonal}}/{{descTotalOnPersonal}}</view>
+					<view class="stock">{{innerInfo.surplus}}/{{innerInfo.stock}}</view>
+				</view>
+			</view>
+		</template>
+
 		<template #footer>
 			<view class="footerBox flex_bt" v-if="info.is_can_buy">
 				<view class="subBtn subBtn1" @tap="openSalePopup()" v-if="btnflag||rank==1">寄 售</view>
@@ -41,6 +51,9 @@
 </template>
 
 <script>
+	import {
+		mapState
+	} from 'vuex'
 	export default {
 		data() {
 			return {
@@ -55,6 +68,13 @@
 				rank: null,
 				mycp_number: undefined
 			}
+		},
+		computed: {
+			...mapState({
+				showRemainingItems: s => s.config.showRemainingItems,
+				descSurplusOnPersonal: s => s.config.descSurplusOnPersonal,
+				descTotalOnPersonal: s => s.config.descTotalOnPersonal,
+			})
 		},
 		onLoad(e) {
 			this.rank = uni.getStorageSync('rank');
@@ -166,321 +186,111 @@
 
 </style>
 <style lang="scss" scoped>
-	@keyframes myfirst {
-		0% {
-			transform: rotatey(0deg)
+	.good-stock-desc {
+		justify-content: center;
+		position: absolute;
+		bottom: 30px;
+		left: 50%;
+		transform: translateX(-50%);
+		width: 100%;
+	}
+
+
+	.specs_boxs {
+		padding: 50rpx 0 10rpx;
+		width: 600rpx;
+		background: #FFFFFF;
+		border-radius: 12rpx;
+		margin: 0 auto;
+
+		.ipt {
+			flex: 1;
+			height: 100rpx;
+			line-height: 100rpx;
+			font-size: 28rpx;
+			font-weight: 500;
+			color: #333;
+			background-color: #F8F8F8;
+			padding-left: 30rpx;
+			margin: 0 30rpx;
 		}
 
-		25% {
-			transform: rotatey(90deg)
+		.iptP {
+			color: #777777;
+			font-weight: 400;
 		}
 
-		50% {
-			transform: rotatey(180deg)
-		}
+		.btnBox {
+			margin-top: 20rpx;
 
-		75% {
-			transform: rotatey(270deg)
-		}
+			.btn {
+				flex: 1;
+				height: 80rpx;
+				line-height: 80rpx;
+				text-align: center;
+				font-size: 30rpx;
+			}
 
-		100% {
-			transform: rotatey(360deg)
+			.btn1 {
+				color: #AE3523;
+			}
 		}
 	}
 
-	.content {
-		padding-bottom: 200rpx;
 
-		.bigbox {
-			background: url(../../static/img/index/bg.jpg) no-repeat left top;
-			background-size: 100%;
-			background-color: #000;
-		}
+	.footerBox {
+		position: fixed;
+		left: 0;
+		bottom: 0;
+		z-index: 10;
+		width: 100%;
+		height: 120rpx;
+		background-color: #fff;
+		box-shadow: 0rpx -4rpx 32rpx 0rpx rgba(180, 180, 180, 0.5);
 
-		.Box {
-			width: 100%;
-			height: 680rpx;
-			padding-bottom: 50rpx;
-			background: url(../../static/img/index/bj1.png) no-repeat left top;
-			background-size: 100%;
-			display: flex;
-			flex-direction: column;
-			justify-content: flex-end;
-			align-items: center;
-			perspective: 1000;
-			-webkit-perspective: 1000;
-
-			.rotateBox {
-				width: 540rpx;
-				height: 540rpx;
-				animation: myfirst 10s linear 150ms 100;
-
-				.image {
-					width: 540rpx;
-					height: 540rpx;
-				}
-			}
-		}
-
-		.Box1 {
-			width: 100%;
-			height: 360rpx;
-			margin-top: -120rpx;
-			padding-bottom: 30rpx;
-			background: url(../../static/img/index/bj2.png) no-repeat top center;
-			background-size: 620rpx;
-			display: flex;
-			justify-content: center;
-			align-items: flex-end;
-
-			.img {
-				width: 84rpx;
-				height: 152rpx;
-				margin: 0 15rpx;
-			}
-
-			.center {
-				max-width: 500rpx;
-				height: 152rpx;
-				display: flex;
-				flex-direction: column;
-				justify-content: space-around;
-				align-items: center;
-
-				.goodsName {
-					color: #FFFFFF;
-					font-size: 30rpx;
-					text-align: center;
-					overflow: hidden;
-					word-break: break-all;
-					text-overflow: ellipsis;
-					display: -webkit-box;
-					-webkit-box-orient: vertical;
-					-webkit-line-clamp: 2;
-				}
-
-				.LimitBox {
-					height: 40rpx;
-					line-height: 40rpx;
-					background: #4C464A;
-					border-radius: 6rpx;
-					font-size: 12px;
-					text-align: center;
-
-					.Limit {
-						width: 60rpx;
-						padding: 0 10rpx;
-						border-radius: 6rpx;
-						color: #010101;
-						background-color: #F1E2BC;
-					}
-
-					.stock {
-						padding: 0 10rpx;
-						color: #F1E2BC;
-					}
-				}
-			}
-		}
-
-		.specs_boxs {
-			padding: 50rpx 0 10rpx;
-			width: 600rpx;
-			background: #FFFFFF;
-			border-radius: 12rpx;
-			margin: 0 auto;
-
-			.ipt {
-				flex: 1;
-				height: 100rpx;
-				line-height: 100rpx;
-				font-size: 28rpx;
-				font-weight: 500;
-				color: #333;
-				background-color: #F8F8F8;
-				padding-left: 30rpx;
-				margin: 0 30rpx;
-			}
-
-			.iptP {
-				color: #777777;
-				font-weight: 400;
-			}
-
-			.btnBox {
-				margin-top: 20rpx;
-
-				.btn {
-					flex: 1;
-					height: 80rpx;
-					line-height: 80rpx;
-					text-align: center;
-					font-size: 30rpx;
-				}
-
-				.btn1 {
-					color: #AE3523;
-				}
-			}
-		}
-
-		.banner {
-			width: 100%;
-			height: 500rpx;
-			background-color: #23272C;
-
-			.uni-swiper-wrapper {
-				z-index: 10;
-			}
-
-			image {
-				width: 100%;
-				height: 500rpx;
-			}
-		}
-
-		.msgBox {
+		.subBtn {
+			width: 320rpx;
+			height: 88rpx;
+			line-height: 88rpx;
+			text-align: center;
+			color: #fff;
+			font-size: 32rpx;
+			font-weight: 500;
+			background: #00DB7D;
+			border-radius: 44rpx;
 			margin: 0 30rpx;
-			background-color: #fff;
-			padding: 30rpx;
-			box-shadow: 0px 0px 15rpx 6rpx rgba(52, 52, 52, 0.1);
-			border-radius: 10rpx;
-
-			.goodsName {
-				color: #FFFFFF;
-				font-size: 36rpx;
-				font-weight: 500;
-				margin-bottom: 20rpx;
-			}
-
-			.describe {
-				color: #666666;
-				font-size: 24rpx;
-				line-height: 36rpx;
-				font-weight: 500;
-				margin-top: 20rpx;
-			}
-
-			.priceBox {
-				color: #000;
-				font-size: 24rpx;
-				font-weight: 500;
-
-				text {
-					font-weight: 500;
-					font-size: 36rpx;
-					margin-left: 10rpx;
-				}
-			}
 		}
 
-		.descBox {
-			padding: 20rpx 30rpx;
-			color: #AAAAAA;
-			margin: 0 30rpx;
-			box-shadow: 0px 0px 15rpx 6rpx rgba(52, 52, 52, 0.1);
-			border-radius: 10rpx;
+		.subBtn1 {
+			background: #fff;
+			color: #00DB7D;
+			border: 2rpx solid #00DB7D;
+		}
+	}
 
-			.item {
-				font-size: 26rpx;
-				font-weight: 500;
-				color: $uni-text-color-grey;
-				margin-bottom: 10rpx;
-			}
 
-			.desinfo {
-				overflow: hidden;
-				font-size: 24rpx;
-				word-wrap: break-word;
+	.LimitBox {
+		// width: 200rpx;
+		height: 40rpx;
+		line-height: 40rpx;
+		background: #4C464A;
+		border-radius: 6rpx;
+		font-size: 24rpx;
+		text-align: center;
+		margin-right: 20rpx;
 
-				video {
-					width: 100%;
-				}
-			}
+		.Limit {
+			min-width: 60rpx;
+			padding: 0 10px;
+			border-radius: 6rpx;
+			color: #010101;
+			background-color: #F1E2BC;
 		}
 
-		.goodsinfo {
-			padding: 0 20rpx;
-			margin: 20rpx 30rpx;
-			box-shadow: 0px 0px 15rpx 6rpx rgba(52, 52, 52, 0.1);
-			border-radius: 10rpx;
-
-			.iptBox {
-				padding: 20rpx 0;
-				border-bottom: 1rpx solid #F0F0F0;
-
-				.label {
-					width: 20%;
-					font-size: 24rpx;
-					color: $uni-text-color-grey;
-				}
-
-				.center {
-					width: 75%;
-					color: $uni-text-color-grey;
-					font-size: 24rpx;
-					word-break: break-word;
-					line-height: 44rpx;
-					position: relative;
-					justify-content: left;
-				}
-
-				.copy {
-					width: 44rpx;
-					height: 44rpx;
-					position: absolute;
-					bottom: 0;
-					right: 0;
-				}
-			}
-
-			.iptBox1 {
-				.center {
-					color: #AAAAAA;
-					font-weight: 500;
-				}
-			}
-		}
-
-		.footerBox {
-			position: fixed;
-			left: 0;
-			bottom: 0;
-			z-index: 10;
-			width: 100%;
-			height: 120rpx;
-			background-color: #fff;
-			box-shadow: 0rpx -4rpx 32rpx 0rpx rgba(180, 180, 180, 0.5);
-
-			.subBtn {
-				width: 320rpx;
-				height: 88rpx;
-				line-height: 88rpx;
-				text-align: center;
-				color: #fff;
-				font-size: 32rpx;
-				font-weight: 500;
-				background: #00DB7D;
-				border-radius: 44rpx;
-				margin: 0 30rpx;
-			}
-
-			.subBtn1 {
-				background: #fff;
-				color: #00DB7D;
-				border: 2rpx solid #00DB7D;
-			}
-		}
-
-		.tech-tip {
-			margin-top: 30rpx;
-			display: flex;
-			justify-content: center;
-
-			image {
-				width: 427rpx;
-				height: 42rpx;
-			}
+		.stock {
+			min-width: 80rpx;
+			padding: 0 10px;
+			color: #F1E2BC;
 		}
 	}
 </style>

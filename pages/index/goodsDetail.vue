@@ -15,6 +15,9 @@
 </template>
 
 <script>
+	import {
+		mapState
+	} from 'vuex'
 	import countdown from "@/components/cz-countdown/cz-countdown.vue"
 	export default {
 		components: {

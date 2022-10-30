@@ -1,18 +1,7 @@
 <template>
 	<view class="bigbox">
 		<img :src='info.image' style="width: 100%;height: auto;"></img>
-		<slot name="goodStockDesc" :info='info' v-if="showRemainingItems">
-			<view class="flex good-stock-desc">
-				<view class="flexBox LimitBox">
-					<view class="Limit">剩余</view>
-					<view class="stock">{{info.surplus}}份</view>
-				</view>
-				<view class="flexBox LimitBox" v-if="info.xgstatus">
-					<view class="Limit">限购</view>
-					<view class="stock">{{info.xgstatus}}份</view>
-				</view>
-			</view>
-		</slot>
+		<slot></slot>
 	</view>
 </template>
 
@@ -24,7 +13,8 @@
 		name: 'GoodBigPic',
 		computed: {
 			...mapState({
-				showRemainingItems: s => s.config.showRemainingItems
+				showRemainingItems: s => s.config.showRemainingItems,
+				descSurplusOnMall: s => s.config.descSurplusOnMall,
 			})
 		},
 		props: {

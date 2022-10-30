@@ -12,9 +12,9 @@
 				<view class="center">
 					<view class="goodsName">{{info.name}}</view>
 					<slot name="goodStockDesc" :info='info' v-if="showRemainingItems">
-						<view class="flex">
+						<view class="flex" v-if="showRemainingItems">
 							<view class="flexBox LimitBox">
-								<view class="Limit">剩余</view>
+								<view class="Limit">{{descSurplusOnMall}}</view>
 								<view class="stock">{{info.surplus}}份</view>
 							</view>
 							<view class="flexBox LimitBox">
@@ -30,7 +30,22 @@
 		</view>
 
 		<!-- 首页进入显示的商品页面 -->
-		<good-big-pic v-if="[1].includes(styleType)" :info="info"></good-big-pic>
+		<good-big-pic v-if="[1].includes(styleType)" :info="info">
+			<template>
+				<slot name="goodBigPicStockDesc" :info='info' v-if="showRemainingItems">
+					<view class="flex good-stock-desc" v-if="showRemainingItems">
+						<view class="flexBox LimitBox">
+							<view class="Limit">{{descSurplusOnMall}}</view>
+							<view class="stock">{{info.surplus}}份</view>
+						</view>
+						<view class="flexBox LimitBox" v-if="info.xgstatus">
+							<view class="Limit">限购</view>
+							<view class="stock">{{info.xgstatus}}份</view>
+						</view>
+					</view>
+				</slot>
+			</template>
+		</good-big-pic>
 
 		<view class="type1">
 			<view class="msgBox">
@@ -101,9 +116,6 @@
 		name: 'GoodDetail',
 		components: {
 			countdown,
-			...mapState({
-				showRemainingItems: s => s.config.showRemainingItems
-			})
 		},
 		props: {
 			goodDetail: {
@@ -130,6 +142,10 @@
 			}
 		},
 		computed: {
+			...mapState({
+				showRemainingItems: s => s.config.showRemainingItems,
+				descSurplusOnMall: s => s.config.descSurplusOnMall
+			}),
 			info() {
 				return this.goodDetail
 			},
