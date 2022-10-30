@@ -54,7 +54,7 @@
 				return id => this.myCollectionStat[id] ?? 0
 			},
 			...mapState({
-				showRemainingItems: s => s.showRemainingItems
+				showRemainingItems: s => s.config.showRemainingItems
 			})
 		},
 		onShow() {

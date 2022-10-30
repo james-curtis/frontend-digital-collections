@@ -53,7 +53,7 @@
 		computed: {
 			...mapState({
 				goodEnd: s => s.config.goodEnd,
-				showRemainingItems: s => s.showRemainingItems
+				showRemainingItems: s => s.config.showRemainingItems
 			})
 		}
 	}

@@ -102,7 +102,7 @@
 		components: {
 			countdown,
 			...mapState({
-				showRemainingItems: s => s.showRemainingItems
+				showRemainingItems: s => s.config.showRemainingItems
 			})
 		},
 		props: {

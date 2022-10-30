@@ -176,7 +176,7 @@
 				rlflag: s => s.config.isOpenIndexPageCalendar,
 				goodEnd: s => s.config.goodEnd,
 				member: s => s.user.member,
-				showRemainingItems: s => s.showRemainingItems
+				showRemainingItems: s => s.config.showRemainingItems
 			})
 		},
 		onLoad(e) {
