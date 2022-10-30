@@ -21,7 +21,8 @@
 		</view>
 		<view class="iptBox">
 			<text class="label">收款姓名:</text>
-			<input v-model="bank_owner" type="text" placeholder="请输入收款姓名" class="ipt" placeholder-class="iptP" />
+			<input disabled v-model="bank_owner" type="text" placeholder="请输入收款姓名" class="ipt"
+				placeholder-class="iptP" />
 		</view>
 		<view class="iptBox">
 			<text class="label">开户银行:</text>
@@ -69,6 +70,9 @@
 
 <script>
 	import http from '@/common/http.js'
+	import {
+		mapState
+	} from 'vuex'
 	export default {
 		data() {
 			return {
@@ -92,9 +96,22 @@
 				notify_desc: ''
 			};
 		},
+		computed: {
+			...mapState({
+				member: s => s.user.member
+			})
+		},
+		watch: {
+			member: {
+				handler(val) {
+					this.bank_owner = val.name
+				}
+			}
+		},
 		onLoad(e) {
 			this.phone = uni.getStorageSync("phone");
 			this.getData();
+			this.$store.dispatch('getMemInfo', true)
 		},
 		mounted() {
 			this.getCapthcaUrl()
