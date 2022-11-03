@@ -189,11 +189,18 @@
 							const div = document.createElement('div')
 							div.innerHTML = res.data.pay;
 							document.body.appendChild(div)
-							document.forms['alipay_submit'].submit();
+							document.forms['alipaysubmit'].submit();
 						} else if (this.payType == 3 || this.payType == 6) { //微信支付
 							this.weixinPay(res.data.pay);
 						} else if (this.payType == 5) {
-							window.location.href = res.data.pay;
+							// 官方支付
+							// window.location.href = res.data.pay;
+
+							// 易支付
+							const div = document.createElement('div')
+							div.innerHTML = res.data.pay;
+							document.body.appendChild(div)
+							document.forms['alipaysubmit'].submit();
 						}
 					} else {
 						this.toast(res.msg);
