@@ -23,6 +23,8 @@ export default {
 		descTotalOnPersonal: '总发行',
 		descSurplusOnMall: '剩余',
 		descTotalOnMall: '总量',
+
+		rechargeQuickList: ["10", "15", "20", "100", "150"],
 	},
 	mutations: {
 		SET_CONFIG(state, data) {

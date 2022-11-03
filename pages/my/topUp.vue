@@ -34,11 +34,8 @@
 				<view class="label">充值金额</view>
 			</view>
 			<view class="tabBox">
-				<view @tap="show('10')" :class="number == '10' ? 'tab act' : 'tab'">充值10元</view>
-				<view @tap="show('15')" :class="number == '15' ? 'tab act' : 'tab'">充值15元</view>
-				<view @tap="show('50')" :class="number == '50' ? 'tab act' : 'tab'">充值50元</view>
-				<view @tap="show('100')" :class="number == '100' ? 'tab act' : 'tab'">充值100元</view>
-				<view @tap="show('500')" :class="number == '500' ? 'tab act' : 'tab'">充值500元</view>
+				<view v-for="item in rechargeQuickList" @tap="show(item)" :class="number == item ? 'tab act' : 'tab'">
+					充值{{item}}元</view>
 			</view>
 		</view>
 		<view class="listItem2 flexBox">
@@ -56,6 +53,9 @@
 </template>
 
 <script>
+	import {
+		mapState
+	} from 'vuex'
 	export default {
 		data() {
 			return {
@@ -104,6 +104,11 @@
 					// #endif
 				],
 			}
+		},
+		computed: {
+			...mapState({
+				rechargeQuickList: s => s.config.rechargeQuickList
+			})
 		},
 		onLoad(e) {
 			this.getAccount();
