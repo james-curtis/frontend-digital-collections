@@ -25,6 +25,8 @@ export default {
 		descTotalOnMall: '总量',
 
 		rechargeQuickList: ["10", "15", "20", "100", "150"],
+		rechargeAlipayIsOpen: true,
+		rechargeWxpayIsOpen: true,
 	},
 	mutations: {
 		SET_CONFIG(state, data) {

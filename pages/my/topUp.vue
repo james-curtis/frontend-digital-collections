@@ -17,12 +17,22 @@
 			</view>
 			<view class="input_box">
 				<radio-group @change="payTypeChange">
-					<label class="item" v-for="(pay,index) in payList" :key="index">
+					<label class="item" v-if="false" v-for="(pay,index) in payList" :key="index">
 						<radio style="transform:scale(0.7)" :value="pay.PayType" :checked="payType == pay.PayType"
 							color="#00DB7D" />
 						<text>{{pay.name}}</text>
 						<image v-if="pay.id == '2'" src="../../static/img/my/weixin.png" mode=""></image>
 						<image v-if="pay.id == '1'" src="../../static/img/my/zhifubao.png" mode=""></image>
+					</label>
+					<label class="item" v-if="rechargeAlipayIsOpen">
+						<radio style="transform:scale(0.7)" value="4" :checked="payType == 4" color="#00DB7D" />
+						<text>支付宝</text>
+						<image src="../../static/img/my/zhifubao.png" mode=""></image>
+					</label>
+					<label class="item" v-if="rechargeWxpayIsOpen">
+						<radio style="transform:scale(0.7)" value="5" :checked="payType == 5" color="#00DB7D" />
+						<text>微信</text>
+						<image src="../../static/img/my/weixin.png" mode=""></image>
 					</label>
 				</radio-group>
 			</view>
@@ -58,67 +68,72 @@
 	} from 'vuex'
 	export default {
 		data() {
+			const playList = [
+				/* {
+					id: 1,
+					name: '支付宝'
+				},
+				{
+					id: 2,
+					name: '微信'
+				} */
+
+				// // #ifdef APP-PLUS
+				// {
+				// 	id: 1,
+				// 	ImgUrl: '../../static/img/order/zhifubao.png',
+				// 	name: '支付宝',
+				// 	PayType: '2'
+				// },
+				// {
+				// 	id: 2,
+				// 	ImgUrl: '../../static/img/order/weixinzhifu.png',
+				// 	name: '微信',
+				// 	PayType: '6'
+				// },
+				// // #endif
+			]
 			return {
 				account: '', //余额
 				min: '', //最小
 				number: '',
 				money: '',
 				payType: '',
-				payList: [
-					/* {
-						id: 1,
-						name: '支付宝'
-					},
-					{
-						id: 2,
-						name: '微信'
-					} */
-
-					// #ifdef APP-PLUS
-					{
-						id: 1,
-						ImgUrl: '../../static/img/order/zhifubao.png',
-						name: '支付宝',
-						PayType: '2'
-					},
-					{
-						id: 2,
-						ImgUrl: '../../static/img/order/weixinzhifu.png',
-						name: '微信',
-						PayType: '6'
-					},
-					// #endif
-					// #ifdef H5
-					{
-						id: 1,
-						ImgUrl: '../../static/img/order/zhifubao.png',
-						name: '支付宝',
-						PayType: '4'
-					},
-					{
-						id: 2,
-						ImgUrl: '../../static/img/order/weixinzhifu.png',
-						name: '微信',
-						PayType: '5'
-					}
-					// #endif
-				],
+				payList: [],
 			}
 		},
 		computed: {
 			...mapState({
-				rechargeQuickList: s => s.config.rechargeQuickList
+				rechargeQuickList: s => s.config.rechargeQuickList,
+				rechargeAlipayIsOpen: s => s.config.rechargeAlipayIsOpen,
+				rechargeWxpayIsOpen: s => s.config.rechargeWxpayIsOpen,
 			})
 		},
 		onLoad(e) {
 			this.getAccount();
+		},
+		mounted() {
+			if (this.rechargeAlipayIsOpen) {
+				this.payList.push({
+					id: 1,
+					name: '支付宝',
+					PayType: '4'
+				})
+			}
+			if (this.rechargeWxpayIsOpen) {
+				this.payList.push({
+					id: 2,
+					name: '微信',
+					PayType: '5'
+				})
+			}
 		},
 		watch: {
 			"money": function(newVal, oldVal) {
 				if (newVal) {
 					this.number = newVal;
 				}
-			}
+			},
 		},
 		methods: {
 			submit() {
