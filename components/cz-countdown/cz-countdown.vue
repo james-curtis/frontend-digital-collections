@@ -51,17 +51,17 @@
 		},
 		methods: {
 			time() {
-				let leftTime = this.GetDateDiff(this.sTime, this.eTime)
+				let leftTime = this.GetDateDiff(this.sTime)
 				this.getCountdownTime(leftTime)
 			},
 			//计算两个时间差
-			GetDateDiff(startTime, endTime) {
+			GetDateDiff(startTime) {
 				//将xxxx-xx-xx的时间格式，转换为 xxxx/xx/xx的格式
 				startTime = startTime.replace(/\-/g, "/");
-				endTime = endTime.replace(/\-/g, "/");
+				// endTime = endTime.replace(/\-/g, "/");
 				//将计算间隔类性字符转换为小写
-				var sTime = new Date(startTime);
-				var eTime = new Date(endTime);
+				var sTime = new Date();
+				var eTime = new Date(startTime);
 				return parseInt((eTime.getTime() - sTime.getTime()) / 1000);
 			},
 			//计算活动结束时间
