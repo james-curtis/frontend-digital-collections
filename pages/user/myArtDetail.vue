@@ -6,7 +6,11 @@
 
 		<template #goodBigPicStockDesc='{info:innerInfo}'>
 			<view class="flex good-stock-desc" v-if="showRemainingItems">
-				<view class="flexBox LimitBox">
+				<view class="flexBox LimitBox" v-if="descSaleOnPersonal">
+					<view class="Limit">{{descSaleOnPersonal}}/{{descTotalOnPersonal}}</view>
+					<view class="stock">{{innerInfo.sales}}/{{innerInfo.stock}}</view>
+				</view>
+				<view class="flexBox LimitBox" v-else>
 					<view class="Limit">{{descSurplusOnPersonal}}/{{descTotalOnPersonal}}</view>
 					<view class="stock">{{innerInfo.surplus}}/{{innerInfo.stock}}</view>
 				</view>
@@ -74,6 +78,7 @@
 				showRemainingItems: s => s.config.showRemainingItems,
 				descSurplusOnPersonal: s => s.config.descSurplusOnPersonal,
 				descTotalOnPersonal: s => s.config.descTotalOnPersonal,
+				descSaleOnPersonal: s => s.config.descSaleOnPersonal,
 			})
 		},
 		onLoad(e) {

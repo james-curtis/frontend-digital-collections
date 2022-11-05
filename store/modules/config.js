@@ -23,6 +23,7 @@ export default {
 		descTotalOnPersonal: '总发行',
 		descSurplusOnMall: '剩余',
 		descTotalOnMall: '总量',
+		descSaleOnPersonal: null,
 
 		rechargeQuickList: ["10", "15", "20", "100", "150"],
 		rechargeAlipayIsOpen: true,
